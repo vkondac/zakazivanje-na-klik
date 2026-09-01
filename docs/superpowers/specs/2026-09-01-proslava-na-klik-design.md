@@ -72,6 +72,12 @@ Ova tri ograničenja objašnjavaju većinu odluka niže i treba ih otvoreno izne
 
 **4.4 `/products/<handle>.js` ne vraća metafieldove.** Zato se tabela poređenja ne može puniti fetch-om (vidi 8.3).
 
+**4.6 Podržani tipovi za filtere su verifikovani.** Search & Discovery prima kao izvor filtera: `single_line_text_field`, `list.single_line_text_field`, `number_integer`, `number_decimal`, `boolean`, `metaobject_reference` i `list.metaobject_reference`. Nativno su dostupni Availability, Category, Price, Product type, Tags i Vendor. Limit je 25 filtera po store-u i 200 jedinstvenih vrednosti po grupi — koristimo 8 filtera i najviše 15 vrednosti, daleko ispod granice.
+
+Nisu podržani `rating`, `date`, `list.date` ni `money` — što se poklapa sa modelom, jer se ni po jednom od njih ne filtrira.
+
+Napomena: `number_integer` jeste podržan, pa bi `kapacitet_min` i `kapacitet_max` tehnički mogli biti filteri. Ne pomaže — dobila bi se dva nezavisna opsega umesto jednog upita „koji prostor prima 80 gostiju". Korpe iz 4.3 ostaju.
+
 **4.5 Nema nativnog sortiranja po oceni.** `collection.sort_options` nudi cenu, naziv i datum. Sortiranje po oceni se radi klijentski nad trenutnom stranicom — isti kompromis kao filter po datumu, pa je objašnjenje jedno za oba.
 
 ---
@@ -372,7 +378,7 @@ Sve ovo je u briefu, ali ne u ovom demou: blog i SEO vodiči, landing „dodaj s
 
 | Rizik | Verovatnoća | Odgovor |
 |---|---|---|
-| Search & Discovery ne podržava neki tip metafielda kao filter | srednja | Proverava se u **fazi 1**, pre ijedne linije UI koda. Fallback: sve filtrabilno kao `list.single_line_text_field`, najsigurniji tip |
+| ~~Search & Discovery ne podržava neki tip metafielda kao filter~~ | **otklonjen** | Verifikovano 2026-09-01 uz Shopify dokumentaciju — vidi 4.6 |
 | Shopify AI Toolkit MCP nedostaje, a `AGENTS.md` ga traži | visoka (već je slučaj) | Instalira se u fazi 0 |
 | Repo nije pod gitom | visoka (već je slučaj) | `git init` pre prvog fajla |
 | Klijentsko filtriranje po datumu deluje kao da radi nad celim skupom | niska | Sa 20 prostora jeste ceo skup; ograničenje se izričito navodi na odbrani |
