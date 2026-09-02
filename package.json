@@ -1,0 +1,10 @@
+{
+  "name": "proslava-na-klik-skripte",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "setup": "node --env-file=.env scripts/setup-store.mjs",
+    "seed": "node --env-file=.env scripts/seed-prostori.mjs"
+  }
+}

@@ -254,7 +254,7 @@ Prvi task sa pravim kodom, i jedini sloj koji se testira automatski. Sve kasnije
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test scripts/test/",
+    "test": "node --test",
     "setup": "node --env-file=.env scripts/setup-store.mjs",
     "seed": "node --env-file=.env scripts/seed-prostori.mjs"
   }
@@ -262,6 +262,8 @@ Prvi task sa pravim kodom, i jedini sloj koji se testira automatski. Sve kasnije
 ```
 
 `node --env-file` učitava `.env` bez ijedne zavisnosti — zato u ovom projektu nema `node_modules` za skripte.
+
+**Ispravka tokom izvršavanja:** `node --test scripts/test/` na Node-u 26 pokušava da učita direktorijum kao modul i puca sa `MODULE_NOT_FOUND`. Golo `node --test` koristi podrazumevano otkrivanje, nađe `*.test.mjs` i preskoči `node_modules` — bez zavisnosti od shell globa.
 
 - [ ] **Step 2: Napiši testove za `kapacitet.mjs` — oni moraju pasti**
 
