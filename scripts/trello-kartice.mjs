@@ -22,6 +22,9 @@
  *
  * Idempotentno po nazivu kartice: kartica koja vec postoji u listi se
  * preskace, pa se skripta moze pokrenuti vise puta.
+ *
+ * Dodaj --sync da se postojecim karticama azurira opis iz JSON-a. Bez toga
+ * se ispravka teksta nikad ne prenese na tablu, jer se kartica preskace.
  */
 import { readFileSync } from 'node:fs';
 
@@ -147,27 +150,38 @@ async function glavno() {
 
   console.log('');
 
-  /* Kod zadate liste sve kartice dele istu listu, pa se imena citaju jednom. */
-  const kesImena = {};
-  async function imenaULista(idListe) {
-    if (!kesImena[idListe]) {
-      const uListi = await pozovi('GET', `/lists/${idListe}/cards`, { fields: 'name' });
-      kesImena[idListe] = new Set(uListi.map((k) => k.name));
-    }
-    return kesImena[idListe];
-  }
+  /* Provera postojanja ide nad CELOM tablom, ne nad ciljnom listom.
+     Kartica se u kanban toku legitimno premesti iz To Do u Doing ili QA;
+     provera po jednoj listi je tada ne nalazi i pravi duplikat. */
+  const sveNaTabli = await pozovi('GET', `/boards/${idPuni}/cards`, {
+    fields: 'name,idList',
+    filter: 'open',
+  });
+  const idPoImenu = new Map(sveNaTabli.map((k) => [k.name, k.id]));
+  const listaPoImenu = new Map(sveNaTabli.map((k) => [k.name, k.idList]));
+  const imeListe = new Map(postojeceListe.map((l) => [l.id, l.name]));
 
+  const sinhronizuj = process.argv.includes('--sync');
   let napravljeno = 0;
   let presko = 0;
+  let azurirano = 0;
 
   for (const naziv of liste) {
     const idListe = idPoNazivu[naziv];
-    const imena = await imenaULista(idListe);
 
     for (const kartica of kartice.filter((k) => k.lista === naziv)) {
-      if (imena.has(kartica.naziv)) {
-        console.log(`  = ${kartica.naziv}`);
-        presko += 1;
+      const postojeci = idPoImenu.get(kartica.naziv);
+
+      if (postojeci) {
+        const gde = imeListe.get(listaPoImenu.get(kartica.naziv)) ?? '?';
+        if (sinhronizuj) {
+          await pozovi('PUT', `/cards/${postojeci}`, { desc: kartica.opis ?? '' });
+          console.log(`  ~ ${kartica.naziv}  (u "${gde}")`);
+          azurirano += 1;
+        } else {
+          console.log(`  = ${kartica.naziv}  (u "${gde}")`);
+          presko += 1;
+        }
         continue;
       }
 
@@ -180,7 +194,8 @@ async function glavno() {
       if (idEtikete[naziv]) parametri.idLabels = idEtikete[naziv];
 
       const nova = await pozovi('POST', '/cards', parametri);
-      imena.add(kartica.naziv);
+      idPoImenu.set(kartica.naziv, nova.id);
+      listaPoImenu.set(kartica.naziv, idListe);
 
       await dodajCekListu(pozovi, nova.id, kartica.checklist ?? []);
       console.log(`  + [${naziv}] ${kartica.naziv}`);
@@ -188,7 +203,7 @@ async function glavno() {
     }
   }
 
-  console.log(`\nGotovo. Napravljeno ${napravljeno}, vec postojalo ${presko}.`);
+  console.log(`\nGotovo. Napravljeno ${napravljeno}, azurirano ${azurirano}, preskoceno ${presko}.`);
 }
 
 if (process.argv.includes('--paste')) {

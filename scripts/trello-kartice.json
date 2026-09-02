@@ -1,5 +1,9 @@
 {
-  "liste": ["Podešavanje store-a", "Provera", "Rizici"],
+  "liste": [
+    "Podešavanje store-a",
+    "Provera",
+    "Rizici"
+  ],
   "kartice": [
     {
       "lista": "Podešavanje store-a",
@@ -15,7 +19,11 @@
       "lista": "Podešavanje store-a",
       "naziv": "Postaviti RSD i srpski kao podrazumevane",
       "opis": "**Mora pre unosa proizvoda.** Menjanje valute posle unosa ne preračunava cene.\n\nSettings → General → Store defaults → Currency: Serbian Dinar (RSD)\nSettings → Languages → Add language → Serbian → Set as default",
-      "checklist": ["Valuta RSD", "Srpski dodat", "Srpski postavljen kao podrazumevani"]
+      "checklist": [
+        "Valuta RSD",
+        "Srpski dodat",
+        "Srpski postavljen kao podrazumevani"
+      ]
     },
     {
       "lista": "Podešavanje store-a",
@@ -75,7 +83,6 @@
         "Header sekcija povezana sa menijem i stranicom"
       ]
     },
-
     {
       "lista": "Provera",
       "naziv": "Fontovi i srpska dijakritika",
@@ -89,18 +96,22 @@
     {
       "lista": "Provera",
       "naziv": "Formatiranje cena iz money metafielda",
-      "opis": "Profil prostora → sekcija Paketi. Cena mora biti formatirana, npr. `2.200 RSD`.\n\nAko se pojavi sirov broj ili `{}`, zameniti:\n`{{ paket.cena_po_osobi.value }}` → `{{ paket.cena_po_osobi.value.amount | money }}`\nu `sections/prostor-paketi.liquid`.\n\nIsto važi za `min_potrosnja` u `sections/prostor-zaglavlje.liquid`.\n\nOvo nikad nije provereno uz pravi Shopify — money metafieldovi su jedina nedoumica koja je ostala u kodu.",
+      "opis": "Profil prostora → sekcija Paketi. Cena mora biti formatirana, npr. `2.200 RSD`.\n\nAko se pojavi sirov broj ili `{}`, zameniti:\n`{{ paket.cena_po_osobi.value }}` → `{{ paket.cena_po_osobi | metafield_text }}`\nu `sections/prostor-paketi.liquid`.\n\nIsto važi za `min_potrosnja` u `sections/prostor-zaglavlje.liquid`.\n\n**Ne koristiti `.value.amount | money`.** `money` filter deli sa 100, a `.value.amount` je već u dinarima (`2200.0`), pa bi se ispisalo `22 RSD` — cena koja izgleda legitimno, pa se greška ne primeti. `metafield_text` formatira po tipu metafielda i ne dira vrednost.\n\nMoney metafieldovi su jedina nedoumica koja je ostala u kodu.",
       "checklist": [
         "Cena paketa formatirana",
         "Minimalna potrošnja formatirana",
-        "Ako ne — obe zamene primenjene i theme check i dalje čist"
+        "Ako ne — prebačeno na metafield_text, ne na .value.amount | money",
+        "theme check i dalje čist"
       ]
     },
     {
       "lista": "Provera",
       "naziv": "Marker na mapi je u Novom Sadu",
       "opis": "Profil prostora → sekcija Gde se nalazi.\n\nAko je marker usred okeana, `lat` i `lng` su zamenjeni mestima ili nisu usejani.",
-      "checklist": ["Mapa se učitava", "Marker je na pravoj lokaciji u NS"]
+      "checklist": [
+        "Mapa se učitava",
+        "Marker je na pravoj lokaciji u NS"
+      ]
     },
     {
       "lista": "Provera",
@@ -202,7 +213,6 @@
         "/nepostojeca daje 404 sa dugmetom ka prostorima"
       ]
     },
-
     {
       "lista": "Rizici",
       "naziv": "Admin GraphQL šema može odbiti oblik ulaza",
