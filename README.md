@@ -42,16 +42,3 @@ Stanje pretrage živi u URL-u, pa je deljivo linkom i preživljava refresh.
 - Tehnički dizajn: `docs/superpowers/specs/2026-09-01-proslava-na-klik-design.md`
 - Plan implementacije: `docs/superpowers/plans/2026-09-01-proslava-na-klik.md`
 
-## Poznata ograničenja
-
-Ovo su svesne odluke, ne propusti — vredi ih izgovoriti na odbrani.
-
-- **Filter po datumu i sortiranje po oceni rade nad trenutnom stranicom rezultata.**
-  Liquid ne može da čita query string, a Shopify filteri ne rade nad kalendarom.
-  Sa 20 prostora to je ceo skup; na 500 ne bi bilo tačno.
-- **Kalendar dostupnosti je ručno održavan metafield**, ne sistem rezervacija u
-  realnom vremenu. Prava sinhronizacija bi tražila zasebnu aplikaciju i bazu.
-- **Tabela poređenja učitava do 50 prostora** — granica Liquid `for` petlje.
-- **Prostor je modelovan kao proizvod.** Semantički nategnuto, ali je to cena za
-  fasetno filtriranje koje se time dobija besplatno.
-
