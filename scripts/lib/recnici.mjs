@@ -81,10 +81,6 @@ export function proveriProstor(prostor, indeks) {
     if (!DATUM_OBLIK.test(datum)) zameri(`zauzet datum "${datum}" nije u obliku YYYY-MM-DD`);
   }
 
-  if (!Array.isArray(prostor?.slike) || prostor.slike.length === 0) {
-    zameri('mora imati bar jednu sliku');
-  }
-
   const recenzije = prostor?.recenzije ?? [];
   for (const recenzija of recenzije) {
     if (!Number.isInteger(recenzija.ocena) || recenzija.ocena < 1 || recenzija.ocena > 5) {

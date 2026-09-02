@@ -1,0 +1,40 @@
+{
+  "Restoran": [
+    "https://images.unsplash.com/photo-1744561249162-c597c1670032?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1749871615234-98bff62995ba?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1753727471014-efe38840c7c7?w=1600&q=80&fm=jpg&fit=crop"
+  ],
+  "Svečana sala": [
+    "https://images.unsplash.com/photo-1687213280116-234f93b15b44?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1762765684673-d22ece602b10?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1763429338698-439aa108e7fb?w=1600&q=80&fm=jpg&fit=crop"
+  ],
+  "Dečija igraonica": [
+    "https://images.unsplash.com/photo-1720293315630-42f6894d484e?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1768054193070-ec10b5583bc4?w=1600&q=80&fm=jpg&fit=crop"
+  ],
+  "Klub": [
+    "https://images.unsplash.com/photo-1758550445795-278c5867493d?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1743203559734-b6ac14e5e0a1?w=1600&q=80&fm=jpg&fit=crop"
+  ],
+  "Kafić": [
+    "https://images.unsplash.com/photo-1742654230443-7c19cb55cd46?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1752939124510-e444139e6404?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1759428844991-1fdee0eeed83?w=1600&q=80&fm=jpg&fit=crop"
+  ],
+  "Salaš": [
+    "https://images.unsplash.com/photo-1558267748-a210b34249c9?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1566963774769-fa0c6c858c2e?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1780728955106-48b649e0dd8f?w=1600&q=80&fm=jpg&fit=crop"
+  ],
+  "Terasa / krovna bašta": [
+    "https://images.unsplash.com/photo-1493246318656-5bfd4cfb29b8?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1696062985865-d74848842eae?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1707905729981-c89310889b03?w=1600&q=80&fm=jpg&fit=crop"
+  ],
+  "Konferencijska sala": [
+    "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1637665599155-abfcf9fc3f78?w=1600&q=80&fm=jpg&fit=crop",
+    "https://images.unsplash.com/photo-1694253987646-353954f1889d?w=1600&q=80&fm=jpg&fit=crop"
+  ]
+}

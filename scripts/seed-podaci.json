@@ -1,0 +1,2116 @@
+{
+  "prostori": [
+    {
+      "handle": "restoran-dunavska-terasa",
+      "naziv": "Restoran Dunavska terasa",
+      "kategorija": "Restoran",
+      "vlasnik": "Dunavska terasa d.o.o.",
+      "opis": "<p>Restoran na samoj obali Dunava, sa natkrivenom terasom i pogledom na Petrovaradinsku tvrđavu. Sala prima do 120 gostiju, a terasa radi od aprila do oktobra.</p><p>Kuhinja je domaća, sa naglaskom na riblje specijalitete i roštilj. Muzika je dozvoljena do ponoći, posle toga važi ograničenje buke.</p>",
+      "kvart": "Stari grad",
+      "adresa": "Beogradski kej 18",
+      "lat": 45.2551,
+      "lng": 19.8536,
+      "cena_po_osobi": 2200,
+      "min_potrosnja": 60000,
+      "kontakt_telefon": "021 555 120",
+      "kapacitet_min": 40,
+      "kapacitet_max": 120,
+      "tipovi_proslava": [
+        "Rođendan",
+        "Punoletstvo",
+        "Svadba",
+        "Krštenje",
+        "Poslovni događaj"
+      ],
+      "sadrzaji": [
+        "Parking",
+        "Bašta",
+        "Otvoren prostor",
+        "Zatvoren prostor",
+        "Klima",
+        "Ozvučenje",
+        "Garderoba",
+        "Wi-Fi"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Švedski sto",
+        "Meni po izboru",
+        "Vegetarijanski meni",
+        "Piće uključeno"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Živi bend",
+        "Ograničenje buke posle 24h"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-19",
+        "2026-09-26",
+        "2026-10-03",
+        "2026-10-15",
+        "2026-10-17",
+        "2026-11-07"
+      ],
+      "recenzije": [
+        {
+          "autor": "Milica J.",
+          "ocena": 5,
+          "datum": "2026-06-14",
+          "tip_proslave": "Svadba",
+          "tekst": "Svadba za 90 ljudi, sve je prošlo bez ijedne greške. Terasa uveče izgleda fantastično."
+        },
+        {
+          "autor": "Nemanja P.",
+          "ocena": 4,
+          "datum": "2026-05-02",
+          "tip_proslave": "Punoletstvo",
+          "tekst": "Odlična hrana i osoblje. Jedina zamerka je parking, koji je uveče pun."
+        },
+        {
+          "autor": "Jelena S.",
+          "ocena": 5,
+          "datum": "2026-04-11",
+          "tip_proslave": "Krštenje",
+          "tekst": "Mirno, lepo, taman za manje društvo. Preporuka za porodične proslave."
+        },
+        {
+          "autor": "Vladimir K.",
+          "ocena": 4,
+          "datum": "2026-03-22",
+          "tip_proslave": "Poslovni događaj",
+          "tekst": "Organizovali smo firmsku večeru za 60 ljudi. Sve na nivou."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Standard",
+          "cena_po_osobi": 2200,
+          "min_gostiju": 40,
+          "ukljucuje": [
+            "Predjelo",
+            "Glavno jelo",
+            "Desert",
+            "Bezalkoholna pića"
+          ],
+          "opis": "Osnovni meni sa posluživanjem za stolom."
+        },
+        {
+          "naziv": "Svečani",
+          "cena_po_osobi": 3400,
+          "min_gostiju": 60,
+          "ukljucuje": [
+            "Aperitiv",
+            "Predjelo",
+            "Dva glavna jela",
+            "Desert",
+            "Neograničeno piće",
+            "Dekoracija stolova"
+          ],
+          "opis": "Za svadbe i veće proslave."
+        },
+        {
+          "naziv": "Poslovni ručak",
+          "cena_po_osobi": 2600,
+          "min_gostiju": 20,
+          "ukljucuje": [
+            "Glavno jelo",
+            "Salata",
+            "Kafa"
+          ],
+          "opis": "Radni format, kraće trajanje."
+        }
+      ]
+    },
+    {
+      "handle": "salas-bagremar",
+      "naziv": "Salaš Bagremar",
+      "kategorija": "Salaš",
+      "vlasnik": "Bagremar PR",
+      "opis": "<p>Salaš na petnaest minuta od centra, sa velikim dvorištem, natkrivenom terasom i letnjom binom. Prima do 250 gostiju napolju i 120 u zatvorenom delu.</p><p>Kuhinja je vojvođanska, meso sa roštilja i domaći specijaliteti. Živa muzika je uobičajena i nema ograničenja buke jer nema komšiluka.</p>",
+      "kvart": "Okolina Novog Sada",
+      "adresa": "Put za Kać bb",
+      "lat": 45.2905,
+      "lng": 19.7812,
+      "cena_po_osobi": 2800,
+      "min_potrosnja": 90000,
+      "kontakt_telefon": "021 555 341",
+      "kapacitet_min": 60,
+      "kapacitet_max": 250,
+      "tipovi_proslava": [
+        "Svadba",
+        "Krštenje",
+        "Rođendan",
+        "Privatna zabava"
+      ],
+      "sadrzaji": [
+        "Parking",
+        "Bašta",
+        "Otvoren prostor",
+        "Roštilj",
+        "Bina",
+        "Ozvučenje",
+        "Dečiji kutak"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Švedski sto",
+        "Vegetarijanski meni",
+        "Piće uključeno"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Živi bend"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-12",
+        "2026-10-15",
+        "2026-10-24",
+        "2026-11-14",
+        "2026-12-05"
+      ],
+      "recenzije": [
+        {
+          "autor": "Sanja M.",
+          "ocena": 5,
+          "datum": "2026-07-20",
+          "tip_proslave": "Svadba",
+          "tekst": "Najlepši mogući ambijent za svadbu na otvorenom. Gosti i dalje pričaju o hrani."
+        },
+        {
+          "autor": "Dušan R.",
+          "ocena": 5,
+          "datum": "2026-06-08",
+          "tip_proslave": "Krštenje",
+          "tekst": "Deca su imala gde da se igraju, a mi da sedimo na miru. Idealno."
+        },
+        {
+          "autor": "Ana T.",
+          "ocena": 4,
+          "datum": "2026-05-16",
+          "tip_proslave": "Rođendan",
+          "tekst": "Sve super, ali je udaljenost od grada problem ako gosti nemaju prevoz."
+        },
+        {
+          "autor": "Marko V.",
+          "ocena": 5,
+          "datum": "2026-04-25",
+          "tip_proslave": "Privatna zabava",
+          "tekst": "Bina i ozvučenje su ozbiljni, bend je bio oduševljen."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Letnji",
+          "cena_po_osobi": 2800,
+          "min_gostiju": 60,
+          "ukljucuje": [
+            "Roštilj meni",
+            "Salate",
+            "Domaći hleb",
+            "Bezalkoholna pića"
+          ],
+          "opis": "Posluženje u dvorištu, od maja do septembra."
+        },
+        {
+          "naziv": "Svadbeni",
+          "cena_po_osobi": 4200,
+          "min_gostiju": 100,
+          "ukljucuje": [
+            "Aperitiv",
+            "Hladno predjelo",
+            "Supa",
+            "Dva glavna jela",
+            "Svadbena torta",
+            "Neograničeno piće"
+          ],
+          "opis": "Ceo salaš na raspolaganju do jutra."
+        }
+      ]
+    },
+    {
+      "handle": "svecana-sala-kristal",
+      "naziv": "Svečana sala Kristal",
+      "kategorija": "Svečana sala",
+      "vlasnik": "Kristal events d.o.o.",
+      "opis": "<p>Najveća sala u ponudi, sa kapacitetom do 400 gostiju i sopstvenim parkingom za osamdeset vozila. Prostor je pristupačan i osobama sa invaliditetom.</p><p>Dekoracija sale je uključena u cenu paketa. Kuhinja radi u sopstvenoj režiji, a tehnika i bina su na raspolaganju bendovima.</p>",
+      "kvart": "Novo naselje",
+      "adresa": "Bulevar Slobodana Jovanovića 22",
+      "lat": 45.2471,
+      "lng": 19.7993,
+      "cena_po_osobi": 2400,
+      "min_potrosnja": 120000,
+      "kontakt_telefon": "021 555 907",
+      "kapacitet_min": 100,
+      "kapacitet_max": 400,
+      "tipovi_proslava": [
+        "Svadba",
+        "Punoletstvo",
+        "Matura",
+        "Krštenje"
+      ],
+      "sadrzaji": [
+        "Parking",
+        "Zatvoren prostor",
+        "Klima",
+        "Bina",
+        "Ozvučenje",
+        "Garderoba",
+        "Dekoracija uključena",
+        "Pristup za osobe sa invaliditetom"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Švedski sto",
+        "Meni po izboru",
+        "Piće uključeno"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Živi bend",
+        "Sopstveno ozvučenje"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-05",
+        "2026-09-20",
+        "2026-10-15",
+        "2026-10-31",
+        "2026-11-21",
+        "2026-12-12",
+        "2026-12-31"
+      ],
+      "recenzije": [
+        {
+          "autor": "Ivana D.",
+          "ocena": 4,
+          "datum": "2026-08-01",
+          "tip_proslave": "Svadba",
+          "tekst": "Velika i lepo opremljena sala. Za manje od 150 ljudi deluje prazno."
+        },
+        {
+          "autor": "Stefan L.",
+          "ocena": 5,
+          "datum": "2026-06-27",
+          "tip_proslave": "Matura",
+          "tekst": "Matursko veče za 300 đaka, organizacija besprekorna."
+        },
+        {
+          "autor": "Tijana B.",
+          "ocena": 4,
+          "datum": "2026-05-09",
+          "tip_proslave": "Punoletstvo",
+          "tekst": "Dekoracija uključena u cenu je velika ušteda vremena."
+        },
+        {
+          "autor": "Goran N.",
+          "ocena": 5,
+          "datum": "2026-03-14",
+          "tip_proslave": "Krštenje",
+          "tekst": "Osoblje izuzetno ljubazno, sve dogovoreno unapred i ispoštovano."
+        },
+        {
+          "autor": "Milan Ž.",
+          "ocena": 3,
+          "datum": "2026-02-21",
+          "tip_proslave": "Svadba",
+          "tekst": "Hrana korektna, ali je zvuk u sali odjekivao dok se nije napunila."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Osnovni",
+          "cena_po_osobi": 2400,
+          "min_gostiju": 100,
+          "ukljucuje": [
+            "Predjelo",
+            "Glavno jelo",
+            "Desert",
+            "Bezalkoholna pića",
+            "Dekoracija sale"
+          ],
+          "opis": "Za proslave do četiri sata."
+        },
+        {
+          "naziv": "Kompletan",
+          "cena_po_osobi": 3900,
+          "min_gostiju": 150,
+          "ukljucuje": [
+            "Aperitiv",
+            "Hladno predjelo",
+            "Supa",
+            "Dva glavna jela",
+            "Torta",
+            "Neograničeno piće",
+            "Dekoracija sale",
+            "DJ"
+          ],
+          "opis": "Ceo večernji program sa tehnikom."
+        },
+        {
+          "naziv": "Maturski",
+          "cena_po_osobi": 2900,
+          "min_gostiju": 200,
+          "ukljucuje": [
+            "Švedski sto",
+            "Bezalkoholna pića",
+            "DJ",
+            "Dekoracija sale"
+          ],
+          "opis": "Format prilagođen maturskim večerima."
+        }
+      ]
+    },
+    {
+      "handle": "igraonica-baloncic",
+      "naziv": "Igraonica Balončić",
+      "kategorija": "Dečija igraonica",
+      "vlasnik": "Balončić PR",
+      "opis": "<p>Igraonica na Limanu sa dvoranom od 120 kvadrata, toboganima, bazenom sa lopticama i odvojenim delom za roditelje. Prima do 40 dece.</p><p>Hrana se može doneti ili naručiti preko keteringa. Animator i dekoracija su uključeni u sve pakete.</p>",
+      "kvart": "Liman",
+      "adresa": "Narodnog fronta 51",
+      "lat": 45.2402,
+      "lng": 19.8358,
+      "cena_po_osobi": 900,
+      "min_potrosnja": 18000,
+      "kontakt_telefon": "021 555 664",
+      "kapacitet_min": 10,
+      "kapacitet_max": 40,
+      "tipovi_proslava": [
+        "Dečiji rođendan",
+        "Krštenje"
+      ],
+      "sadrzaji": [
+        "Zatvoren prostor",
+        "Klima",
+        "Dečiji kutak",
+        "Wi-Fi",
+        "Dekoracija uključena"
+      ],
+      "hrana_pice": [
+        "Donošenje hrane dozvoljeno",
+        "Ketering dozvoljen",
+        "Vegetarijanski meni"
+      ],
+      "muzika": [
+        "Sopstveno ozvučenje",
+        "Ograničenje buke posle 24h"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-13",
+        "2026-09-27",
+        "2026-10-04",
+        "2026-10-11",
+        "2026-11-08",
+        "2026-11-22"
+      ],
+      "recenzije": [
+        {
+          "autor": "Katarina P.",
+          "ocena": 5,
+          "datum": "2026-06-19",
+          "tip_proslave": "Dečiji rođendan",
+          "tekst": "Animatorka je bila fenomenalna, deca nisu htela da idu kući."
+        },
+        {
+          "autor": "Bojan S.",
+          "ocena": 4,
+          "datum": "2026-05-30",
+          "tip_proslave": "Dečiji rođendan",
+          "tekst": "Sve čisto i bezbedno. Prostor za roditelje je malo tesan."
+        },
+        {
+          "autor": "Marija K.",
+          "ocena": 5,
+          "datum": "2026-04-18",
+          "tip_proslave": "Dečiji rođendan",
+          "tekst": "Treći put slavimo kod njih. Nikad problem."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Mali",
+          "cena_po_osobi": 900,
+          "min_gostiju": 10,
+          "ukljucuje": [
+            "Dve sata igre",
+            "Animator",
+            "Dekoracija stola",
+            "Sok i grickalice"
+          ],
+          "opis": "Za grupe do 15 dece."
+        },
+        {
+          "naziv": "Veliki",
+          "cena_po_osobi": 1300,
+          "min_gostiju": 20,
+          "ukljucuje": [
+            "Tri sata igre",
+            "Dva animatora",
+            "Dekoracija",
+            "Torta",
+            "Sok i grickalice",
+            "Foto kutak"
+          ],
+          "opis": "Cela igraonica samo za vas."
+        }
+      ]
+    },
+    {
+      "handle": "klub-tvrdjava",
+      "naziv": "Klub Tvrđava",
+      "kategorija": "Klub",
+      "vlasnik": "Tvrđava night d.o.o.",
+      "opis": "<p>Klub u podnožju Petrovaradinske tvrđave, sa zvučnom izolacijom i binom za nastupe uživo. Kapacitet je 300 ljudi stojeći, 120 sedeći.</p><p>Klub ne radi kuhinju — služi se samo piće. Rezervacija podrazumeva ceo prostor, bez drugih gostiju.</p>",
+      "kvart": "Petrovaradin",
+      "adresa": "Štrosmajerova 7",
+      "lat": 45.2483,
+      "lng": 19.8702,
+      "cena_po_osobi": 1500,
+      "min_potrosnja": 70000,
+      "kontakt_telefon": "021 555 218",
+      "kapacitet_min": 80,
+      "kapacitet_max": 300,
+      "tipovi_proslava": [
+        "Punoletstvo",
+        "Matura",
+        "Privatna zabava",
+        "Diplomiranje"
+      ],
+      "sadrzaji": [
+        "Zatvoren prostor",
+        "Bina",
+        "Ozvučenje",
+        "Garderoba",
+        "Klima"
+      ],
+      "hrana_pice": [
+        "Bez hrane",
+        "Piće uključeno"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Sopstveno ozvučenje"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-18",
+        "2026-09-25",
+        "2026-10-02",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-30",
+        "2026-11-13"
+      ],
+      "recenzije": [
+        {
+          "autor": "Filip A.",
+          "ocena": 5,
+          "datum": "2026-07-11",
+          "tip_proslave": "Punoletstvo",
+          "tekst": "Zvuk je najbolji koji sam čuo u Novom Sadu. Osamnaesti rođendan za pamćenje."
+        },
+        {
+          "autor": "Nikolina G.",
+          "ocena": 4,
+          "datum": "2026-06-06",
+          "tip_proslave": "Matura",
+          "tekst": "Odlična atmosfera, ali nema hrane pa smo morali ranije da večeramo."
+        },
+        {
+          "autor": "Uroš J.",
+          "ocena": 5,
+          "datum": "2026-05-23",
+          "tip_proslave": "Privatna zabava",
+          "tekst": "Ceo klub samo za nas, nikakvih gužvi. Vredi svaki dinar."
+        },
+        {
+          "autor": "Teodora M.",
+          "ocena": 3,
+          "datum": "2026-04-04",
+          "tip_proslave": "Diplomiranje",
+          "tekst": "Prostor super, ali je garderoba bila spora na izlasku."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Večernji",
+          "cena_po_osobi": 1500,
+          "min_gostiju": 80,
+          "ukljucuje": [
+            "Četiri sata zakupa",
+            "Ozvučenje",
+            "Rasveta",
+            "Šanker"
+          ],
+          "opis": "Piće se plaća posebno, po potrošnji."
+        },
+        {
+          "naziv": "Ceo klub",
+          "cena_po_osobi": 2400,
+          "min_gostiju": 150,
+          "ukljucuje": [
+            "Šest sati zakupa",
+            "Ozvučenje",
+            "Rasveta",
+            "DJ",
+            "Otvoreni bar",
+            "Garderoba"
+          ],
+          "opis": "Neograničeno domaće piće u ceni."
+        }
+      ]
+    },
+    {
+      "handle": "kafic-kod-mosta",
+      "naziv": "Kafić Kod mosta",
+      "kategorija": "Kafić",
+      "vlasnik": "Kod mosta PR",
+      "opis": "<p>Mali kafić sa baštom u Podbari, pogodan za kamerne proslave do 50 ljudi. Bašta radi od aprila do oktobra.</p><p>Kuhinja je jednostavna — grickalice, sendviči i pice. Tortu i kolače možete doneti. Muzika mora da se stiša posle ponoći zbog stambene zgrade iznad.</p>",
+      "kvart": "Podbara",
+      "adresa": "Kosovska 14",
+      "lat": 45.2624,
+      "lng": 19.8521,
+      "cena_po_osobi": 800,
+      "min_potrosnja": 12000,
+      "kontakt_telefon": "021 555 073",
+      "kapacitet_min": 15,
+      "kapacitet_max": 50,
+      "tipovi_proslava": [
+        "Rođendan",
+        "Privatna zabava",
+        "Diplomiranje"
+      ],
+      "sadrzaji": [
+        "Bašta",
+        "Otvoren prostor",
+        "Wi-Fi",
+        "Klima"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Donošenje hrane dozvoljeno"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Ograničenje buke posle 24h"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-11",
+        "2026-10-09",
+        "2026-11-06",
+        "2026-12-04"
+      ],
+      "recenzije": [
+        {
+          "autor": "Aleksandar Ć.",
+          "ocena": 4,
+          "datum": "2026-07-03",
+          "tip_proslave": "Rođendan",
+          "tekst": "Prijatno i jeftino. Za veće društvo bi bilo tesno."
+        },
+        {
+          "autor": "Milena V.",
+          "ocena": 5,
+          "datum": "2026-06-12",
+          "tip_proslave": "Diplomiranje",
+          "tekst": "Bašta je bila savršena za popodnevno slavlje."
+        },
+        {
+          "autor": "Petar I.",
+          "ocena": 4,
+          "datum": "2026-05-08",
+          "tip_proslave": "Privatna zabava",
+          "tekst": "Osoblje ljubazno, cene poštene. Muzika se gasi u ponoć, znajte to unapred."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Bašta",
+          "cena_po_osobi": 800,
+          "min_gostiju": 15,
+          "ukljucuje": [
+            "Dva sata zakupa bašte",
+            "Grickalice",
+            "Bezalkoholna pića"
+          ],
+          "opis": "Popodnevni termin, od 14 do 18h."
+        },
+        {
+          "naziv": "Večernji",
+          "cena_po_osobi": 1200,
+          "min_gostiju": 25,
+          "ukljucuje": [
+            "Četiri sata zakupa",
+            "Topli i hladni predjelo",
+            "Piće po izboru",
+            "DJ"
+          ],
+          "opis": "Ceo kafić do ponoći."
+        }
+      ]
+    },
+    {
+      "handle": "terasa-panorama",
+      "naziv": "Terasa Panorama",
+      "kategorija": "Terasa / krovna bašta",
+      "vlasnik": "Panorama NS d.o.o.",
+      "opis": "<p>Krovna terasa na šestom spratu u samom centru, sa pogledom na Katedralu i krovove starog grada. Prima do 90 gostiju.</p><p>Terasa je otvorena, sa pokretnim nadstrešnicama za slučaj kiše. Radi od maja do oktobra.</p>",
+      "kvart": "Stari grad",
+      "adresa": "Zmaj Jovina 4",
+      "lat": 45.2559,
+      "lng": 19.8448,
+      "cena_po_osobi": 1900,
+      "min_potrosnja": 45000,
+      "kontakt_telefon": "021 555 500",
+      "kapacitet_min": 30,
+      "kapacitet_max": 90,
+      "tipovi_proslava": [
+        "Rođendan",
+        "Punoletstvo",
+        "Privatna zabava",
+        "Diplomiranje"
+      ],
+      "sadrzaji": [
+        "Otvoren prostor",
+        "Bašta",
+        "Ozvučenje",
+        "Wi-Fi",
+        "Parking"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Meni po izboru",
+        "Piće uključeno"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Ograničenje buke posle 24h"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-17",
+        "2026-09-24",
+        "2026-10-08",
+        "2026-10-22"
+      ],
+      "recenzije": [
+        {
+          "autor": "Dragana Š.",
+          "ocena": 5,
+          "datum": "2026-08-14",
+          "tip_proslave": "Punoletstvo",
+          "tekst": "Pogled je nestvaran u zalazak sunca. Fotografije su ispale fantastično."
+        },
+        {
+          "autor": "Luka Đ.",
+          "ocena": 4,
+          "datum": "2026-07-29",
+          "tip_proslave": "Rođendan",
+          "tekst": "Sve odlično, ali zavisi od vremena — nema plana B ako pada jaka kiša."
+        },
+        {
+          "autor": "Nataša R.",
+          "ocena": 5,
+          "datum": "2026-06-21",
+          "tip_proslave": "Diplomiranje",
+          "tekst": "Najlepše mesto u gradu za manju proslavu."
+        },
+        {
+          "autor": "Vuk M.",
+          "ocena": 4,
+          "datum": "2026-05-17",
+          "tip_proslave": "Privatna zabava",
+          "tekst": "Lift do terase zna da bude uska grla kad svi dolaze u isto vreme."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Koktel",
+          "cena_po_osobi": 1900,
+          "min_gostiju": 30,
+          "ukljucuje": [
+            "Tri sata zakupa",
+            "Koktel zalogaji",
+            "Bezalkoholna pića",
+            "Ozvučenje"
+          ],
+          "opis": "Stojeći format, bez sedenja za stolom."
+        },
+        {
+          "naziv": "Večera",
+          "cena_po_osobi": 3200,
+          "min_gostiju": 40,
+          "ukljucuje": [
+            "Četiri sata zakupa",
+            "Predjelo",
+            "Glavno jelo",
+            "Desert",
+            "Piće",
+            "DJ"
+          ],
+          "opis": "Posluženje za stolom uz zalazak sunca."
+        }
+      ]
+    },
+    {
+      "handle": "konferencijski-centar-sava",
+      "naziv": "Konferencijski centar Sava",
+      "kategorija": "Konferencijska sala",
+      "vlasnik": "Sava centar NS d.o.o.",
+      "opis": "<p>Konferencijska sala sa 200 mesta, projektorom, ozvučenjem i binom. Dostupne su i dve manje sale za radionice.</p><p>Kuhinja ne postoji — ketering se dogovara sa jednim od partnera ili donosi sami. Sala je u potpunosti pristupačna.</p>",
+      "kvart": "Grbavica",
+      "adresa": "Radnička 32",
+      "lat": 45.2452,
+      "lng": 19.8283,
+      "cena_po_osobi": 1700,
+      "min_potrosnja": 55000,
+      "kontakt_telefon": "021 555 812",
+      "kapacitet_min": 50,
+      "kapacitet_max": 200,
+      "tipovi_proslava": [
+        "Poslovni događaj",
+        "Diplomiranje"
+      ],
+      "sadrzaji": [
+        "Zatvoren prostor",
+        "Klima",
+        "Projektor",
+        "Wi-Fi",
+        "Parking",
+        "Pristup za osobe sa invaliditetom",
+        "Bina"
+      ],
+      "hrana_pice": [
+        "Ketering dozvoljen",
+        "Donošenje hrane dozvoljeno",
+        "Vegetarijanski meni"
+      ],
+      "muzika": [
+        "Bez muzike",
+        "Sopstveno ozvučenje"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-16",
+        "2026-09-23",
+        "2026-10-07",
+        "2026-10-21",
+        "2026-11-04",
+        "2026-11-18"
+      ],
+      "recenzije": [
+        {
+          "autor": "Jovana A.",
+          "ocena": 5,
+          "datum": "2026-06-25",
+          "tip_proslave": "Poslovni događaj",
+          "tekst": "Tehnika je radila besprekorno, bez ijednog zastoja tokom celodnevne konferencije."
+        },
+        {
+          "autor": "Boris N.",
+          "ocena": 4,
+          "datum": "2026-05-14",
+          "tip_proslave": "Poslovni događaj",
+          "tekst": "Sve profesionalno. Šteta što nema svoju kuhinju pa ketering ide posebno."
+        },
+        {
+          "autor": "Lidija T.",
+          "ocena": 4,
+          "datum": "2026-04-09",
+          "tip_proslave": "Diplomiranje",
+          "tekst": "Prostor je funkcionalan ali hladan — nije za veselje, više za formalni deo."
+        },
+        {
+          "autor": "Zoran K.",
+          "ocena": 5,
+          "datum": "2026-03-05",
+          "tip_proslave": "Poslovni događaj",
+          "tekst": "Parking za 60 vozila je ono što nas je presudno privuklo."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Poludnevni",
+          "cena_po_osobi": 1700,
+          "min_gostiju": 50,
+          "ukljucuje": [
+            "Četiri sata zakupa",
+            "Projektor",
+            "Ozvučenje",
+            "Wi-Fi",
+            "Voda"
+          ],
+          "opis": "Jutarnji ili popodnevni blok."
+        },
+        {
+          "naziv": "Celodnevni",
+          "cena_po_osobi": 2900,
+          "min_gostiju": 50,
+          "ukljucuje": [
+            "Osam sati zakupa",
+            "Projektor",
+            "Ozvučenje",
+            "Wi-Fi",
+            "Dve pauze za kafu",
+            "Tehnička podrška"
+          ],
+          "opis": "Uključena pomoć tehničara tokom celog dana."
+        }
+      ]
+    },
+    {
+      "handle": "restoran-lipov-hlad",
+      "naziv": "Restoran Lipov hlad",
+      "kategorija": "Restoran",
+      "vlasnik": "Lipov hlad d.o.o.",
+      "opis": "<p>Restoran na obronku Fruške gore, sa velikom baštom pod lipama i salom za 150 gostiju. Iz bašte se vidi ceo Novi Sad.</p><p>Kuhinja je tradicionalna, sa jelima ispod sača i sa roštilja. Živa muzika je česta, ali se stišava posle ponoći.</p>",
+      "kvart": "Sremska Kamenica",
+      "adresa": "Karlovački put 9",
+      "lat": 45.2204,
+      "lng": 19.8412,
+      "cena_po_osobi": 2600,
+      "min_potrosnja": 80000,
+      "kontakt_telefon": "021 555 445",
+      "kapacitet_min": 50,
+      "kapacitet_max": 150,
+      "tipovi_proslava": [
+        "Svadba",
+        "Krštenje",
+        "Rođendan",
+        "Poslovni događaj"
+      ],
+      "sadrzaji": [
+        "Parking",
+        "Bašta",
+        "Otvoren prostor",
+        "Roštilj",
+        "Zatvoren prostor",
+        "Klima"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Meni po izboru",
+        "Vegetarijanski meni",
+        "Piće uključeno"
+      ],
+      "muzika": [
+        "Živi bend",
+        "Ograničenje buke posle 24h"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-06",
+        "2026-10-15",
+        "2026-10-25",
+        "2026-11-15",
+        "2026-12-06"
+      ],
+      "recenzije": [
+        {
+          "autor": "Snežana P.",
+          "ocena": 5,
+          "datum": "2026-07-18",
+          "tip_proslave": "Svadba",
+          "tekst": "Bašta pod lipama je nešto najlepše što smo videli. Hrana vrhunska."
+        },
+        {
+          "autor": "Ognjen V.",
+          "ocena": 4,
+          "datum": "2026-06-13",
+          "tip_proslave": "Krštenje",
+          "tekst": "Sve pohvale za kuhinju. Put gore je uzak pa autobus teško prolazi."
+        },
+        {
+          "autor": "Danica M.",
+          "ocena": 5,
+          "datum": "2026-05-21",
+          "tip_proslave": "Rođendan",
+          "tekst": "Ambijent, hrana i osoblje — sve tri stvari na nivou."
+        },
+        {
+          "autor": "Igor S.",
+          "ocena": 4,
+          "datum": "2026-04-16",
+          "tip_proslave": "Poslovni događaj",
+          "tekst": "Za poslovni ručak možda previše opušteno, ali je svima prijalo."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Domaći",
+          "cena_po_osobi": 2600,
+          "min_gostiju": 50,
+          "ukljucuje": [
+            "Predjelo",
+            "Jelo ispod sača",
+            "Desert",
+            "Bezalkoholna pića"
+          ],
+          "opis": "Tradicionalni meni, posluženje za stolom."
+        },
+        {
+          "naziv": "Svečani",
+          "cena_po_osobi": 3800,
+          "min_gostiju": 80,
+          "ukljucuje": [
+            "Aperitiv",
+            "Hladno predjelo",
+            "Supa",
+            "Dva glavna jela",
+            "Torta",
+            "Neograničeno piće"
+          ],
+          "opis": "Za svadbe i krštenja."
+        },
+        {
+          "naziv": "Poslovni",
+          "cena_po_osobi": 3000,
+          "min_gostiju": 25,
+          "ukljucuje": [
+            "Predjelo",
+            "Glavno jelo",
+            "Kafa",
+            "Bezalkoholna pića"
+          ],
+          "opis": "Kraći format za firme."
+        }
+      ]
+    },
+    {
+      "handle": "svecana-sala-bella-vista",
+      "naziv": "Svečana sala Bella Vista",
+      "kategorija": "Svečana sala",
+      "vlasnik": "Bella Vista events PR",
+      "opis": "<p>Svečana sala na Detelinari sa kapacitetom do 350 gostiju, binom i garderobom. Parking je u dvorištu, za četrdesetak vozila.</p><p>Dekoracija sale u boji po izboru je uključena u cenu. Kuhinja radi u sopstvenoj režiji.</p>",
+      "kvart": "Detelinara",
+      "adresa": "Rumenačka 108",
+      "lat": 45.2603,
+      "lng": 19.8204,
+      "cena_po_osobi": 2100,
+      "min_potrosnja": 100000,
+      "kontakt_telefon": "021 555 636",
+      "kapacitet_min": 120,
+      "kapacitet_max": 350,
+      "tipovi_proslava": [
+        "Svadba",
+        "Punoletstvo",
+        "Matura"
+      ],
+      "sadrzaji": [
+        "Parking",
+        "Zatvoren prostor",
+        "Klima",
+        "Bina",
+        "Garderoba",
+        "Dekoracija uključena",
+        "Ozvučenje"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Švedski sto",
+        "Meni po izboru",
+        "Piće uključeno"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Živi bend"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-26",
+        "2026-10-10",
+        "2026-10-24",
+        "2026-11-28",
+        "2026-12-19"
+      ],
+      "recenzije": [
+        {
+          "autor": "Vesna Đ.",
+          "ocena": 4,
+          "datum": "2026-08-08",
+          "tip_proslave": "Svadba",
+          "tekst": "Sala je lepa i prostrana, dekoracija uključena je veliki plus."
+        },
+        {
+          "autor": "Miloš R.",
+          "ocena": 5,
+          "datum": "2026-07-04",
+          "tip_proslave": "Punoletstvo",
+          "tekst": "Sve dogovoreno telefonom, na dan proslave ništa nije falilo."
+        },
+        {
+          "autor": "Jasna L.",
+          "ocena": 4,
+          "datum": "2026-06-01",
+          "tip_proslave": "Matura",
+          "tekst": "Dobar odnos cene i kvaliteta za ovoliki kapacitet."
+        },
+        {
+          "autor": "Nenad C.",
+          "ocena": 3,
+          "datum": "2026-04-27",
+          "tip_proslave": "Svadba",
+          "tekst": "Hrana je bila prosečna, ali je organizacija bila odlična."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Standard",
+          "cena_po_osobi": 2100,
+          "min_gostiju": 120,
+          "ukljucuje": [
+            "Predjelo",
+            "Glavno jelo",
+            "Desert",
+            "Bezalkoholna pića",
+            "Dekoracija"
+          ],
+          "opis": "Za proslave do pet sati."
+        },
+        {
+          "naziv": "Premium",
+          "cena_po_osobi": 3600,
+          "min_gostiju": 150,
+          "ukljucuje": [
+            "Aperitiv",
+            "Hladno predjelo",
+            "Supa",
+            "Dva glavna jela",
+            "Torta",
+            "Neograničeno piće",
+            "DJ",
+            "Dekoracija"
+          ],
+          "opis": "Kompletna usluga do jutra."
+        }
+      ]
+    },
+    {
+      "handle": "salas-zlatni-klas",
+      "naziv": "Salaš Zlatni klas",
+      "kategorija": "Salaš",
+      "vlasnik": "Zlatni klas PR",
+      "opis": "<p>Salaš kod Futoga sa bazenom, velikim dvorištem i natkrivenom terasom za 200 gostiju. Deca imaju svoj deo sa igralištem.</p><p>Kuhinja je vojvođanska, sa roštiljem u dvorištu tokom letnjih meseci. Bazen je dostupan gostima od juna do septembra.</p>",
+      "kvart": "Futog",
+      "adresa": "Salaš 12, Futoški put",
+      "lat": 45.2423,
+      "lng": 19.7154,
+      "cena_po_osobi": 2500,
+      "min_potrosnja": 75000,
+      "kontakt_telefon": "021 555 190",
+      "kapacitet_min": 80,
+      "kapacitet_max": 200,
+      "tipovi_proslava": [
+        "Svadba",
+        "Krštenje",
+        "Rođendan",
+        "Privatna zabava"
+      ],
+      "sadrzaji": [
+        "Parking",
+        "Bašta",
+        "Otvoren prostor",
+        "Roštilj",
+        "Bazen",
+        "Dečiji kutak"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Švedski sto",
+        "Piće uključeno"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Živi bend"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-12",
+        "2026-10-15",
+        "2026-11-07",
+        "2026-12-12"
+      ],
+      "recenzije": [
+        {
+          "autor": "Radmila J.",
+          "ocena": 5,
+          "datum": "2026-07-25",
+          "tip_proslave": "Krštenje",
+          "tekst": "Bazen je bio hit kod dece, roditelji su konačno mogli da sednu."
+        },
+        {
+          "autor": "Slobodan T.",
+          "ocena": 4,
+          "datum": "2026-06-18",
+          "tip_proslave": "Svadba",
+          "tekst": "Prelep prostor. Komarci uveče su jedina zamerka, ponesite sprej."
+        },
+        {
+          "autor": "Emilija K.",
+          "ocena": 5,
+          "datum": "2026-05-28",
+          "tip_proslave": "Rođendan",
+          "tekst": "Domaćini su izuzetni, sve su izašli u susret."
+        },
+        {
+          "autor": "Đorđe P.",
+          "ocena": 4,
+          "datum": "2026-04-30",
+          "tip_proslave": "Privatna zabava",
+          "tekst": "Odlično za dnevne proslave, uveče postane hladno napolju."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Dnevni",
+          "cena_po_osobi": 2500,
+          "min_gostiju": 80,
+          "ukljucuje": [
+            "Roštilj meni",
+            "Salate",
+            "Bezalkoholna pića",
+            "Korišćenje bazena"
+          ],
+          "opis": "Od 12 do 18h, leti."
+        },
+        {
+          "naziv": "Svadbeni",
+          "cena_po_osobi": 3900,
+          "min_gostiju": 100,
+          "ukljucuje": [
+            "Aperitiv",
+            "Predjelo",
+            "Dva glavna jela",
+            "Torta",
+            "Neograničeno piće",
+            "Bina i ozvučenje"
+          ],
+          "opis": "Ceo salaš, bez vremenskog ograničenja."
+        }
+      ]
+    },
+    {
+      "handle": "igraonica-zvezdica",
+      "naziv": "Igraonica Zvezdica",
+      "kategorija": "Dečija igraonica",
+      "vlasnik": "Zvezdica PR",
+      "opis": "<p>Kamerna igraonica na Telepu za grupe do 30 dece. Prostor je pregledan pa roditelji vide decu iz svakog ugla.</p><p>Hrana se donosi ili naručuje. Dekoracija po temi je uključena u cenu.</p>",
+      "kvart": "Telep",
+      "adresa": "Bulevar cara Lazara 3",
+      "lat": 45.2305,
+      "lng": 19.8103,
+      "cena_po_osobi": 850,
+      "min_potrosnja": 15000,
+      "kontakt_telefon": "021 555 328",
+      "kapacitet_min": 10,
+      "kapacitet_max": 30,
+      "tipovi_proslava": [
+        "Dečiji rođendan"
+      ],
+      "sadrzaji": [
+        "Zatvoren prostor",
+        "Klima",
+        "Dečiji kutak",
+        "Dekoracija uključena"
+      ],
+      "hrana_pice": [
+        "Donošenje hrane dozvoljeno",
+        "Ketering dozvoljen"
+      ],
+      "muzika": [
+        "Sopstveno ozvučenje",
+        "Bez muzike"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-20",
+        "2026-10-18",
+        "2026-11-01",
+        "2026-11-29"
+      ],
+      "recenzije": [
+        {
+          "autor": "Tamara S.",
+          "ocena": 5,
+          "datum": "2026-06-07",
+          "tip_proslave": "Dečiji rođendan",
+          "tekst": "Male grupe znače da se svako dete oseća viđeno. Baš nam je prijalo."
+        },
+        {
+          "autor": "Nikola B.",
+          "ocena": 4,
+          "datum": "2026-05-11",
+          "tip_proslave": "Dečiji rođendan",
+          "tekst": "Sve uredno i čisto, ali prostor je zaista mali za više od 25 dece."
+        },
+        {
+          "autor": "Ivana M.",
+          "ocena": 5,
+          "datum": "2026-04-02",
+          "tip_proslave": "Dečiji rođendan",
+          "tekst": "Dekoracija po temi je bila tačno kako smo tražili."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Osnovni",
+          "cena_po_osobi": 850,
+          "min_gostiju": 10,
+          "ukljucuje": [
+            "Dva sata igre",
+            "Dekoracija po temi",
+            "Sok"
+          ],
+          "opis": "Za grupe do 15 dece."
+        },
+        {
+          "naziv": "Prošireni",
+          "cena_po_osobi": 1150,
+          "min_gostiju": 15,
+          "ukljucuje": [
+            "Tri sata igre",
+            "Animator",
+            "Dekoracija po temi",
+            "Sok i grickalice"
+          ],
+          "opis": "Sa animatorom i dužim terminom."
+        }
+      ]
+    },
+    {
+      "handle": "restoran-dunavski-cvet",
+      "naziv": "Restoran Dunavski cvet",
+      "kategorija": "Restoran",
+      "vlasnik": "Dunavski cvet PR",
+      "opis": "<p>Restoran na Limanu uz sam kej, sa baštom okrenutom ka Dunavu i salom za 110 gostiju. Parking je ispred objekta.</p><p>Kuhinja je internacionalna, sa jakom vegetarijanskom ponudom. Zbog blizine stambenih zgrada muzika se stišava posle ponoći.</p>",
+      "kvart": "Liman",
+      "adresa": "Sunčani kej 41",
+      "lat": 45.2398,
+      "lng": 19.8367,
+      "cena_po_osobi": 2300,
+      "min_potrosnja": 65000,
+      "kontakt_telefon": "021 555 274",
+      "kapacitet_min": 40,
+      "kapacitet_max": 110,
+      "tipovi_proslava": [
+        "Rođendan",
+        "Krštenje",
+        "Poslovni događaj",
+        "Privatna zabava"
+      ],
+      "sadrzaji": [
+        "Parking",
+        "Bašta",
+        "Klima",
+        "Zatvoren prostor",
+        "Wi-Fi",
+        "Ozvučenje"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Meni po izboru",
+        "Vegetarijanski meni"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Ograničenje buke posle 24h"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-09",
+        "2026-10-02",
+        "2026-10-23",
+        "2026-11-20"
+      ],
+      "recenzije": [
+        {
+          "autor": "Aleksandra N.",
+          "ocena": 4,
+          "datum": "2026-07-09",
+          "tip_proslave": "Rođendan",
+          "tekst": "Lepa bašta i dobra hrana. Vegetarijanski meni je stvarno ozbiljan, ne samo prilog."
+        },
+        {
+          "autor": "Branko M.",
+          "ocena": 5,
+          "datum": "2026-06-15",
+          "tip_proslave": "Poslovni događaj",
+          "tekst": "Diskretno i tiho, taman za poslovnu večeru."
+        },
+        {
+          "autor": "Sofija V.",
+          "ocena": 4,
+          "datum": "2026-05-20",
+          "tip_proslave": "Krštenje",
+          "tekst": "Sve u redu, ali bašta je bučna kad je kej pun šetača."
+        },
+        {
+          "autor": "Dejan T.",
+          "ocena": 5,
+          "datum": "2026-03-28",
+          "tip_proslave": "Privatna zabava",
+          "tekst": "Osoblje se stvarno potrudilo oko svakog detalja."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Standard",
+          "cena_po_osobi": 2300,
+          "min_gostiju": 40,
+          "ukljucuje": [
+            "Predjelo",
+            "Glavno jelo",
+            "Desert",
+            "Bezalkoholna pića"
+          ],
+          "opis": "Posluženje za stolom."
+        },
+        {
+          "naziv": "Vegetarijanski",
+          "cena_po_osobi": 2300,
+          "min_gostiju": 30,
+          "ukljucuje": [
+            "Vegetarijansko predjelo",
+            "Dva vegetarijanska glavna jela",
+            "Desert",
+            "Bezalkoholna pića"
+          ],
+          "opis": "Kompletno bezmesni meni."
+        },
+        {
+          "naziv": "Svečani",
+          "cena_po_osobi": 3300,
+          "min_gostiju": 60,
+          "ukljucuje": [
+            "Aperitiv",
+            "Predjelo",
+            "Dva glavna jela",
+            "Torta",
+            "Piće"
+          ],
+          "opis": "Za veće porodične proslave."
+        }
+      ]
+    },
+    {
+      "handle": "klub-fabrika",
+      "naziv": "Klub Fabrika",
+      "kategorija": "Klub",
+      "vlasnik": "Fabrika NS d.o.o.",
+      "opis": "<p>Klub u prenamenjenoj hali na Salajci, sa binom, industrijskim enterijerom i kapacitetom do 280 ljudi.</p><p>Nema kuhinje. Piće možete doneti uz naknadu za čepovinu, što je retkost i razlog zašto ga biraju maturanti.</p>",
+      "kvart": "Salajka",
+      "adresa": "Partizanska 20",
+      "lat": 45.2681,
+      "lng": 19.8424,
+      "cena_po_osobi": 1400,
+      "min_potrosnja": 60000,
+      "kontakt_telefon": "021 555 851",
+      "kapacitet_min": 100,
+      "kapacitet_max": 280,
+      "tipovi_proslava": [
+        "Punoletstvo",
+        "Matura",
+        "Privatna zabava"
+      ],
+      "sadrzaji": [
+        "Zatvoren prostor",
+        "Bina",
+        "Ozvučenje",
+        "Garderoba"
+      ],
+      "hrana_pice": [
+        "Bez hrane",
+        "Sopstveno piće dozvoljeno"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Živi bend",
+        "Sopstveno ozvučenje"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-19",
+        "2026-10-03",
+        "2026-10-17",
+        "2026-10-31",
+        "2026-11-14"
+      ],
+      "recenzije": [
+        {
+          "autor": "Strahinja D.",
+          "ocena": 5,
+          "datum": "2026-07-16",
+          "tip_proslave": "Matura",
+          "tekst": "Mogućnost da doneseš svoje piće je prepolovila budžet. Zvuk odličan."
+        },
+        {
+          "autor": "Milica R.",
+          "ocena": 4,
+          "datum": "2026-06-20",
+          "tip_proslave": "Punoletstvo",
+          "tekst": "Prostor je sirov i to je čar. Grejanje zimi bi moglo bolje."
+        },
+        {
+          "autor": "Vukašin P.",
+          "ocena": 5,
+          "datum": "2026-05-29",
+          "tip_proslave": "Privatna zabava",
+          "tekst": "Bend je imao sve što mu treba, nismo ništa dovlačili."
+        },
+        {
+          "autor": "Anja K.",
+          "ocena": 4,
+          "datum": "2026-04-11",
+          "tip_proslave": "Matura",
+          "tekst": "Velika hala, super atmosfera kad se napuni. Prazna deluje sumorno."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Zakup",
+          "cena_po_osobi": 1400,
+          "min_gostiju": 100,
+          "ukljucuje": [
+            "Pet sati zakupa",
+            "Ozvučenje",
+            "Rasveta",
+            "Garderoba"
+          ],
+          "opis": "Piće donosite sami, uz čepovinu."
+        },
+        {
+          "naziv": "Sa barom",
+          "cena_po_osobi": 2200,
+          "min_gostiju": 120,
+          "ukljucuje": [
+            "Pet sati zakupa",
+            "Ozvučenje",
+            "Rasveta",
+            "Otvoreni bar",
+            "Garderoba",
+            "Obezbeđenje"
+          ],
+          "opis": "Domaće piće uključeno."
+        }
+      ]
+    },
+    {
+      "handle": "kafic-zelena-basta",
+      "naziv": "Kafić Zelena bašta",
+      "kategorija": "Kafić",
+      "vlasnik": "Zelena bašta PR",
+      "opis": "<p>Kafić na Adicama sa velikom zelenom baštom, roštiljem i prostorom za 60 ljudi. Popularan za popodnevna okupljanja.</p><p>Najjeftiniji prostor u ponudi. Hranu i piće možete doneti sami, uz simboličnu naknadu.</p>",
+      "kvart": "Adice",
+      "adresa": "Ilariona Ruvarca 6",
+      "lat": 45.2381,
+      "lng": 19.7804,
+      "cena_po_osobi": 750,
+      "min_potrosnja": 10000,
+      "kontakt_telefon": "021 555 402",
+      "kapacitet_min": 20,
+      "kapacitet_max": 60,
+      "tipovi_proslava": [
+        "Rođendan",
+        "Dečiji rođendan",
+        "Privatna zabava"
+      ],
+      "sadrzaji": [
+        "Bašta",
+        "Otvoren prostor",
+        "Wi-Fi",
+        "Roštilj"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Donošenje hrane dozvoljeno",
+        "Sopstveno piće dozvoljeno"
+      ],
+      "muzika": [
+        "Sopstveno ozvučenje",
+        "Ograničenje buke posle 24h"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-05",
+        "2026-10-10",
+        "2026-11-07"
+      ],
+      "recenzije": [
+        {
+          "autor": "Gordana I.",
+          "ocena": 4,
+          "datum": "2026-07-12",
+          "tip_proslave": "Rođendan",
+          "tekst": "Za ove pare ne možeš tražiti više. Bašta je stvarno zelena i hladovita."
+        },
+        {
+          "autor": "Saša Lj.",
+          "ocena": 5,
+          "datum": "2026-06-05",
+          "tip_proslave": "Dečiji rođendan",
+          "tekst": "Deca su trčala po travi, mi smo pekli roštilj. Idealno za leto."
+        },
+        {
+          "autor": "Marina B.",
+          "ocena": 3,
+          "datum": "2026-05-02",
+          "tip_proslave": "Privatna zabava",
+          "tekst": "Jeftino i prijatno, ali toaleti bi mogli biti bolje održavani."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Bašta",
+          "cena_po_osobi": 750,
+          "min_gostiju": 20,
+          "ukljucuje": [
+            "Tri sata zakupa bašte",
+            "Korišćenje roštilja",
+            "Bezalkoholna pića"
+          ],
+          "opis": "Hranu donosite sami."
+        },
+        {
+          "naziv": "Sa posluženjem",
+          "cena_po_osobi": 1400,
+          "min_gostiju": 25,
+          "ukljucuje": [
+            "Četiri sata zakupa",
+            "Roštilj meni",
+            "Salate",
+            "Piće"
+          ],
+          "opis": "Mi pripremamo hranu."
+        }
+      ]
+    },
+    {
+      "handle": "terasa-nebo",
+      "naziv": "Terasa Nebo",
+      "kategorija": "Terasa / krovna bašta",
+      "vlasnik": "Nebo NS PR",
+      "opis": "<p>Krovna terasa na Novom naselju, sa pogledom na zapadni deo grada i Frušku goru u daljini. Prima do 80 gostiju.</p><p>Terasa radi od maja do septembra. Za slučaj kiše postoji natkriveni deo za 40 ljudi.</p>",
+      "kvart": "Novo naselje",
+      "adresa": "Bulevar Evrope 15",
+      "lat": 45.2468,
+      "lng": 19.8012,
+      "cena_po_osobi": 1800,
+      "min_potrosnja": 40000,
+      "kontakt_telefon": "021 555 767",
+      "kapacitet_min": 25,
+      "kapacitet_max": 80,
+      "tipovi_proslava": [
+        "Rođendan",
+        "Punoletstvo",
+        "Diplomiranje",
+        "Privatna zabava"
+      ],
+      "sadrzaji": [
+        "Otvoren prostor",
+        "Ozvučenje",
+        "Wi-Fi",
+        "Bašta"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Meni po izboru",
+        "Piće uključeno"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Ograničenje buke posle 24h"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-13",
+        "2026-10-04",
+        "2026-10-25",
+        "2026-11-08"
+      ],
+      "recenzije": [
+        {
+          "autor": "Tijana Ž.",
+          "ocena": 5,
+          "datum": "2026-08-06",
+          "tip_proslave": "Punoletstvo",
+          "tekst": "Zalazak sunca sa terase je bio glavna atrakcija večeri."
+        },
+        {
+          "autor": "Relja S.",
+          "ocena": 4,
+          "datum": "2026-07-22",
+          "tip_proslave": "Rođendan",
+          "tekst": "Sve pohvale, samo je vetar na tom spratu jači nego što očekuješ."
+        },
+        {
+          "autor": "Kristina D.",
+          "ocena": 4,
+          "datum": "2026-06-28",
+          "tip_proslave": "Diplomiranje",
+          "tekst": "Dobar odnos cene i utiska. Natkriveni deo je spasao veče kad je pala kiša."
+        },
+        {
+          "autor": "Ognjen L.",
+          "ocena": 5,
+          "datum": "2026-05-31",
+          "tip_proslave": "Privatna zabava",
+          "tekst": "Muzika, pogled, osoblje — sve na mestu."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Koktel",
+          "cena_po_osobi": 1800,
+          "min_gostiju": 25,
+          "ukljucuje": [
+            "Tri sata zakupa",
+            "Koktel zalogaji",
+            "Bezalkoholna pića"
+          ],
+          "opis": "Stojeći format."
+        },
+        {
+          "naziv": "Večernji",
+          "cena_po_osobi": 2900,
+          "min_gostiju": 40,
+          "ukljucuje": [
+            "Pet sati zakupa",
+            "Predjelo",
+            "Glavno jelo",
+            "Piće",
+            "DJ"
+          ],
+          "opis": "Sedeći format sa posluženjem."
+        }
+      ]
+    },
+    {
+      "handle": "svecana-sala-harmonija",
+      "naziv": "Svečana sala Harmonija",
+      "kategorija": "Svečana sala",
+      "vlasnik": "Harmonija events d.o.o.",
+      "opis": "<p>Sala u Veterniku sa 300 mesta, velikim parkingom i pristupom za osobe sa invaliditetom. Bina je fiksna, ozvučenje sopstveno.</p><p>Kuhinja radi u sopstvenoj režiji i ima zaseban vegetarijanski meni. Dekoracija je uključena u cenu paketa.</p>",
+      "kvart": "Veternik",
+      "adresa": "Novosadski put 77",
+      "lat": 45.2447,
+      "lng": 19.7553,
+      "cena_po_osobi": 2000,
+      "min_potrosnja": 95000,
+      "kontakt_telefon": "021 555 983",
+      "kapacitet_min": 90,
+      "kapacitet_max": 300,
+      "tipovi_proslava": [
+        "Svadba",
+        "Punoletstvo",
+        "Matura",
+        "Krštenje"
+      ],
+      "sadrzaji": [
+        "Parking",
+        "Zatvoren prostor",
+        "Klima",
+        "Bina",
+        "Garderoba",
+        "Dekoracija uključena",
+        "Pristup za osobe sa invaliditetom"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Švedski sto",
+        "Meni po izboru",
+        "Piće uključeno",
+        "Vegetarijanski meni"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Živi bend",
+        "Sopstveno ozvučenje"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-27",
+        "2026-10-15",
+        "2026-11-21",
+        "2026-12-05",
+        "2026-12-26"
+      ],
+      "recenzije": [
+        {
+          "autor": "Ljiljana V.",
+          "ocena": 5,
+          "datum": "2026-08-15",
+          "tip_proslave": "Svadba",
+          "tekst": "Sve što smo tražili je ispoštovano do detalja. Vegetarijanski meni je bio pravo iznenađenje."
+        },
+        {
+          "autor": "Predrag M.",
+          "ocena": 4,
+          "datum": "2026-07-11",
+          "tip_proslave": "Krštenje",
+          "tekst": "Prostrano i pristupačno, tašta u kolicima nije imala problem nigde."
+        },
+        {
+          "autor": "Milena J.",
+          "ocena": 4,
+          "datum": "2026-06-14",
+          "tip_proslave": "Matura",
+          "tekst": "Solidno za ovaj novac. Zvuk u sali je mogao biti bolje podešen."
+        },
+        {
+          "autor": "Aleksa G.",
+          "ocena": 5,
+          "datum": "2026-05-10",
+          "tip_proslave": "Punoletstvo",
+          "tekst": "Osoblje je bilo brzo i nenametljivo cele večeri."
+        },
+        {
+          "autor": "Vera S.",
+          "ocena": 4,
+          "datum": "2026-03-30",
+          "tip_proslave": "Svadba",
+          "tekst": "Udaljenost od centra je jedina mana, ali parking to nadoknađuje."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Osnovni",
+          "cena_po_osobi": 2000,
+          "min_gostiju": 90,
+          "ukljucuje": [
+            "Predjelo",
+            "Glavno jelo",
+            "Desert",
+            "Bezalkoholna pića",
+            "Dekoracija"
+          ],
+          "opis": "Do četiri sata."
+        },
+        {
+          "naziv": "Svečani",
+          "cena_po_osobi": 3500,
+          "min_gostiju": 130,
+          "ukljucuje": [
+            "Aperitiv",
+            "Hladno predjelo",
+            "Supa",
+            "Dva glavna jela",
+            "Torta",
+            "Neograničeno piće",
+            "Dekoracija",
+            "DJ"
+          ],
+          "opis": "Ceo večernji program."
+        }
+      ]
+    },
+    {
+      "handle": "restoran-stari-podrum",
+      "naziv": "Restoran Stari podrum",
+      "kategorija": "Restoran",
+      "vlasnik": "Stari podrum PR",
+      "opis": "<p>Restoran u zasvođenom podrumu iz devetnaestog veka, u starom delu Petrovaradina. Prima do 100 gostiju u dve povezane prostorije.</p><p>Kuhinja je autorska, sa vinskom kartom fruškogorskih vinarija. Zbog svodova je akustika izuzetna za živu muziku.</p>",
+      "kvart": "Petrovaradin",
+      "adresa": "Preradovićeva 25",
+      "lat": 45.2496,
+      "lng": 19.8688,
+      "cena_po_osobi": 2700,
+      "min_potrosnja": 70000,
+      "kontakt_telefon": "021 555 619",
+      "kapacitet_min": 30,
+      "kapacitet_max": 100,
+      "tipovi_proslava": [
+        "Rođendan",
+        "Svadba",
+        "Poslovni događaj"
+      ],
+      "sadrzaji": [
+        "Zatvoren prostor",
+        "Klima",
+        "Ozvučenje",
+        "Garderoba",
+        "Parking"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Meni po izboru",
+        "Piće uključeno"
+      ],
+      "muzika": [
+        "Živi bend",
+        "Ograničenje buke posle 24h"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-11",
+        "2026-10-09",
+        "2026-10-30",
+        "2026-11-27"
+      ],
+      "recenzije": [
+        {
+          "autor": "Nevena K.",
+          "ocena": 5,
+          "datum": "2026-07-27",
+          "tip_proslave": "Svadba",
+          "tekst": "Ambijent kakav nema nigde u gradu. Svodovi i sveće — kao iz filma."
+        },
+        {
+          "autor": "Miroslav T.",
+          "ocena": 5,
+          "datum": "2026-06-24",
+          "tip_proslave": "Rođendan",
+          "tekst": "Vinska karta je ozbiljna. Bend je zvučao neverovatno u tom prostoru."
+        },
+        {
+          "autor": "Dara P.",
+          "ocena": 4,
+          "datum": "2026-05-19",
+          "tip_proslave": "Poslovni događaj",
+          "tekst": "Lepo, ali podrum je bez prozora pa nije za svakoga."
+        },
+        {
+          "autor": "Zoran B.",
+          "ocena": 4,
+          "datum": "2026-04-08",
+          "tip_proslave": "Rođendan",
+          "tekst": "Hrana odlična, cene malo iznad proseka za Novi Sad."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Degustacioni",
+          "cena_po_osobi": 2700,
+          "min_gostiju": 30,
+          "ukljucuje": [
+            "Pet manjih jela",
+            "Uparena vina",
+            "Voda"
+          ],
+          "opis": "Autorski meni šefa kuhinje."
+        },
+        {
+          "naziv": "Svečani",
+          "cena_po_osobi": 3900,
+          "min_gostiju": 50,
+          "ukljucuje": [
+            "Aperitiv",
+            "Predjelo",
+            "Dva glavna jela",
+            "Desert",
+            "Vino i piće"
+          ],
+          "opis": "Klasičan format za veće proslave."
+        }
+      ]
+    },
+    {
+      "handle": "salas-vetrenjaca",
+      "naziv": "Salaš Vetrenjača",
+      "kategorija": "Salaš",
+      "vlasnik": "Vetrenjača d.o.o.",
+      "opis": "<p>Najveći salaš u ponudi, na putu za Čenej, sa bazenom, konjušnicom, velikom binom i kapacitetom do 300 gostiju.</p><p>Kuhinja radi celu godinu, roštilj i bazen su sezonski. Nema komšiluka pa nema ograničenja buke.</p>",
+      "kvart": "Okolina Novog Sada",
+      "adresa": "Put za Čenej 4",
+      "lat": 45.2941,
+      "lng": 19.7688,
+      "cena_po_osobi": 2900,
+      "min_potrosnja": 110000,
+      "kontakt_telefon": "021 555 155",
+      "kapacitet_min": 100,
+      "kapacitet_max": 300,
+      "tipovi_proslava": [
+        "Svadba",
+        "Krštenje",
+        "Rođendan",
+        "Punoletstvo"
+      ],
+      "sadrzaji": [
+        "Parking",
+        "Bašta",
+        "Otvoren prostor",
+        "Roštilj",
+        "Bazen",
+        "Bina",
+        "Dečiji kutak"
+      ],
+      "hrana_pice": [
+        "Sopstvena kuhinja",
+        "Švedski sto",
+        "Vegetarijanski meni",
+        "Piće uključeno"
+      ],
+      "muzika": [
+        "DJ dozvoljen",
+        "Živi bend",
+        "Sopstveno ozvučenje"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-06",
+        "2026-09-20",
+        "2026-10-11",
+        "2026-11-01",
+        "2026-12-13"
+      ],
+      "recenzije": [
+        {
+          "autor": "Jovana M.",
+          "ocena": 5,
+          "datum": "2026-08-22",
+          "tip_proslave": "Svadba",
+          "tekst": "Bila je to najlepša svadba na kojoj sam bila, a moja je. Prostor radi pola posla."
+        },
+        {
+          "autor": "Nemanja D.",
+          "ocena": 5,
+          "datum": "2026-07-19",
+          "tip_proslave": "Punoletstvo",
+          "tekst": "Muzika do jutra bez ijedne žalbe. To u gradu ne možeš."
+        },
+        {
+          "autor": "Slavica R.",
+          "ocena": 4,
+          "datum": "2026-06-11",
+          "tip_proslave": "Krštenje",
+          "tekst": "Prelepo, ali najskuplje u ponudi. Vredi ako budžet dozvoljava."
+        },
+        {
+          "autor": "Bojan V.",
+          "ocena": 5,
+          "datum": "2026-05-24",
+          "tip_proslave": "Rođendan",
+          "tekst": "Konji i bazen su zabavili decu ceo dan."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Dnevni",
+          "cena_po_osobi": 2900,
+          "min_gostiju": 100,
+          "ukljucuje": [
+            "Roštilj meni",
+            "Salate",
+            "Bezalkoholna pića",
+            "Bazen"
+          ],
+          "opis": "Od 12 do 19h, leti."
+        },
+        {
+          "naziv": "Svadbeni",
+          "cena_po_osobi": 4600,
+          "min_gostiju": 150,
+          "ukljucuje": [
+            "Aperitiv",
+            "Hladno predjelo",
+            "Supa",
+            "Dva glavna jela",
+            "Torta",
+            "Neograničeno piće",
+            "Bina i ozvučenje",
+            "Dekoracija"
+          ],
+          "opis": "Ceo salaš, bez vremenskog ograničenja."
+        },
+        {
+          "naziv": "Zimski",
+          "cena_po_osobi": 3400,
+          "min_gostiju": 100,
+          "ukljucuje": [
+            "Predjelo",
+            "Jelo ispod sača",
+            "Desert",
+            "Piće"
+          ],
+          "opis": "U zatvorenom delu, od novembra do marta."
+        }
+      ]
+    },
+    {
+      "handle": "poslovni-centar-ns",
+      "naziv": "Poslovni centar NS",
+      "kategorija": "Konferencijska sala",
+      "vlasnik": "Poslovni centar NS d.o.o.",
+      "opis": "<p>Konferencijske sale na Trgu slobode, u samom centru. Glavna sala prima 150 ljudi, uz dve manje sale za 30.</p><p>Bez kuhinje — ketering se dogovara posebno. Lokacija u centru je glavna prednost: gosti stižu peške.</p>",
+      "kvart": "Stari grad",
+      "adresa": "Trg slobode 3",
+      "lat": 45.2554,
+      "lng": 19.8442,
+      "cena_po_osobi": 1600,
+      "min_potrosnja": 48000,
+      "kontakt_telefon": "021 555 030",
+      "kapacitet_min": 40,
+      "kapacitet_max": 150,
+      "tipovi_proslava": [
+        "Poslovni događaj",
+        "Diplomiranje"
+      ],
+      "sadrzaji": [
+        "Zatvoren prostor",
+        "Klima",
+        "Projektor",
+        "Wi-Fi",
+        "Pristup za osobe sa invaliditetom",
+        "Parking"
+      ],
+      "hrana_pice": [
+        "Ketering dozvoljen",
+        "Bez hrane",
+        "Donošenje hrane dozvoljeno"
+      ],
+      "muzika": [
+        "Bez muzike",
+        "Sopstveno ozvučenje"
+      ],
+      "zauzeti_datumi": [
+        "2026-09-16",
+        "2026-09-30",
+        "2026-10-14",
+        "2026-10-28",
+        "2026-11-11"
+      ],
+      "recenzije": [
+        {
+          "autor": "Milan S.",
+          "ocena": 5,
+          "datum": "2026-07-08",
+          "tip_proslave": "Poslovni događaj",
+          "tekst": "Lokacija je nenadmašna. Svi gosti su stigli peške, bez parkiranja."
+        },
+        {
+          "autor": "Dragan K.",
+          "ocena": 4,
+          "datum": "2026-06-03",
+          "tip_proslave": "Diplomiranje",
+          "tekst": "Sve funkcionalno. Sala nema prirodno svetlo, što posle par sati zamara."
+        },
+        {
+          "autor": "Ivana P.",
+          "ocena": 4,
+          "datum": "2026-04-22",
+          "tip_proslave": "Poslovni događaj",
+          "tekst": "Tehnika radi, internet stabilan. Za ceo dan je malo tesno u pauzama."
+        },
+        {
+          "autor": "Nikola Ž.",
+          "ocena": 5,
+          "datum": "2026-03-18",
+          "tip_proslave": "Poslovni događaj",
+          "tekst": "Najbolji odnos cene i lokacije u gradu za ovakav format."
+        }
+      ],
+      "paketi": [
+        {
+          "naziv": "Poludnevni",
+          "cena_po_osobi": 1600,
+          "min_gostiju": 40,
+          "ukljucuje": [
+            "Četiri sata zakupa",
+            "Projektor",
+            "Wi-Fi",
+            "Voda"
+          ],
+          "opis": "Jutarnji ili popodnevni blok."
+        },
+        {
+          "naziv": "Celodnevni",
+          "cena_po_osobi": 2700,
+          "min_gostiju": 40,
+          "ukljucuje": [
+            "Osam sati zakupa",
+            "Projektor",
+            "Wi-Fi",
+            "Dve pauze za kafu",
+            "Dve male sale"
+          ],
+          "opis": "Uključene i manje sale za radionice."
+        }
+      ]
+    }
+  ]
+}

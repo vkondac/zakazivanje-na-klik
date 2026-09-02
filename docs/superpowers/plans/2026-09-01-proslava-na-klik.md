@@ -699,10 +699,6 @@ export function proveriProstor(prostor, indeks) {
     if (!DATUM_OBLIK.test(datum)) zameri(`zauzet datum "${datum}" nije u obliku YYYY-MM-DD`);
   }
 
-  if (!Array.isArray(prostor?.slike) || prostor.slike.length === 0) {
-    zameri('mora imati bar jednu sliku');
-  }
-
   const recenzije = prostor?.recenzije ?? [];
   for (const recenzija of recenzije) {
     if (!Number.isInteger(recenzija.ocena) || recenzija.ocena < 1 || recenzija.ocena > 5) {
@@ -1037,9 +1033,11 @@ Idempotentna kroz obrazac prvo-pitaj-pa-kreiraj, ne kroz kodove gresaka."
 
 - [ ] **Step 1: Napravi `scripts/slike.json` sa fotografijama po kategoriji**
 
-Dvanaest URL-ova, ne šezdeset — prostori iste kategorije dele fond fotografija.
+Dvadeset dva URL-a, ne šezdeset — prostori iste kategorije dele fond fotografija.
 
-Za svaku kategoriju nađi 3 fotografije na `https://unsplash.com`, klikni **Download → desni klik → Copy image address**, pa skrati query na `?w=1600&q=80`. Direktan URL izgleda ovako: `https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=1600&q=80`.
+**Kako su nabavljeni tokom izvršavanja:** Unsplash blokira skrejpovanje pretrage (vraća prazan odgovor), ali `https://unsplash.com/photos/<id>/download?w=1600` preusmerava na stabilan `images.unsplash.com/photo-<id>` URL. ID-jevi su nađeni pretragom, razrešeni kroz to preusmerenje i **svaki je proveren da vraća HTTP 200 i `image/jpeg`**. Šest ID-jeva dosledno ne daje preuzimanje i zamenjeno je drugima.
+
+Ako neka fotografija ne odgovara, zameni URL u `scripts/slike.json` — seed radi sa bilo kojim javno dostupnim URL-om.
 
 ```json
 {
@@ -1132,6 +1130,10 @@ Pravila za preostalih 19:
 - **`zauzeti_datumi`** — 4 do 8 datuma između `2026-09-10` i `2026-12-31`, sa **preklapanjem** između prostora: bar 6 prostora mora biti zauzeto `2026-10-15`, da demonstracija filtera po datumu ima šta da pokaže.
 - **`lat`/`lng`** — stvarne koordinate kvarta, dovoljno je 4 decimale.
 - **Pokrivenost rečnika** — svaka vrednost iz `SADRZAJI`, `HRANA_PICE`, `MUZIKA` i `TIPOVI_PROSLAVA` mora se pojaviti bar jednom, inače filter ima mrtve opcije.
+
+**Ispravka tokom izvršavanja:** `proveriProstor` je prvobitno zahtevao polje `prostor.slike`, ali fotografije po dizajnu žive u `scripts/slike.json` po kategoriji — nijedan prostor to polje nema. Provera je uklonjena iz validatora; pokrivenost fotografija proverava seed test.
+
+**Dodato tokom izvršavanja:** još tri testa koja plan nije imao — da svaki prostor ima bar jednu ocenu ispod pet (inače je prosek svuda 5.0 i zvezdice ne znače ništa), da su koordinate u okolini Novog Sada, i `scripts/test/seed-prostori.test.mjs` sa devet provera nad `metafieldoviZa`: da svaki prostor proizvodi tačno 18 metafieldova, da se tipovi poklapaju sa definicijama, i da nijedna vrednost nije `undefined`, `NaN` ili `[object Object]`.
 
 - [ ] **Step 3: Napiši test koji validira seed podatke — mora pasti**
 
@@ -1426,7 +1428,7 @@ glavno().catch((greska) => {
 });
 ```
 
-**Napomena o ponovnom pokretanju:** metaobjekti recenzija i paketa se pri svakom pokretanju kreiraju iznova, a proizvod pokazuje samo na poslednje. Stari ostaju kao siročad u adminu. Za demo je to bezopasno; ako smeta, obriši ih u **Settings → Custom data → Metaobjects** pre ponovnog pokretanja.
+**Ispravka tokom izvršavanja — `metaobjectUpsert` umesto `metaobjectCreate`.** Plan je koristio `metaobjectCreate`, uz priznatu manu: svako ponovno pokretanje pravi nove entitete, proizvod pokazuje samo na poslednje, a stari ostaju kao siročad. Shopify-jev `shopify-custom-data` skill propisuje `metaobjectUpsert`, koji uz deterministički handle (`recenzija-<handle prostora>-<redni broj>`) tu manu uklanja u potpunosti. Seed je sad idempotentan i za metaobjekte, ne samo za proizvode.
 
 - [ ] **Step 6: Pokreni seed**
 
