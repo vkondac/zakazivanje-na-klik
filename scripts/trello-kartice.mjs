@@ -14,6 +14,12 @@
  *                                 cek-listama. Trazi TRELLO_KEY, TRELLO_TOKEN
  *                                 i TRELLO_BOARD u .env.
  *
+ * Podrazumevano pravi tri svoje liste. Ako tabla vec ima svoj tok rada
+ * (To Do / Doing / Done), bolje je sve kartice staviti u jednu postojecu
+ * listu a grupisanje preneti na etikete:
+ *
+ *   npm run trello -- --lista "To Do"
+ *
  * Idempotentno po nazivu kartice: kartica koja vec postoji u listi se
  * preskace, pa se skripta moze pokrenuti vise puta.
  */
@@ -70,6 +76,15 @@ async function osigurajListu(pozovi, idTable, naziv, postojece) {
   return nova.id;
 }
 
+async function osigurajEtiketu(pozovi, idTable, naziv, boja, postojece) {
+  const nadjena = postojece.find((e) => e.name === naziv);
+  if (nadjena) return nadjena.id;
+  const nova = await pozovi('POST', '/labels', { name: naziv, color: boja, idBoard: idTable });
+  console.log(`  + etiketa "${naziv}"`);
+  postojece.push(nova);
+  return nova.id;
+}
+
 async function dodajCekListu(pozovi, idKartice, stavke) {
   if (stavke.length === 0) return;
   const cekLista = await pozovi('POST', '/checklists', { idCard: idKartice, name: 'Provere' });
@@ -92,25 +107,62 @@ async function glavno() {
     token: process.env.TRELLO_TOKEN,
   });
 
+  /* TRELLO_BOARD je kratki link iz URL-a. Radi za GET /boards, ali ga
+     POST /labels i POST /lists odbijaju sa "Invalid id" - njima treba pun
+     24-znakovni ID, koji GET vraca. */
   const tabla = await pozovi('GET', `/boards/${idTable}`, { fields: 'name' });
+  const idPuni = tabla.id;
   console.log(`Tabla: ${tabla.name}\n`);
 
-  const postojeceListe = await pozovi('GET', `/boards/${idTable}/lists`, { fields: 'name' });
+  const postojeceListe = await pozovi('GET', `/boards/${idPuni}/lists`, { fields: 'name' });
 
+  /* Ako je zadata postojeca lista, sve ide u nju a grupisanje nose etikete.
+     Tako se ne narusava tok rada table koja vec ima svoje liste. */
+  const zadataIndeks = process.argv.indexOf('--lista');
+  const zadata = zadataIndeks === -1 ? null : process.argv[zadataIndeks + 1];
+
+  const BOJE = { 0: 'sky', 1: 'green', 2: 'red' };
   const idPoNazivu = {};
-  for (const naziv of liste) {
-    idPoNazivu[naziv] = await osigurajListu(pozovi, idTable, naziv, postojeceListe);
+  const idEtikete = {};
+
+  if (zadata) {
+    const ciljna = postojeceListe.find((l) => l.name === zadata);
+    if (!ciljna) {
+      throw new Error(
+        `Lista "${zadata}" ne postoji na tabli. Dostupne: ${postojeceListe.map((l) => l.name).join(', ')}`
+      );
+    }
+    console.log(`  = sve kartice u listu "${zadata}", grupisanje kroz etikete`);
+
+    const postojeceEtikete = await pozovi('GET', `/boards/${idPuni}/labels`, { fields: 'name,color' });
+    for (const [redni, naziv] of liste.entries()) {
+      idPoNazivu[naziv] = ciljna.id;
+      idEtikete[naziv] = await osigurajEtiketu(pozovi, idPuni, naziv, BOJE[redni] ?? 'purple', postojeceEtikete);
+    }
+  } else {
+    for (const naziv of liste) {
+      idPoNazivu[naziv] = await osigurajListu(pozovi, idPuni, naziv, postojeceListe);
+    }
   }
 
   console.log('');
+
+  /* Kod zadate liste sve kartice dele istu listu, pa se imena citaju jednom. */
+  const kesImena = {};
+  async function imenaULista(idListe) {
+    if (!kesImena[idListe]) {
+      const uListi = await pozovi('GET', `/lists/${idListe}/cards`, { fields: 'name' });
+      kesImena[idListe] = new Set(uListi.map((k) => k.name));
+    }
+    return kesImena[idListe];
+  }
 
   let napravljeno = 0;
   let presko = 0;
 
   for (const naziv of liste) {
     const idListe = idPoNazivu[naziv];
-    const uListi = await pozovi('GET', `/lists/${idListe}/cards`, { fields: 'name' });
-    const imena = new Set(uListi.map((k) => k.name));
+    const imena = await imenaULista(idListe);
 
     for (const kartica of kartice.filter((k) => k.lista === naziv)) {
       if (imena.has(kartica.naziv)) {
@@ -119,15 +171,19 @@ async function glavno() {
         continue;
       }
 
-      const nova = await pozovi('POST', '/cards', {
+      const parametri = {
         idList: idListe,
         name: kartica.naziv,
         desc: kartica.opis ?? '',
         pos: 'bottom',
-      });
+      };
+      if (idEtikete[naziv]) parametri.idLabels = idEtikete[naziv];
+
+      const nova = await pozovi('POST', '/cards', parametri);
+      imena.add(kartica.naziv);
 
       await dodajCekListu(pozovi, nova.id, kartica.checklist ?? []);
-      console.log(`  + ${kartica.naziv}`);
+      console.log(`  + [${naziv}] ${kartica.naziv}`);
       napravljeno += 1;
     }
   }
