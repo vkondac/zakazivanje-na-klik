@@ -5,6 +5,7 @@
   "scripts": {
     "test": "node --test",
     "setup": "node --env-file=.env scripts/setup-store.mjs",
-    "seed": "node --env-file=.env scripts/seed-prostori.mjs"
+    "seed": "node --env-file=.env scripts/seed-prostori.mjs",
+    "trello": "node --env-file-if-exists=.env scripts/trello-kartice.mjs"
   }
 }

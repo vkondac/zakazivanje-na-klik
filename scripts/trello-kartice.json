@@ -1,0 +1,227 @@
+{
+  "liste": ["Podešavanje store-a", "Provera", "Rizici"],
+  "kartice": [
+    {
+      "lista": "Podešavanje store-a",
+      "naziv": "Napraviti Partner nalog i development store",
+      "opis": "partners.shopify.com → Stores → Add store → Create development store.\n\nStore purpose mora biti **Test or build a new app or theme** — to daje neograničen razvojni store bez plaćanja.\n\nZapisati .myshopify.com domen, treba u svakom sledećem koraku.",
+      "checklist": [
+        "Partner nalog napravljen",
+        "Development store napravljen sa purpose = Test or build a new app or theme",
+        "Domen zapisan"
+      ]
+    },
+    {
+      "lista": "Podešavanje store-a",
+      "naziv": "Postaviti RSD i srpski kao podrazumevane",
+      "opis": "**Mora pre unosa proizvoda.** Menjanje valute posle unosa ne preračunava cene.\n\nSettings → General → Store defaults → Currency: Serbian Dinar (RSD)\nSettings → Languages → Add language → Serbian → Set as default",
+      "checklist": ["Valuta RSD", "Srpski dodat", "Srpski postavljen kao podrazumevani"]
+    },
+    {
+      "lista": "Podešavanje store-a",
+      "naziv": "Napraviti custom app i uzeti Admin API token",
+      "opis": "Settings → Apps and sales channels → Develop apps → Create an app, naziv `Seed skripta`.\n\nAdmin API integration → Configure, uključiti scope-ove:\n```\nwrite_products  read_products\nwrite_metaobject_definitions  read_metaobject_definitions\nwrite_metaobjects  read_metaobjects\nwrite_publications  read_publications\n```\n\nInstall app → Reveal token once → upisati u `.env` (već je gitignore-ovan).\n\nToken se prikazuje **samo jednom**.",
+      "checklist": [
+        "App napravljena",
+        "Svih 8 scope-ova uključeno",
+        "Token upisan u .env",
+        "`git check-ignore -v .env` potvrđuje da je ignorisan"
+      ]
+    },
+    {
+      "lista": "Podešavanje store-a",
+      "naziv": "Pokrenuti npm run setup — definicije i kolekcija",
+      "opis": "Kreira 18 metafield definicija, 2 metaobjekta (`recenzija`, `paket`) i automatsku kolekciju `svi-prostori` po tagu `prostor`.\n\nOčekivano: 20 redova sa `+`, pa `Gotovo.`\n\nPokrenuti **drugi put** — svi redovi moraju početi sa `=` i ništa se ne sme duplirati.\n\nAko mutacija odbije oblik ulaza, poruka iz `userErrors` imenuje tačno polje. Verzija API-ja je konstanta na vrhu `scripts/lib/admin.mjs`.",
+      "checklist": [
+        "Prvi prolaz prošao bez greške",
+        "Drugi prolaz ispisuje samo `=` (idempotentnost)",
+        "Settings → Custom data → Products pokazuje 18 definicija",
+        "Settings → Custom data → Metaobjects pokazuje Recenzija i Paket",
+        "Kolekcija Svi prostori postoji i objavljena je"
+      ]
+    },
+    {
+      "lista": "Podešavanje store-a",
+      "naziv": "Pokrenuti npm run seed — 20 prostora",
+      "opis": "Useja 20 prostora sa recenzijama, paketima, slikama i svih 18 metafieldova.\n\nOčekivano: 20 redova `+ <naziv>`.\n\nPokrenuti drugi put — u Products i dalje mora biti tačno 20 proizvoda, ne 40.",
+      "checklist": [
+        "20 proizvoda, svaki sa tagom `prostor` i statusom Active",
+        "Restoran Dunavska terasa: cena 2.200 RSD, 3 fotografije",
+        "Kapacitet - korpe sadrži tačno 30-50, 50-100, 100-150",
+        "Recenzije pokazuju 4 povezana metaobjekta, Paketi 3",
+        "Drugi prolaz ne duplira proizvode"
+      ]
+    },
+    {
+      "lista": "Podešavanje store-a",
+      "naziv": "Instalirati Search & Discovery i podesiti 8 filtera",
+      "opis": "Bez ovoga stranica rezultata nema šta da iscrta.\n\nFilters → Add filter, ovim redom:\n\n1. `prostor.tipovi_proslava` → Tip proslave\n2. `prostor.kapacitet_opseg` → Broj gostiju\n3. Product type (nativni) → Tip prostora\n4. `prostor.kvart` → Deo grada\n5. Price (nativni) → Cena po osobi\n6. `prostor.sadrzaji` → Pogodnosti\n7. `prostor.hrana_pice` → Hrana i piće\n8. `prostor.muzika` → Muzika\n\nIsključiti Availability, Vendor i Tags.\n\nIndeksiranje traje nekoliko minuta.",
+      "checklist": [
+        "Aplikacija instalirana",
+        "6 filtera po metafieldu dodato",
+        "Product type i Price uključeni i preimenovani",
+        "Availability, Vendor i Tags isključeni",
+        "Redosled se poklapa sa gornjim"
+      ]
+    },
+    {
+      "lista": "Podešavanje store-a",
+      "naziv": "Napraviti stranicu Poređenje i glavni meni",
+      "opis": "Content → Pages → Add page, naslov `Poređenje`, **handle mora biti `poredjenje`**, Theme template → `poredjenje`.\n\nContent → Menus → Main menu:\n- Prostori → kolekcija Svi prostori\n- Kako radi → `/#kako-radi`\n- Poređenje → stranica Poređenje\n\nU theme editoru na header sekciji izabrati Main menu i stranicu Poređenje.",
+      "checklist": [
+        "Stranica napravljena sa handle-om `poredjenje`",
+        "Šablon `poredjenje` dodeljen",
+        "Main menu ima tri stavke",
+        "Header sekcija povezana sa menijem i stranicom"
+      ]
+    },
+
+    {
+      "lista": "Provera",
+      "naziv": "Fontovi i srpska dijakritika",
+      "opis": "**Ovo proveriti prvo — otkriva najviše.**\n\nTheme editor → Typography. Ako `archivo_n7` nije prihvaćen, otvoriti font picker i izabrati bilo koji grotesk; handle se upiše sam. Isto za telo (`Karla`).\n\nKritično: `š đ č ć ž` ne smeju skliznuti u zamenski font. Ako izgledaju drugačije od ostalih slova, izabrani font nema Latin Extended.",
+      "checklist": [
+        "Font naslova prihvaćen",
+        "Font tela prihvaćen",
+        "š đ č ć ž se prikazuju u istom fontu kao ostatak teksta"
+      ]
+    },
+    {
+      "lista": "Provera",
+      "naziv": "Formatiranje cena iz money metafielda",
+      "opis": "Profil prostora → sekcija Paketi. Cena mora biti formatirana, npr. `2.200 RSD`.\n\nAko se pojavi sirov broj ili `{}`, zameniti:\n`{{ paket.cena_po_osobi.value }}` → `{{ paket.cena_po_osobi.value.amount | money }}`\nu `sections/prostor-paketi.liquid`.\n\nIsto važi za `min_potrosnja` u `sections/prostor-zaglavlje.liquid`.\n\nOvo nikad nije provereno uz pravi Shopify — money metafieldovi su jedina nedoumica koja je ostala u kodu.",
+      "checklist": [
+        "Cena paketa formatirana",
+        "Minimalna potrošnja formatirana",
+        "Ako ne — obe zamene primenjene i theme check i dalje čist"
+      ]
+    },
+    {
+      "lista": "Provera",
+      "naziv": "Marker na mapi je u Novom Sadu",
+      "opis": "Profil prostora → sekcija Gde se nalazi.\n\nAko je marker usred okeana, `lat` i `lng` su zamenjeni mestima ili nisu usejani.",
+      "checklist": ["Mapa se učitava", "Marker je na pravoj lokaciji u NS"]
+    },
+    {
+      "lista": "Provera",
+      "naziv": "Filteri — 12 URL kombinacija",
+      "opis": "Srce projekta. Otvoriti svaki URL direktno i prebrojati rezultate.\n\nAko filter vraća prazno a podaci u adminu postoje: vrednost u `seed-podaci.json` se ne poklapa **doslovno** sa rečnikom u `scripts/lib/recnici.mjs`.",
+      "checklist": [
+        "/collections/svi-prostori → 20 prostora",
+        "Sidebar ima osam grupa tačnim redom",
+        "Uz svaku vrednost stoji broj, nijedna nije 0",
+        "?filter.p.m.prostor.kapacitet_opseg=100-150 → samo prostori koji seku 101-150",
+        "?filter.p.product_type=Sala%C5%A1 → 3 salaša",
+        "?filter.v.price.gte=1000&filter.v.price.lte=2000 → samo taj raspon",
+        "Dva filtera odjednom daju presek, ne uniju",
+        "?filter.p.m.prostor.muzika=DJ+dozvoljen → razmak radi",
+        "?filter.p.m.prostor.kvart=Sremska+Kamenica → razmak i dijakritika zajedno",
+        "Cenovna polja pokazuju 1000 i 2000, ne 100000",
+        "Kombinacija bez rezultata daje prazno stanje",
+        "Paginacija na 12 po strani zadržava aktivne filtere"
+      ]
+    },
+    {
+      "lista": "Provera",
+      "naziv": "Filter po datumu i traka dostupnosti",
+      "opis": "Traka dostupnosti je potpis dizajna — 14 blokića na svakoj kartici.\n\nKljučna provera je da datum preživljava tri prelaza: URL rezultata → link kartice → profil prostora.",
+      "checklist": [
+        "?datum=2026-10-15 → bar 6 kartica prigušeno sa oznakom Zauzeto",
+        "Poruka iznad grida ima tačne brojeve",
+        "Traka ima 14 blokića, crveni se poklapaju sa zauzeti_datumi u adminu",
+        "Traženi datum u traci uokviren modrim",
+        "Klik na karticu vodi na URL koji sadrži ?datum=",
+        "Datum ostaje u URL-u posle primene filtera",
+        "Najbolje ocenjeni preređa grid, drugi klik vraća redosled"
+      ]
+    },
+    {
+      "lista": "Provera",
+      "naziv": "Kalendar — poravnanje nedelje i navigacija",
+      "opis": "Najgadnija greška u kalendarima: `getDay()` vraća 0 za nedelju, pa bez `(dan + 6) % 7` ceo mesec sklizne za jedan dan.\n\n**1. septembar 2026. je utorak** i mora stajati u drugoj koloni.",
+      "checklist": [
+        "Dva meseca prikazana",
+        "Nazivi na srpskom (oktobar 2026, pon uto sre)",
+        "1.9.2026. u drugoj koloni",
+        "Prošli dani sivi, zauzeti precrtani",
+        "Strelica nazad ne ide pre tekućeg meseca",
+        "?datum=2026-11-15 otvara novembar i boji taj dan"
+      ]
+    },
+    {
+      "lista": "Provera",
+      "naziv": "Forma za upit i dolazak mejla",
+      "opis": "Kraj glavnog toka. Mejl stiže na adresu iz Settings → Notifications → Customer contact.",
+      "checklist": [
+        "Tip proslave nudi samo tipove tog prostora",
+        "Broj gostiju ima min i max iz kapaciteta",
+        "Klik na slobodan dan u kalendaru popunjava polje i skroluje do forme",
+        "Slanje daje poruku o uspehu",
+        "Mejl stigao sa poljima Prostor, Link, Tip proslave, Datum, Broj gostiju",
+        "Neispravan imejl daje grešku i ne gubi unos"
+      ]
+    },
+    {
+      "lista": "Provera",
+      "naziv": "Početna — svaka opcija daje rezultat",
+      "opis": "Jedina zaštita od rasinhronizacije između Liquida i `scripts/lib/recnici.mjs`. Liquid ne može da pročita taj fajl, pa se liste drže sinhrono ručno.\n\nProći kroz svih 9 tipova proslava, 6 korpi kapaciteta i 14 kvartova. Nula rezultata znači da se vrednost razlikuje.",
+      "checklist": [
+        "Submit bez izbora vodi na kolekciju bez parametara",
+        "Samo Svadba daje samo taj parametar, bez praznih",
+        "Sva četiri polja zajedno rade",
+        "Svih 9 tipova proslava daje bar jedan rezultat",
+        "Svih 6 korpi kapaciteta daje bar jedan rezultat",
+        "Svih 14 kvartova daje bar jedan rezultat",
+        "Kategorija Dečiji rođendani radi uprkos razmaku i dijakritici"
+      ]
+    },
+    {
+      "lista": "Provera",
+      "naziv": "Poređenje — unija pogodnosti i limit",
+      "opis": "Tabela nije statična: unija pogodnosti se računa tek kad se zna koji su prostori izabrani.\n\nPodaci dolaze iz JSON bloka koji Liquid ispisuje, jer `/products/<handle>.js` ne vraća metafieldove.",
+      "checklist": [
+        "Prazno stanje bez izabranih prostora",
+        "Tri prostora → tri kolone, prva kolona lepljiva pri skrolu",
+        "Pogodnosti nabrajaju uniju sva tri, ne samo prvog",
+        "Ukloni briše kolonu i smanjuje brojač u header-u",
+        "Peti prostor daje poruku o limitu",
+        "Refresh zadržava izbor"
+      ]
+    },
+    {
+      "lista": "Provera",
+      "naziv": "Bez JavaScripta, 375px, konzola",
+      "opis": "Provera bez JS-a je vredna na odbrani: pokazuje da je pretraga izgrađena na platformi, a ne zalepljena JavaScriptom.",
+      "checklist": [
+        "Bez JS-a: početna forma radi",
+        "Bez JS-a: filteri i paginacija rade",
+        "Na 375px ceo tok prolazi",
+        "Nijedna stranica ne skroluje horizontalno",
+        "Tabela poređenja skroluje unutar svog okvira",
+        "Nijedna stranica nema grešku u konzoli",
+        "/nepostojeca daje 404 sa dugmetom ka prostorima"
+      ]
+    },
+
+    {
+      "lista": "Rizici",
+      "naziv": "Admin GraphQL šema može odbiti oblik ulaza",
+      "opis": "**Najveći neproveren rizik u projektu.**\n\nNijedna mutacija iz `setup-store.mjs` i `seed-prostori.mjs` nikad nije poslata pravom API-ju. Šema se menja kvartalno.\n\nAko neka odbije ulaz, `userErrors` imenuje tačno polje — klijent je pisan da to jasno ispiše.\n\nVerzija je konstanta `API_VERZIJA` na vrhu `scripts/lib/admin.mjs`. Za trenutnu šemu koristiti `shopify-admin` skill ili shopify.dev/docs/api/admin-graphql.",
+      "checklist": [
+        "setup prošao bez userErrors",
+        "seed prošao bez userErrors",
+        "Ako nije — verzija API-ja ili oblik ulaza ispravljen"
+      ]
+    },
+    {
+      "lista": "Rizici",
+      "naziv": "Zameniti fotografije koje ne odgovaraju",
+      "opis": "22 fotografije su nađene pretragom Unsplasha i svaka je proverena da vraća HTTP 200, ali nisu birane okom.\n\nZamena je izmena URL-a u `scripts/slike.json` pa ponovni `npm run seed`. Seed radi sa bilo kojim javno dostupnim URL-om.\n\nDečija igraonica ima 2 fotografije umesto 3 — dve nisu davale direktno preuzimanje.",
+      "checklist": [
+        "Sve kategorije pregledane",
+        "Neodgovarajuće zamenjene u slike.json",
+        "npm run seed ponovljen"
+      ]
+    }
+  ]
+}
