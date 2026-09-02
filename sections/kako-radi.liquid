@@ -1,0 +1,64 @@
+<section class="kako-radi" id="kako-radi">
+  <h2>{{ 'pocetna.kako_radi_naslov' | t }}</h2>
+
+  <ol class="kako-radi__koraci">
+    <li>
+      <span class="kako-radi__broj">1</span>
+      <h3>{{ 'pocetna.korak_1_naslov' | t }}</h3>
+      <p class="prigusen">{{ 'pocetna.korak_1_tekst' | t }}</p>
+    </li>
+    <li>
+      <span class="kako-radi__broj">2</span>
+      <h3>{{ 'pocetna.korak_2_naslov' | t }}</h3>
+      <p class="prigusen">{{ 'pocetna.korak_2_tekst' | t }}</p>
+    </li>
+    <li>
+      <span class="kako-radi__broj">3</span>
+      <h3>{{ 'pocetna.korak_3_naslov' | t }}</h3>
+      <p class="prigusen">{{ 'pocetna.korak_3_tekst' | t }}</p>
+    </li>
+  </ol>
+</section>
+
+{% stylesheet %}
+  .kako-radi {
+    padding-block: var(--razmak-7);
+    border-top: 1px solid var(--boja-ivica);
+  }
+
+  .kako-radi__koraci {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--razmak-5);
+    list-style: none;
+    margin: var(--razmak-5) 0 0;
+    padding: 0;
+  }
+
+  .kako-radi__broj {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-block-end: var(--razmak-3);
+    border-radius: 999px;
+    background-color: var(--boja-akcenat-tiha);
+    color: var(--boja-akcenat);
+    font-family: var(--font-naslov);
+    font-size: var(--tekst-base);
+    font-weight: 700;
+  }
+
+  .kako-radi__koraci h3 {
+    font-size: var(--tekst-lg);
+    margin-block-end: var(--razmak-2);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.kako_radi",
+  "settings": [],
+  "presets": [{ "name": "t:general.kako_radi" }]
+}
+{% endschema %}

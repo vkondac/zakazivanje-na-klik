@@ -1,20 +1,80 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
+    "hero": {
+      "type": "hero-pretraga",
+      "settings": {}
+    },
+    "kategorije": {
+      "type": "kategorije-proslava",
+      "blocks": {
+        "svadbe": {
+          "type": "kategorija",
+          "settings": {
+            "naslov": "Svadbe",
+            "vrednost": "Svadba"
+          }
+        },
+        "punoletstva": {
+          "type": "kategorija",
+          "settings": {
+            "naslov": "Punoletstva",
+            "vrednost": "Punoletstvo"
+          }
+        },
+        "decji": {
+          "type": "kategorija",
+          "settings": {
+            "naslov": "Dečiji rođendani",
+            "vrednost": "Dečiji rođendan"
+          }
+        },
+        "rodjendani": {
+          "type": "kategorija",
+          "settings": {
+            "naslov": "Rođendani",
+            "vrednost": "Rođendan"
+          }
+        },
+        "krstenja": {
+          "type": "kategorija",
+          "settings": {
+            "naslov": "Krštenja",
+            "vrednost": "Krštenje"
+          }
+        },
+        "poslovni": {
+          "type": "kategorija",
+          "settings": {
+            "naslov": "Poslovni događaji",
+            "vrednost": "Poslovni događaj"
+          }
+        }
+      },
+      "block_order": [
+        "svadbe",
+        "punoletstva",
+        "decji",
+        "rodjendani",
+        "krstenja",
+        "poslovni"
+      ],
+      "settings": {}
+    },
+    "istaknuti": {
+      "type": "istaknuti-prostori",
+      "settings": {
+        "broj_prostora": 4
+      }
+    },
+    "kako-radi": {
+      "type": "kako-radi",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "hero",
+    "kategorije",
+    "istaknuti",
+    "kako-radi"
   ]
 }

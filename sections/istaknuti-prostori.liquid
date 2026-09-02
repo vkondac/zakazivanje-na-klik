@@ -1,0 +1,56 @@
+{% liquid
+  assign izabrani = section.settings.prostori
+  if izabrani.count == 0
+    assign izabrani = collections['svi-prostori'].products
+  endif
+%}
+
+<section class="istaknuti">
+  <div class="istaknuti__vrh">
+    <h2>{{ 'pocetna.istaknuti_naslov' | t }}</h2>
+    <a class="dugme dugme--tiho" href="{{ collections['svi-prostori'].url }}">
+      {{ 'pocetna.istaknuti_svi' | t }}
+    </a>
+  </div>
+
+  <div class="istaknuti__grid">
+    {% for prostor in izabrani limit: section.settings.broj_prostora %}
+      {% render 'kartica-prostora', prostor: prostor, poredjenje: true %}
+    {% endfor %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .istaknuti {
+    padding-block: var(--razmak-7);
+  }
+
+  .istaknuti__vrh {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--razmak-4);
+    margin-block-end: var(--razmak-5);
+  }
+
+  .istaknuti__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: var(--razmak-5);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.istaknuti_prostori",
+  "settings": [
+    { "type": "product_list", "id": "prostori", "label": "t:general.istaknuti_prostori", "limit": 8 },
+    {
+      "type": "range", "id": "broj_prostora", "label": "t:labels.broj_prostora",
+      "min": 2, "max": 8, "step": 1, "default": 4
+    }
+  ],
+  "presets": [{ "name": "t:general.istaknuti_prostori" }]
+}
+{% endschema %}

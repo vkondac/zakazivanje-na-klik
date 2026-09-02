@@ -1,0 +1,111 @@
+{% liquid
+  assign cilj = collections['svi-prostori'].url
+%}
+
+<section class="kategorije">
+  <h2>{{ 'pocetna.kategorije_naslov' | t }}</h2>
+
+  <ul class="kategorije__lista" role="list">
+    {% for block in section.blocks %}
+      <li {{ block.shopify_attributes }}>
+        <a
+          class="kategorija"
+          href="{{ cilj }}?filter.p.m.prostor.tipovi_proslava={{ block.settings.vrednost | url_encode }}"
+        >
+          {% if block.settings.slika %}
+            {{
+              block.settings.slika
+              | image_url: width: 600
+              | image_tag: loading: 'lazy', widths: '300, 600', sizes: '(min-width: 60rem) 15rem, 45vw', alt: ''
+            }}
+          {% endif %}
+          <span class="kategorija__naslov">{{ block.settings.naslov }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% stylesheet %}
+  .kategorije {
+    padding-block: var(--razmak-7);
+  }
+
+  .kategorije h2 {
+    margin-block-end: var(--razmak-5);
+  }
+
+  .kategorije__lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+    gap: var(--razmak-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .kategorija {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radijus-kartica);
+    overflow: hidden;
+    background-color: var(--boja-tekst);
+    color: var(--boja-akcenat-tekst);
+    text-decoration: none;
+  }
+
+  .kategorija img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: transform 200ms ease, opacity 200ms ease;
+  }
+
+  .kategorija:hover img {
+    transform: scale(1.04);
+    opacity: 0.55;
+  }
+
+  .kategorija__naslov {
+    position: absolute;
+    inset-block-end: var(--razmak-3);
+    inset-inline-start: var(--razmak-3);
+    font-family: var(--font-naslov);
+    font-size: var(--tekst-lg);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.kategorije_proslava",
+  "max_blocks": 9,
+  "blocks": [
+    {
+      "type": "kategorija",
+      "name": "t:general.kategorija",
+      "settings": [
+        { "type": "text", "id": "naslov", "label": "t:labels.naslov" },
+        { "type": "text", "id": "vrednost", "label": "t:labels.vrednost_filtera" },
+        { "type": "image_picker", "id": "slika", "label": "t:labels.slika" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.kategorije_proslava",
+      "blocks": [
+        { "type": "kategorija", "settings": { "naslov": "Svadbe", "vrednost": "Svadba" } },
+        { "type": "kategorija", "settings": { "naslov": "Punoletstva", "vrednost": "Punoletstvo" } },
+        { "type": "kategorija", "settings": { "naslov": "Dečiji rođendani", "vrednost": "Dečiji rođendan" } },
+        { "type": "kategorija", "settings": { "naslov": "Rođendani", "vrednost": "Rođendan" } },
+        { "type": "kategorija", "settings": { "naslov": "Krštenja", "vrednost": "Krštenje" } },
+        { "type": "kategorija", "settings": { "naslov": "Poslovni događaji", "vrednost": "Poslovni događaj" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
