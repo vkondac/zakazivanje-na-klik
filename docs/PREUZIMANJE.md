@@ -129,8 +129,8 @@ se ne poklapa **doslovno** sa rečnikom u `scripts/lib/recnici.mjs`.
 
 ## C. Datum i traka dostupnosti
 
-- [ ] `?datum=2026-10-15` → bar 6 kartica prigušeno sa oznakom „Zauzeto"
-- [ ] Poruka iznad grida: „Slobodno je 14 od 20 prostora — 6 je zauzeto 15.10.2026."
+- [ ] `?datum=2026-10-15` → tačno 7 kartica prigušeno sa oznakom „Zauzeto"
+- [ ] Poruka iznad grida: „Slobodno je 13 od 20 prostora — 7 je zauzeto 15.10.2026."
       i brojevi se slažu sa prigušenima
 - [ ] **Traka dostupnosti** na svakoj kartici ima 14 blokića, crveni se poklapaju
       sa `zauzeti_datumi` u adminu

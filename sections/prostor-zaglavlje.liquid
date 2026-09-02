@@ -118,6 +118,22 @@
     aspect-ratio: 4 / 3;
   }
 
+  /* Raspored "velika levo" racuna na tri fotografije: prva drzi dva reda
+     u levoj koloni, druga i treca stoje u desnoj. Ako prostor ima samo
+     dve, desna kolona ostaje poluprazna - rupa u gridu. Zato se broj
+     kolona prilagodjava broju stavki. */
+  .galerija:has(.galerija__stavka:nth-child(2):last-child) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .galerija:has(.galerija__stavka:nth-child(2):last-child) .galerija__stavka:first-child {
+    grid-row: auto;
+  }
+
+  .galerija:has(.galerija__stavka:only-child) {
+    grid-template-columns: 1fr;
+  }
+
   .prostor-zaglavlje__info {
     position: sticky;
     top: 5.5rem;

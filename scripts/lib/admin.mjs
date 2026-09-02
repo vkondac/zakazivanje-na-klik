@@ -20,11 +20,22 @@ export class AdminGreska extends Error {
   }
 }
 
+/**
+ * Shopify ne zove polje uvek `userErrors`. `productCreateMedia` vraca
+ * `mediaUserErrors`, prevodi vracaju `translationUserErrors` i tako dalje.
+ * Ko gleda samo `userErrors`, tiho propusti bas one greske zbog kojih ovaj
+ * klijent i postoji - seed ispise `+`, a prostor ostane bez fotografija.
+ */
+const JE_POLJE_GRESAKA = /^userErrors$|UserErrors$/;
+
 export function skupiUserErrors(data) {
   const skup = [];
   for (const vrednost of Object.values(data ?? {})) {
-    if (vrednost && Array.isArray(vrednost.userErrors)) {
-      skup.push(...vrednost.userErrors);
+    if (!vrednost || typeof vrednost !== 'object') continue;
+    for (const [kljuc, greske] of Object.entries(vrednost)) {
+      if (JE_POLJE_GRESAKA.test(kljuc) && Array.isArray(greske)) {
+        skup.push(...greske);
+      }
     }
   }
   return skup;

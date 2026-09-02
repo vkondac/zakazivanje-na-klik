@@ -68,3 +68,26 @@ test('skupiUserErrors kupi greske iz vise mutacija odjednom', () => {
   });
   assert.deepEqual(greske.map((g) => g.message), ['prva', 'druga']);
 });
+
+test('mediaUserErrors se ne propusta tiho', async () => {
+  const telo = {
+    data: {
+      productCreateMedia: {
+        media: [],
+        mediaUserErrors: [{ field: ['media'], message: 'Slika nije dostupna', code: 'INVALID' }],
+      },
+    },
+  };
+  const pozovi = napraviKlijenta({ ...OSNOVA, fetchFn: lazniFetch(telo) });
+  await assert.rejects(() => pozovi('mutation {}'), /media: Slika nije dostupna/);
+});
+
+test('skupiUserErrors kupi i varijante imena polja', () => {
+  const greske = skupiUserErrors({
+    a: { userErrors: [{ message: 'prva' }] },
+    b: { mediaUserErrors: [{ message: 'druga' }] },
+    c: { translationUserErrors: [{ message: 'treca' }] },
+    d: { userErrorsNesto: [{ message: 'ne racuna se' }] },
+  });
+  assert.deepEqual(greske.map((g) => g.message), ['prva', 'druga', 'treca']);
+});

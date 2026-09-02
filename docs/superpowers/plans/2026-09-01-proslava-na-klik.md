@@ -3574,8 +3574,8 @@ Expected: `0 offenses`
 
 - [ ] **Step 4: Smoke lista**
 
-1. `/collections/svi-prostori?datum=2026-10-15` → bar 6 kartica prigušeno, svaka sa oznakom „Zauzeto na izabrani datum"
-2. Poruka iznad grida glasi „Slobodno je 14 od 20 prostora — 6 je zauzeto 15.10.2026." i brojevi se slažu sa prigušenima
+1. `/collections/svi-prostori?datum=2026-10-15` → tačno 7 kartica prigušeno, svaka sa oznakom „Zauzeto na izabrani datum"
+2. Poruka iznad grida glasi „Slobodno je 13 od 20 prostora — 7 je zauzeto 15.10.2026." i brojevi se slažu sa prigušenima
 3. Klik na prigušenu karticu vodi na URL koji **sadrži** `?datum=2026-10-15`
 4. Klik na neprigušenu karticu — isto
 5. Bez `?datum=` nema poruke i nijedna kartica nije prigušena

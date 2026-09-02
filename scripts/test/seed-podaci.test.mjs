@@ -46,9 +46,16 @@ test('sve korpe kapaciteta su pokrivene', () => {
   assert.equal(koriscene.size, 6, `pokriveno ${koriscene.size} od 6 korpi`);
 });
 
-test('bar 6 prostora je zauzeto 2026-10-15 - demo filtera po datumu', () => {
+/*
+ * Tacan broj, ne donja granica. Smoke lista tvrdi „Slobodno je 13 od 20
+ * prostora - 7 je zauzeto 15.10.2026." Sa `>= 6` podaci i ta poruka mogu
+ * da se raziđu a testovi ostanu zeleni; onda se na ekranu vidi broj koji
+ * nije u dokumentu i izgleda kao bug u temi.
+ */
+test('tacno 7 prostora je zauzeto 2026-10-15 - demo filtera po datumu', () => {
   const zauzeti = prostori.filter((p) => p.zauzeti_datumi.includes('2026-10-15'));
-  assert.ok(zauzeti.length >= 6, `samo ${zauzeti.length} prostora zauzeto tog datuma`);
+  assert.equal(zauzeti.length, 7, `${zauzeti.length} prostora zauzeto tog datuma, dokument kaze 7`);
+  assert.equal(prostori.length - zauzeti.length, 13, 'slobodnih mora biti 13');
 });
 
 test('prosecne ocene nisu sve iste', () => {
