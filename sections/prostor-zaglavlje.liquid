@@ -1,0 +1,195 @@
+{% liquid
+  assign polja = product.metafields.prostor
+  assign ocena = polja.ocena.value.rating
+  assign cena = product.price | money
+%}
+
+<div class="prostor-zaglavlje">
+  <nav class="prostor-zaglavlje__putanja sitno prigusen">
+    <a href="{{ collections['svi-prostori'].url }}">{{ 'zaglavlje.prostori' | t }}</a>
+    <span aria-hidden="true">/</span>
+    <span>{{ product.title }}</span>
+  </nav>
+
+  <div class="prostor-zaglavlje__telo">
+    <div class="galerija">
+      {% for slika in product.images limit: 3 %}
+        {%- liquid
+          # forloop.first je boolean; `| default: 'lazy'` bi vratio true,
+          # sto nije validna vrednost za loading atribut.
+          assign ucitavanje = 'lazy'
+          if forloop.first
+            assign ucitavanje = 'eager'
+          endif
+        -%}
+        <div class="galerija__stavka">
+          {{
+            slika
+            | image_url: width: 1400
+            | image_tag:
+              loading: ucitavanje,
+              widths: '600, 900, 1400',
+              sizes: '(min-width: 60rem) 40rem, 100vw',
+              alt: product.title
+          }}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="prostor-zaglavlje__info">
+      <p class="natpis">{{ product.type }} &middot; {{ polja.kvart.value }}</p>
+
+      <h1>{{ product.title }}</h1>
+
+      {% if ocena %}
+        <p class="prostor-zaglavlje__ocena">
+          {% render 'zvezdice', ocena: ocena, tekst: ocena %}
+          <a class="sitno prigusen" href="#recenzije">
+            {{ 'kartica.broj_recenzija' | t: broj: polja.broj_recenzija.value }}
+          </a>
+        </p>
+      {% endif %}
+
+      <dl class="cinjenice">
+        <div>
+          <dt>{{ 'prostor.kapacitet' | t }}</dt>
+          <dd>{{ 'kartica.kapacitet' | t: min: polja.kapacitet_min.value, max: polja.kapacitet_max.value }}</dd>
+        </div>
+        <div>
+          <dt>{{ 'opste.po_osobi' | t }}</dt>
+          <dd>{{ cena }}</dd>
+        </div>
+        {% if polja.min_potrosnja.value %}
+          <div>
+            <dt>{{ 'prostor.min_potrosnja' | t }}</dt>
+            <dd>{{ polja.min_potrosnja.value }}</dd>
+          </div>
+        {% endif %}
+        {% if polja.kontakt_telefon.value %}
+          <div>
+            <dt>{{ 'prostor.telefon' | t }}</dt>
+            <dd><a href="tel:{{ polja.kontakt_telefon.value | remove: ' ' }}">{{ polja.kontakt_telefon.value }}</a></dd>
+          </div>
+        {% endif %}
+      </dl>
+
+      <a class="dugme dugme--primarno prostor-zaglavlje__cta" href="#upit">
+        {{ 'upit.naslov' | t }}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .prostor-zaglavlje {
+    padding-block: var(--razmak-5) var(--razmak-6);
+  }
+
+  .prostor-zaglavlje__putanja {
+    display: flex;
+    gap: var(--razmak-2);
+    margin-block-end: var(--razmak-4);
+  }
+
+  .prostor-zaglavlje__telo {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: var(--razmak-6);
+    align-items: start;
+  }
+
+  .galerija {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: var(--razmak-2);
+    border-radius: var(--radijus-kartica);
+    overflow: hidden;
+  }
+
+  .galerija__stavka:first-child {
+    grid-row: span 2;
+  }
+
+  .galerija__stavka img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+
+  .prostor-zaglavlje__info {
+    position: sticky;
+    top: 5.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--razmak-3);
+  }
+
+  .prostor-zaglavlje__ocena {
+    display: flex;
+    align-items: center;
+    gap: var(--razmak-2);
+    margin: 0;
+  }
+
+  .cinjenice {
+    display: grid;
+    gap: var(--razmak-3);
+    margin: var(--razmak-2) 0 0;
+    padding-block-start: var(--razmak-4);
+    border-top: 1px solid var(--boja-ivica);
+  }
+
+  .cinjenice > div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--razmak-4);
+  }
+
+  .cinjenice dt {
+    color: var(--boja-prigusen);
+    font-size: var(--tekst-sm);
+  }
+
+  .cinjenice dd {
+    margin: 0;
+    font-weight: 700;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .prostor-zaglavlje__cta {
+    margin-block-start: var(--razmak-3);
+  }
+
+  @media (max-width: 60rem) {
+    .prostor-zaglavlje__telo {
+      grid-template-columns: 1fr;
+    }
+
+    .prostor-zaglavlje__info {
+      position: static;
+    }
+
+    .galerija {
+      grid-template-columns: 1fr;
+    }
+
+    .galerija__stavka:first-child {
+      grid-row: auto;
+    }
+
+    .galerija__stavka:not(:first-child) {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.prostor_zaglavlje",
+  "settings": [],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

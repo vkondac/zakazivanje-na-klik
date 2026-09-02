@@ -1,0 +1,148 @@
+{% liquid
+  assign polja = product.metafields.prostor
+%}
+
+<section class="upit" id="upit">
+  <div class="upit__okvir">
+    <h2>{{ 'upit.naslov' | t }}</h2>
+    <p class="prigusen">{{ 'upit.uvod' | t }}</p>
+
+    {% form 'contact', class: 'upit__forma' %}
+      {% if form.posted_successfully? %}
+        <p class="upit__uspeh" role="status">{{ 'upit.uspeh' | t }}</p>
+      {% endif %}
+
+      {% if form.errors %}
+        <div class="upit__greske" role="alert">
+          {{ form.errors | default_errors }}
+        </div>
+      {% endif %}
+
+      <input type="hidden" name="contact[Prostor]" value="{{ product.title | escape }}">
+      <input type="hidden" name="contact[Link]" value="{{ shop.url }}{{ product.url }}">
+
+      <div class="upit__mreza">
+        <div class="polje-grupa">
+          <label for="upit-ime">{{ 'upit.ime' | t }}</label>
+          <input class="polje" id="upit-ime" type="text" name="contact[name]" autocomplete="name" required>
+        </div>
+
+        <div class="polje-grupa">
+          <label for="upit-email">{{ 'upit.email' | t }}</label>
+          <input class="polje" id="upit-email" type="email" name="contact[email]" autocomplete="email" required>
+        </div>
+
+        <div class="polje-grupa">
+          <label for="upit-telefon">{{ 'upit.telefon' | t }}</label>
+          <input class="polje" id="upit-telefon" type="tel" name="contact[Telefon]" autocomplete="tel">
+        </div>
+
+        <div class="polje-grupa">
+          <label for="upit-tip">{{ 'upit.tip_proslave' | t }}</label>
+          <select class="polje" id="upit-tip" name="contact[Tip proslave]">
+            {% for tip in polja.tipovi_proslava.value %}
+              <option value="{{ tip }}">{{ tip }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="polje-grupa">
+          <label for="upit-datum">{{ 'upit.datum' | t }}</label>
+          <input class="polje" id="upit-datum" type="date" name="contact[Datum]" data-upit-datum>
+        </div>
+
+        <div class="polje-grupa">
+          <label for="upit-gostiju">{{ 'upit.broj_gostiju' | t }}</label>
+          <input
+            class="polje"
+            id="upit-gostiju"
+            type="number"
+            name="contact[Broj gostiju]"
+            min="{{ polja.kapacitet_min.value }}"
+            max="{{ polja.kapacitet_max.value }}"
+            placeholder="{{ polja.kapacitet_min.value }}"
+          >
+        </div>
+
+        <div class="polje-grupa upit__siroko">
+          <label for="upit-poruka">{{ 'upit.poruka' | t }}</label>
+          <textarea class="polje" id="upit-poruka" name="contact[body]" rows="4"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="dugme dugme--primarno">{{ 'upit.posalji' | t }}</button>
+    {% endform %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .upit {
+    padding-block: var(--razmak-6);
+  }
+
+  .upit__okvir {
+    padding: var(--razmak-6);
+    background-color: var(--boja-povrsina);
+    border: 1px solid var(--boja-ivica);
+    border-radius: var(--radijus-kartica);
+  }
+
+  .upit__mreza {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--razmak-4);
+    margin-block: var(--razmak-5);
+  }
+
+  .upit__siroko {
+    grid-column: 1 / -1;
+  }
+
+  .upit__uspeh {
+    padding: var(--razmak-4);
+    border-left: 3px solid var(--boja-akcenat);
+    background-color: var(--boja-akcenat-tiha);
+  }
+
+  .upit__greske {
+    padding: var(--razmak-4);
+    border-left: 3px solid var(--boja-zauzeto);
+    background-color: var(--boja-zauzeto-tiha);
+    color: var(--boja-zauzeto);
+  }
+
+  .upit__greske ul {
+    margin: 0;
+    padding-inline-start: var(--razmak-4);
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    function pokreni() {
+      const polje = document.querySelector('[data-upit-datum]');
+      if (!polje) return;
+
+      /* Datum dosao sa stranice rezultata. Liquid ga ne moze procitati. */
+      const datum = new URLSearchParams(window.location.search).get('datum');
+      if (!datum) return;
+
+      polje.value = datum;
+      polje.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', pokreni);
+    } else {
+      pokreni();
+    }
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.prostor_upit",
+  "settings": [],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

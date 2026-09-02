@@ -1,0 +1,128 @@
+{% liquid
+  assign polja = product.metafields.prostor
+  assign recenzije = polja.recenzije.value
+  assign ocena = polja.ocena.value.rating
+  assign vidljivo = section.settings.broj_recenzija
+%}
+
+<section class="recenzije" id="recenzije">
+  <h2>{{ 'prostor.recenzije_naslov' | t }}</h2>
+
+  {% if recenzije.size == 0 %}
+    <p class="prigusen">{{ 'prostor.recenzije_nema' | t }}</p>
+  {% else %}
+    <p class="recenzije__prosek">
+      {% render 'zvezdice', ocena: ocena %}
+      <span>{{ 'prostor.recenzije_prosek' | t: ocena: ocena, broj: recenzije.size }}</span>
+    </p>
+
+    <ul class="recenzije__lista" role="list">
+      {% for recenzija in recenzije %}
+        <li
+          class="recenzija"
+          {% if forloop.index > vidljivo %}
+            data-skrivena
+            hidden
+          {% endif %}
+        >
+          <div class="recenzija__vrh">
+            {% render 'zvezdice', ocena: recenzija.ocena.value %}
+            <strong>{{ recenzija.autor.value }}</strong>
+
+            {% if recenzija.tip_proslave.value != blank %}
+              <span class="oznaka">{{ recenzija.tip_proslave.value }}</span>
+            {% endif %}
+
+            <time class="prigusen sitno" datetime="{{ recenzija.datum.value | date: '%Y-%m-%d' }}">
+              {{ recenzija.datum.value | date: '%d.%m.%Y.' }}
+            </time>
+          </div>
+
+          <p>{{ recenzija.tekst.value }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if recenzije.size > vidljivo %}
+      <button type="button" class="dugme dugme--tiho" data-prikazi-jos>
+        {{ 'opste.prikazi_jos' | t }}
+      </button>
+    {% endif %}
+  {% endif %}
+</section>
+
+{% stylesheet %}
+  .recenzije {
+    padding-block: var(--razmak-6);
+    border-top: 1px solid var(--boja-ivica);
+  }
+
+  .recenzije__prosek {
+    display: flex;
+    align-items: center;
+    gap: var(--razmak-3);
+    margin-block: var(--razmak-3) var(--razmak-5);
+  }
+
+  .recenzije__lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: var(--razmak-4);
+    list-style: none;
+    margin: 0 0 var(--razmak-4);
+    padding: 0;
+  }
+
+  .recenzija {
+    padding: var(--razmak-4);
+    background-color: var(--boja-povrsina);
+    border: 1px solid var(--boja-ivica);
+    border-radius: var(--radijus-kartica);
+  }
+
+  .recenzija__vrh {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--razmak-2);
+    margin-block-end: var(--razmak-3);
+  }
+
+  .recenzija__vrh time {
+    margin-inline-start: auto;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    document.addEventListener('click', function (dogadjaj) {
+      const dugme = dogadjaj.target.closest('[data-prikazi-jos]');
+      if (!dugme) return;
+
+      document.querySelectorAll('[data-skrivena]').forEach(function (stavka) {
+        stavka.hidden = false;
+        stavka.removeAttribute('data-skrivena');
+      });
+
+      dugme.hidden = true;
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.prostor_recenzije",
+  "settings": [
+    {
+      "type": "range",
+      "id": "broj_recenzija",
+      "label": "t:labels.broj_recenzija",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 3
+    }
+  ],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

@@ -1,20 +1,11 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "product",
-      "settings": {}
-    }
+    "zaglavlje": { "type": "prostor-zaglavlje", "settings": {} },
+    "detalji": { "type": "prostor-detalji", "settings": { "prikazi_mapu": true } },
+    "paketi": { "type": "prostor-paketi", "settings": {} },
+    "kalendar": { "type": "prostor-kalendar", "settings": { "broj_meseci": 2 } },
+    "recenzije": { "type": "prostor-recenzije", "settings": { "broj_recenzija": 3 } },
+    "upit": { "type": "prostor-upit", "settings": {} }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["zaglavlje", "detalji", "paketi", "kalendar", "recenzije", "upit"]
 }

@@ -1,0 +1,120 @@
+{% liquid
+  assign paketi = product.metafields.prostor.paketi.value
+%}
+
+{% if paketi.size > 0 %}
+  <section class="paketi">
+    <h2>{{ 'prostor.paketi_naslov' | t }}</h2>
+
+    <div class="paketi__grid">
+      {% for paket in paketi %}
+        <article class="paket">
+          <h3 class="paket__naziv">{{ paket.naziv.value }}</h3>
+
+          <p class="paket__cena">
+            <strong>{{ paket.cena_po_osobi.value }}</strong>
+            <span class="prigusen sitno">{{ 'opste.po_osobi' | t }}</span>
+          </p>
+
+          <p class="prigusen sitno">
+            {{ 'prostor.paket_min' | t: broj: paket.min_gostiju.value }}
+          </p>
+
+          {% if paket.opis.value != blank %}
+            <p class="paket__opis sitno">{{ paket.opis.value }}</p>
+          {% endif %}
+
+          <p class="natpis paket__podnaslov">{{ 'prostor.paket_ukljucuje' | t }}</p>
+          <ul class="paket__lista" role="list">
+            {% for stavka in paket.ukljucuje.value %}
+              <li>{% render 'ikonica', naziv: 'kvacica' %} {{ stavka }}</li>
+            {% endfor %}
+          </ul>
+
+          <a class="dugme dugme--tiho paket__cta" href="#upit">{{ 'upit.naslov' | t }}</a>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% stylesheet %}
+  .paketi {
+    padding-block: var(--razmak-6);
+    border-top: 1px solid var(--boja-ivica);
+  }
+
+  .paketi h2 {
+    margin-block-end: var(--razmak-5);
+  }
+
+  .paketi__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: var(--razmak-4);
+  }
+
+  .paket {
+    display: flex;
+    flex-direction: column;
+    gap: var(--razmak-2);
+    padding: var(--razmak-5);
+    background-color: var(--boja-povrsina);
+    border: 1px solid var(--boja-ivica);
+    border-radius: var(--radijus-kartica);
+  }
+
+  .paket__naziv {
+    font-size: var(--tekst-lg);
+  }
+
+  .paket__cena {
+    margin: 0;
+    font-size: var(--tekst-xl);
+    font-family: var(--font-naslov);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .paket__opis {
+    color: var(--boja-prigusen);
+  }
+
+  .paket__podnaslov {
+    margin-block-start: var(--razmak-2);
+  }
+
+  .paket__lista {
+    display: flex;
+    flex-direction: column;
+    gap: var(--razmak-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: var(--tekst-sm);
+  }
+
+  .paket__lista li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--razmak-2);
+  }
+
+  .paket__lista .ikonica {
+    color: var(--boja-akcenat);
+    margin-block-start: 0.2em;
+  }
+
+  .paket__cta {
+    margin-block-start: auto;
+    padding-block-start: var(--razmak-4);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.prostor_paketi",
+  "settings": [],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

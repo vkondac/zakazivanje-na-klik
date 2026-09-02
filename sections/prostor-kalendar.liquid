@@ -1,0 +1,299 @@
+<section class="kalendar-sekcija" id="kalendar">
+  <h2>{{ 'prostor.kalendar_naslov' | t }}</h2>
+  <p class="prigusen">{{ 'prostor.kalendar_uputstvo' | t }}</p>
+
+  <div
+    class="kalendar"
+    data-kalendar
+    data-zauzeti="{% render 'zauzeti-datumi', prostor: product %}"
+    data-meseci="{{ section.settings.broj_meseci }}"
+    data-prethodni="{{ 'prostor.kalendar_prethodni' | t | escape }}"
+    data-sledeci="{{ 'prostor.kalendar_sledeci' | t | escape }}"
+  ></div>
+
+  <p class="kalendar__legenda sitno">
+    <span class="legenda-stavka"><span class="legenda-uzorak legenda-uzorak--slobodno"></span>{{ 'prostor.kalendar_slobodno' | t }}</span>
+    <span class="legenda-stavka"><span class="legenda-uzorak legenda-uzorak--zauzeto"></span>{{ 'prostor.kalendar_zauzeto' | t }}</span>
+  </p>
+
+  <p class="prigusen sitno">{{ 'prostor.kalendar_napomena' | t }}</p>
+</section>
+
+{% stylesheet %}
+  .kalendar-sekcija {
+    padding-block: var(--razmak-6);
+    border-top: 1px solid var(--boja-ivica);
+  }
+
+  .kalendar-sekcija h2 {
+    margin-block-end: var(--razmak-2);
+  }
+
+  .kalendar {
+    margin-block: var(--razmak-5);
+  }
+
+  .kalendar__navigacija {
+    display: flex;
+    gap: var(--razmak-2);
+    margin-block-end: var(--razmak-4);
+  }
+
+  .kalendar__meseci {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: var(--razmak-6);
+  }
+
+  .kalendar__naslov {
+    font-size: var(--tekst-lg);
+    margin-block-end: var(--razmak-3);
+    text-transform: capitalize;
+  }
+
+  .kalendar__mreza {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+  }
+
+  .kalendar__dan-zaglavlje {
+    padding-block: var(--razmak-1);
+    text-align: center;
+    text-decoration: none;
+    font-size: var(--tekst-xs);
+    color: var(--boja-prigusen);
+  }
+
+  .kalendar__dan {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    border: 1px solid transparent;
+    border-radius: var(--radijus-polja);
+    background: none;
+    font: inherit;
+    font-size: var(--tekst-sm);
+    font-variant-numeric: tabular-nums;
+    color: inherit;
+  }
+
+  .kalendar__dan--slobodan {
+    background-color: var(--boja-pozadina);
+    border-color: var(--boja-ivica);
+    cursor: pointer;
+  }
+
+  .kalendar__dan--slobodan:hover {
+    border-color: var(--boja-akcenat);
+    color: var(--boja-akcenat);
+  }
+
+  .kalendar__dan--slobodan[aria-pressed='true'] {
+    background-color: var(--boja-akcenat);
+    border-color: var(--boja-akcenat);
+    color: var(--boja-akcenat-tekst);
+    font-weight: 700;
+  }
+
+  .kalendar__dan--zauzet {
+    background-color: var(--boja-zauzeto-tiha);
+    color: var(--boja-zauzeto);
+    text-decoration: line-through;
+  }
+
+  .kalendar__dan--proslost {
+    color: var(--boja-ivica);
+  }
+
+  .kalendar__legenda {
+    display: flex;
+    gap: var(--razmak-4);
+    margin-block-end: var(--razmak-3);
+  }
+
+  .legenda-stavka {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--razmak-2);
+  }
+
+  .legenda-uzorak {
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 2px;
+    border: 1px solid var(--boja-ivica);
+  }
+
+  .legenda-uzorak--zauzeto {
+    background-color: var(--boja-zauzeto-tiha);
+    border-color: var(--boja-zauzeto);
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    function pokreni() {
+      const koren = document.querySelector('[data-kalendar]');
+      if (!koren) return;
+
+      const zauzeti = (koren.dataset.zauzeti || '').split(',').filter(Boolean);
+      const brojMeseci = Number(koren.dataset.meseci) || 2;
+
+      /* Browser vec zna nazive meseci i dana za jezik teme. */
+      const jezik = document.documentElement.lang || 'sr';
+      const formatMeseca = new Intl.DateTimeFormat(jezik, { month: 'long', year: 'numeric' });
+      const formatDana = new Intl.DateTimeFormat(jezik, { weekday: 'short' });
+
+      const danas = new Date();
+      danas.setHours(0, 0, 0, 0);
+      const granica = new Date(danas.getFullYear(), danas.getMonth(), 1);
+      let prvi = new Date(granica);
+
+      function iso(datum) {
+        const mesec = String(datum.getMonth() + 1).padStart(2, '0');
+        const dan = String(datum.getDate()).padStart(2, '0');
+        return datum.getFullYear() + '-' + mesec + '-' + dan;
+      }
+
+      function poljeDatuma() {
+        return document.querySelector('[data-upit-datum]');
+      }
+
+      function imenaDana() {
+        /* 2024-01-01 je bio ponedeljak. Nedelja pocinje ponedeljkom. */
+        const imena = [];
+        for (let i = 0; i < 7; i += 1) {
+          imena.push(formatDana.format(new Date(2024, 0, 1 + i)));
+        }
+        return imena;
+      }
+
+      function nacrtajMesec(prviDan) {
+        const godina = prviDan.getFullYear();
+        const mesec = prviDan.getMonth();
+        const brojDana = new Date(godina, mesec + 1, 0).getDate();
+        const pomak = (prviDan.getDay() + 6) % 7;
+
+        let html = '<div class="kalendar__mesec">';
+        html += '<h3 class="kalendar__naslov">' + formatMeseca.format(prviDan) + '</h3>';
+        html += '<div class="kalendar__mreza">';
+
+        imenaDana().forEach(function (ime) {
+          html += '<abbr class="kalendar__dan-zaglavlje">' + ime + '</abbr>';
+        });
+
+        for (let i = 0; i < pomak; i += 1) {
+          html += '<span></span>';
+        }
+
+        for (let dan = 1; dan <= brojDana; dan += 1) {
+          const datum = new Date(godina, mesec, dan);
+          const kljuc = iso(datum);
+
+          if (datum < danas) {
+            html += '<span class="kalendar__dan kalendar__dan--proslost">' + dan + '</span>';
+          } else if (zauzeti.indexOf(kljuc) !== -1) {
+            html += '<span class="kalendar__dan kalendar__dan--zauzet" aria-disabled="true">' + dan + '</span>';
+          } else {
+            html += '<button type="button" class="kalendar__dan kalendar__dan--slobodan" aria-pressed="false" data-datum="' + kljuc + '">' + dan + '</button>';
+          }
+        }
+
+        return html + '</div></div>';
+      }
+
+      function obelezi() {
+        const polje = poljeDatuma();
+        const izabran = polje ? polje.value : '';
+        koren.querySelectorAll('[data-datum]').forEach(function (dugme) {
+          dugme.setAttribute('aria-pressed', String(dugme.dataset.datum === izabran));
+        });
+      }
+
+      function nacrtaj() {
+        /* Sve sto se ovde ubacuje dolazi iz nasih locale fajlova, Intl-a i
+           metafielda sa datumima - nijedan korisnicki unos. */
+        let html = '<div class="kalendar__navigacija">';
+        html += '<button type="button" class="dugme dugme--tiho" data-nazad aria-label="' + koren.dataset.prethodni + '">&#8592;</button>';
+        html += '<button type="button" class="dugme dugme--tiho" data-napred aria-label="' + koren.dataset.sledeci + '">&#8594;</button>';
+        html += '</div><div class="kalendar__meseci">';
+
+        for (let i = 0; i < brojMeseci; i += 1) {
+          html += nacrtajMesec(new Date(prvi.getFullYear(), prvi.getMonth() + i, 1));
+        }
+
+        koren.innerHTML = html + '</div>';
+        obelezi();
+      }
+
+      koren.addEventListener('click', function (dogadjaj) {
+        if (dogadjaj.target.closest('[data-nazad]')) {
+          const kandidat = new Date(prvi.getFullYear(), prvi.getMonth() - 1, 1);
+          if (kandidat >= granica) {
+            prvi = kandidat;
+            nacrtaj();
+          }
+          return;
+        }
+
+        if (dogadjaj.target.closest('[data-napred]')) {
+          prvi = new Date(prvi.getFullYear(), prvi.getMonth() + 1, 1);
+          nacrtaj();
+          return;
+        }
+
+        const dan = dogadjaj.target.closest('[data-datum]');
+        if (!dan) return;
+
+        const polje = poljeDatuma();
+        if (polje) {
+          polje.value = dan.dataset.datum;
+          polje.dispatchEvent(new Event('change', { bubbles: true }));
+          const forma = document.getElementById('upit');
+          if (forma) forma.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        obelezi();
+      });
+
+      /* Redosled izvrsavanja sekcija ne sme da utice na obelezavanje. */
+      document.addEventListener('change', function (dogadjaj) {
+        if (dogadjaj.target.matches('[data-upit-datum]')) obelezi();
+      });
+
+      /* Datum iz URL-a otvara kalendar na tom mesecu. */
+      const izUrla = new URLSearchParams(window.location.search).get('datum');
+      if (izUrla) {
+        const delovi = izUrla.split('-');
+        const ciljni = new Date(Number(delovi[0]), Number(delovi[1]) - 1, 1);
+        if (ciljni >= granica) prvi = ciljni;
+      }
+
+      nacrtaj();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', pokreni);
+    } else {
+      pokreni();
+    }
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.prostor_kalendar",
+  "settings": [
+    {
+      "type": "range",
+      "id": "broj_meseci",
+      "label": "t:labels.broj_meseci",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    }
+  ],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

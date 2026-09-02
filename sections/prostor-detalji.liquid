@@ -1,0 +1,140 @@
+{% liquid
+  assign polja = product.metafields.prostor
+  assign lat = polja.lat.value
+  assign lng = polja.lng.value
+  assign zapad = lng | minus: 0.006
+  assign istok = lng | plus: 0.006
+  assign jug = lat | minus: 0.003
+  assign sever = lat | plus: 0.003
+%}
+
+<div class="detalji">
+  <section class="detalji__opis">
+    <h2>{{ 'prostor.o_prostoru' | t }}</h2>
+    {{ product.description }}
+  </section>
+
+  <div class="detalji__grupe">
+    {% if polja.sadrzaji.value.size > 0 %}
+      <section>
+        <h3>{{ 'prostor.pogodnosti' | t }}</h3>
+        <ul class="lista-oznaka" role="list">
+          {% for stavka in polja.sadrzaji.value %}
+            <li class="oznaka">{% render 'ikonica', naziv: 'kvacica' %} {{ stavka }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    {% if polja.hrana_pice.value.size > 0 %}
+      <section>
+        <h3>{{ 'prostor.hrana_pice' | t }}</h3>
+        <ul class="lista-oznaka" role="list">
+          {% for stavka in polja.hrana_pice.value %}
+            <li class="oznaka">{% render 'ikonica', naziv: 'kvacica' %} {{ stavka }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    {% if polja.muzika.value.size > 0 %}
+      <section>
+        <h3>{{ 'prostor.muzika' | t }}</h3>
+        <ul class="lista-oznaka" role="list">
+          {% for stavka in polja.muzika.value %}
+            <li class="oznaka">{% render 'ikonica', naziv: 'kvacica' %} {{ stavka }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  </div>
+
+  {% if section.settings.prikazi_mapu %}
+    {% if lat %}
+      <section class="detalji__mapa">
+        <h3>{{ 'prostor.gde_se_nalazi' | t }}</h3>
+        <p class="prigusen">{{ polja.adresa.value }}, {{ polja.kvart.value }}</p>
+
+        <iframe
+          class="mapa"
+          title="{{ 'prostor.gde_se_nalazi' | t }} — {{ product.title | escape }}"
+          loading="lazy"
+          src="https://www.openstreetmap.org/export/embed.html?bbox={{ zapad }}%2C{{ jug }}%2C{{ istok }}%2C{{ sever }}&amp;layer=mapnik&amp;marker={{ lat }}%2C{{ lng }}"
+        ></iframe>
+
+        <a
+          class="sitno"
+          href="https://www.openstreetmap.org/?mlat={{ lat }}&amp;mlon={{ lng }}#map=17/{{ lat }}/{{ lng }}"
+          target="_blank"
+          rel="noopener"
+        >
+          {{ 'prostor.otvori_mapu' | t }}
+        </a>
+      </section>
+    {% endif %}
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .detalji {
+    display: flex;
+    flex-direction: column;
+    gap: var(--razmak-6);
+    padding-block: var(--razmak-6);
+    border-top: 1px solid var(--boja-ivica);
+  }
+
+  .detalji__opis {
+    max-width: 46rem;
+  }
+
+  .detalji__opis h2 {
+    margin-block-end: var(--razmak-3);
+  }
+
+  .detalji__opis p + p {
+    margin-block-start: var(--razmak-3);
+  }
+
+  .detalji__grupe {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--razmak-5);
+  }
+
+  .detalji__grupe h3 {
+    font-size: var(--tekst-lg);
+    margin-block-end: var(--razmak-3);
+  }
+
+  .lista-oznaka {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--razmak-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .lista-oznaka .ikonica {
+    color: var(--boja-akcenat);
+  }
+
+  .mapa {
+    width: 100%;
+    height: 22rem;
+    margin-block: var(--razmak-3);
+    border: 1px solid var(--boja-ivica);
+    border-radius: var(--radijus-kartica);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.prostor_detalji",
+  "settings": [
+    { "type": "checkbox", "id": "prikazi_mapu", "label": "t:labels.prikazi_mapu", "default": true }
+  ],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}
