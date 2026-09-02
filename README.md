@@ -25,7 +25,7 @@ npm test                  # node --test nad scripts/
 shopify theme check       # statička analiza Liquida
 ```
 
-## Kako je složeno
+## Sistem
 
 Prostor je Shopify **proizvod** sa metafieldovima u namespace-u `prostor`.
 Fasetno filtriranje radi besplatna **Search & Discovery** aplikacija, a tema je
