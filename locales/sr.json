@@ -1,0 +1,169 @@
+{
+  "404": {
+    "title": "404",
+    "not_found": "Stranica nije pronađena.",
+    "nazad": "Pretraži prostore"
+  },
+  "blog": {
+    "article_comments": "Komentari",
+    "article_metadata_html": "{{ date }}, {{ author }}",
+    "comment_form_body": "Komentar",
+    "comment_form_email": "Imejl",
+    "comment_form_name": "Ime",
+    "comment_form_submit": "Objavi",
+    "comment_form_title": "Dodaj komentar"
+  },
+  "cart": {
+    "checkout": "Plaćanje",
+    "title": "Korpa",
+    "update": "Osveži",
+    "remove": "Ukloni"
+  },
+  "customers": {
+    "login": {
+      "email": "Imejl",
+      "password": "Lozinka",
+      "submit": "Prijavi se",
+      "title": "Prijava"
+    }
+  },
+  "collections": {
+    "title": "Kolekcije"
+  },
+  "gift_card": {
+    "add_to_apple_wallet": "Dodaj u Apple Wallet",
+    "card": "Poklon kartica",
+    "expired": "Ova poklon kartica je istekla",
+    "expires_on": "Ističe {{ expires_on }}",
+    "use_at_checkout": "Iskoristi ovu poklon karticu pri plaćanju"
+  },
+  "password": {
+    "title": "Ova prodavnica je zaključana",
+    "password": "Lozinka",
+    "enter": "Uđi"
+  },
+  "search": {
+    "title": "Pretraga",
+    "placeholder": "Pretraži prostore",
+    "submit": "Traži",
+    "no_results_html": "Nema rezultata za {{ terms }}",
+    "results_for_html": "{{ count }} rezultata za {{ terms }}"
+  },
+  "opste": {
+    "po_osobi": "po osobi",
+    "gostiju": "gostiju",
+    "prikazi_jos": "Prikaži još",
+    "bilo_koji": "Bilo koji",
+    "obavezno": "Obavezno"
+  },
+  "zaglavlje": {
+    "prostori": "Prostori",
+    "kako_radi": "Kako radi",
+    "poredjenje": "Poređenje",
+    "poredjenje_sa_brojem": "Poređenje ({{ broj }})",
+    "meni": "Meni"
+  },
+  "pocetna": {
+    "naslov": "Nađi prostor za proslavu u Novom Sadu",
+    "podnaslov": "Restorani, svečane sale, igraonice, klubovi i salaši — filtrirani po onome što ti stvarno treba.",
+    "tip_proslave": "Tip proslave",
+    "datum": "Datum",
+    "broj_gostiju": "Broj gostiju",
+    "deo_grada": "Deo grada",
+    "budzet_do": "Budžet po osobi, do",
+    "trazi": "Pretraži prostore",
+    "kategorije_naslov": "Pretraga po povodu",
+    "istaknuti_naslov": "Izdvojeni prostori",
+    "istaknuti_svi": "Pogledaj sve prostore",
+    "kako_radi_naslov": "Kako radi",
+    "korak_1_naslov": "Reci šta ti treba",
+    "korak_1_tekst": "Tip proslave, datum, broj gostiju i budžet.",
+    "korak_2_naslov": "Uporedi prostore",
+    "korak_2_tekst": "Filtriraj po pogodnostima, hrani, muzici i lokaciji, pa uporedi jedan pored drugog.",
+    "korak_3_naslov": "Pošalji upit",
+    "korak_3_tekst": "Izaberi slobodan datum i pošalji zahtev direktno prostoru."
+  },
+  "rezultati": {
+    "naslov": "Prostori u Novom Sadu",
+    "broj": "{{ broj }} prostora",
+    "filteri": "Filteri",
+    "primeni": "Primeni filtere",
+    "ponisti_sve": "Poništi sve",
+    "sortiraj": "Sortiraj po",
+    "sortiraj_podrazumevano": "Preporučeno",
+    "sortiraj_ocena": "Najbolje ocenjeni",
+    "prazno_naslov": "Nijedan prostor ne odgovara ovim filterima",
+    "prazno_tekst": "Probaj da ukloniš neki filter ili proširiš budžet.",
+    "aktivni_filteri": "Aktivni filteri",
+    "zauzeto_obavestenje": "Slobodno je {{ prikazano }} od {{ ukupno }} prostora — {{ zauzeto }} je zauzeto {{ datum }} i prigušeno je ispod."
+  },
+  "kartica": {
+    "uporedi": "Uporedi",
+    "kapacitet": "{{ min }}–{{ max }} gostiju",
+    "od_cene": "od {{ cena }}",
+    "broj_recenzija": "{{ broj }} recenzija",
+    "zauzeto": "Zauzeto na izabrani datum",
+    "traka_naslov": "Dostupnost, narednih 14 dana",
+    "traka_dan": "{{ datum }} — {{ stanje }}",
+    "traka_slobodno": "slobodno",
+    "traka_zauzeto": "zauzeto"
+  },
+  "filteri": {
+    "cena_od": "Od",
+    "cena_do": "Do"
+  },
+  "prostor": {
+    "kapacitet": "Kapacitet",
+    "kvart": "Lokacija",
+    "min_potrosnja": "Minimalna potrošnja",
+    "telefon": "Telefon",
+    "o_prostoru": "O prostoru",
+    "pogodnosti": "Pogodnosti",
+    "hrana_pice": "Hrana i piće",
+    "muzika": "Muzika",
+    "gde_se_nalazi": "Gde se nalazi",
+    "otvori_mapu": "Otvori u mapama",
+    "paketi_naslov": "Paketi",
+    "paket_min": "od {{ broj }} gostiju",
+    "paket_ukljucuje": "Uključuje",
+    "kalendar_naslov": "Dostupnost",
+    "kalendar_uputstvo": "Izaberi slobodan datum da se forma za upit popuni sama.",
+    "kalendar_slobodno": "Slobodno",
+    "kalendar_zauzeto": "Zauzeto",
+    "kalendar_prethodni": "Prethodni mesec",
+    "kalendar_sledeci": "Sledeći mesec",
+    "kalendar_napomena": "Dostupnost održava sam prostor i ovo nije sistem rezervacija u realnom vremenu.",
+    "recenzije_naslov": "Recenzije",
+    "recenzije_prosek": "{{ ocena }} od 5 · {{ broj }} recenzija",
+    "recenzije_nema": "Još nema recenzija."
+  },
+  "upit": {
+    "naslov": "Pošalji upit",
+    "uvod": "Prostor dobija tvoj zahtev mejlom i odgovara direktno.",
+    "ime": "Ime i prezime",
+    "email": "Imejl",
+    "telefon": "Telefon",
+    "tip_proslave": "Tip proslave",
+    "datum": "Željeni datum",
+    "broj_gostiju": "Broj gostiju",
+    "poruka": "Poruka",
+    "posalji": "Pošalji upit",
+    "uspeh": "Hvala — upit je poslat. Prostor će te kontaktirati."
+  },
+  "poredjenje": {
+    "naslov": "Poređenje prostora",
+    "prazno_naslov": "Još nije izabran nijedan prostor",
+    "prazno_tekst": "Čekiraj „Uporedi“ na kartici prostora da bi se pojavio ovde.",
+    "nazad_na_rezultate": "Pretraži prostore",
+    "ukloni": "Ukloni",
+    "maks_dostignut": "Možeš porediti najviše 4 prostora.",
+    "red_kapacitet": "Kapacitet",
+    "red_cena": "Cena po osobi",
+    "red_kvart": "Lokacija",
+    "red_tip": "Tip prostora",
+    "red_ocena": "Ocena",
+    "red_pogodnosti": "Pogodnosti",
+    "red_hrana": "Hrana i piće",
+    "red_muzika": "Muzika"
+  }
+}

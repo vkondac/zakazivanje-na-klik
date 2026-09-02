@@ -2,7 +2,7 @@
   "404": {
     "title": "404",
     "not_found": "Page not found.",
-    "back_to_shopping": "Back to shopping"
+    "nazad": "Browse venues"
   },
   "blog": {
     "article_comments": "Comments",
@@ -48,5 +48,122 @@
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
+  },
+  "opste": {
+    "po_osobi": "per person",
+    "gostiju": "guests",
+    "prikazi_jos": "Show more",
+    "bilo_koji": "Any",
+    "obavezno": "Required"
+  },
+  "zaglavlje": {
+    "prostori": "Venues",
+    "kako_radi": "How it works",
+    "poredjenje": "Compare",
+    "poredjenje_sa_brojem": "Compare ({{ broj }})",
+    "meni": "Menu"
+  },
+  "pocetna": {
+    "naslov": "Find a venue for your celebration in Novi Sad",
+    "podnaslov": "Restaurants, banquet halls, playrooms, clubs and farmsteads — filtered by what you actually need.",
+    "tip_proslave": "Type of celebration",
+    "datum": "Date",
+    "broj_gostiju": "Number of guests",
+    "deo_grada": "Part of town",
+    "budzet_do": "Budget per person, up to",
+    "trazi": "Search venues",
+    "kategorije_naslov": "Browse by occasion",
+    "istaknuti_naslov": "Featured venues",
+    "istaknuti_svi": "See all venues",
+    "kako_radi_naslov": "How it works",
+    "korak_1_naslov": "Say what you need",
+    "korak_1_tekst": "Type of celebration, date, number of guests and budget.",
+    "korak_2_naslov": "Compare venues",
+    "korak_2_tekst": "Filter by amenities, food, music and location, then compare side by side.",
+    "korak_3_naslov": "Send an inquiry",
+    "korak_3_tekst": "Pick a free date and send your request directly to the venue."
+  },
+  "rezultati": {
+    "naslov": "Venues in Novi Sad",
+    "broj": "{{ broj }} venues",
+    "filteri": "Filters",
+    "primeni": "Apply filters",
+    "ponisti_sve": "Clear all",
+    "sortiraj": "Sort by",
+    "sortiraj_podrazumevano": "Recommended",
+    "sortiraj_ocena": "Highest rated",
+    "prazno_naslov": "No venues match these filters",
+    "prazno_tekst": "Try removing a filter or widening your budget.",
+    "aktivni_filteri": "Active filters",
+    "zauzeto_obavestenje": "{{ prikazano }} of {{ ukupno }} venues are free — {{ zauzeto }} are booked on {{ datum }} and dimmed below."
+  },
+  "kartica": {
+    "uporedi": "Compare",
+    "kapacitet": "{{ min }}–{{ max }} guests",
+    "od_cene": "from {{ cena }}",
+    "broj_recenzija": "{{ broj }} reviews",
+    "zauzeto": "Booked on the selected date",
+    "traka_naslov": "Availability, next 14 days",
+    "traka_dan": "{{ datum }} — {{ stanje }}",
+    "traka_slobodno": "free",
+    "traka_zauzeto": "booked"
+  },
+  "filteri": {
+    "cena_od": "From",
+    "cena_do": "To"
+  },
+  "prostor": {
+    "kapacitet": "Capacity",
+    "kvart": "Location",
+    "min_potrosnja": "Minimum spend",
+    "telefon": "Phone",
+    "o_prostoru": "About the venue",
+    "pogodnosti": "Amenities",
+    "hrana_pice": "Food and drink",
+    "muzika": "Music",
+    "gde_se_nalazi": "Where it is",
+    "otvori_mapu": "Open in maps",
+    "paketi_naslov": "Packages",
+    "paket_min": "from {{ broj }} guests",
+    "paket_ukljucuje": "Includes",
+    "kalendar_naslov": "Availability",
+    "kalendar_uputstvo": "Pick a free date to prefill the inquiry form.",
+    "kalendar_slobodno": "Free",
+    "kalendar_zauzeto": "Booked",
+    "kalendar_prethodni": "Previous month",
+    "kalendar_sledeci": "Next month",
+    "kalendar_napomena": "Availability is maintained by the venue and is not a live booking system.",
+    "recenzije_naslov": "Reviews",
+    "recenzije_prosek": "{{ ocena }} out of 5 · {{ broj }} reviews",
+    "recenzije_nema": "No reviews yet."
+  },
+  "upit": {
+    "naslov": "Send an inquiry",
+    "uvod": "The venue receives your request by email and replies directly.",
+    "ime": "Your name",
+    "email": "Email",
+    "telefon": "Phone",
+    "tip_proslave": "Type of celebration",
+    "datum": "Preferred date",
+    "broj_gostiju": "Number of guests",
+    "poruka": "Message",
+    "posalji": "Send inquiry",
+    "uspeh": "Thank you — your inquiry has been sent. The venue will contact you."
+  },
+  "poredjenje": {
+    "naslov": "Compare venues",
+    "prazno_naslov": "You haven't selected any venues yet",
+    "prazno_tekst": "Tick “Compare” on a venue card to add it here.",
+    "nazad_na_rezultate": "Browse venues",
+    "ukloni": "Remove",
+    "maks_dostignut": "You can compare up to 4 venues.",
+    "red_kapacitet": "Capacity",
+    "red_cena": "Price per person",
+    "red_kvart": "Location",
+    "red_tip": "Venue type",
+    "red_ocena": "Rating",
+    "red_pogodnosti": "Amenities",
+    "red_hrana": "Food and drink",
+    "red_muzika": "Music"
   }
 }
