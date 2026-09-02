@@ -55,7 +55,3 @@ Ovo su svesne odluke, ne propusti — vredi ih izgovoriti na odbrani.
 - **Prostor je modelovan kao proizvod.** Semantički nategnuto, ali je to cena za
   fasetno filtriranje koje se time dobija besplatno.
 
-## Van obima
-
-Blog i SEO vodiči, „dodaj svoj prostor“, plaćanja i kapare, nalozi vlasnika
-prostora, ostavljanje recenzija od strane korisnika, GDPR i analitika.
