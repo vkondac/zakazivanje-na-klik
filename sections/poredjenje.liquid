@@ -1,0 +1,307 @@
+{% liquid
+  assign prostori = collections['svi-prostori'].products
+%}
+
+<section class="poredjenje">
+  <h1>{{ 'poredjenje.naslov' | t }}</h1>
+
+  {% comment %}
+    Liquid `for` staje na 50 iteracija. Sa 20 prostora to nije problem, ali
+    preko 50 bi tabela tiho izgubila prostore i trebalo bi preci na paginate
+    ili Storefront API.
+
+    Podaci se ispisuju ovde, a ne dovlace kroz /products/<handle>.js, jer taj
+    endpoint ne vraca metafieldove.
+  {% endcomment %}
+  <script type="application/json" data-poredjenje-podaci>
+    [
+    {%- for prostor in prostori -%}
+      {%- liquid
+        assign polja = prostor.metafields.prostor
+        assign kapacitet = 'kartica.kapacitet' | t: min: polja.kapacitet_min.value, max: polja.kapacitet_max.value
+        assign cena = prostor.price | money
+        assign slika = prostor.featured_image | image_url: width: 400
+      -%}
+      {
+        "handle": {{ prostor.handle | json }},
+        "naziv": {{ prostor.title | json }},
+        "url": {{ prostor.url | json }},
+        "slika": {{ slika | json }},
+        "cena": {{ cena | json }},
+        "tip": {{ prostor.type | json }},
+        "kvart": {{ polja.kvart.value | json }},
+        "kapacitet": {{ kapacitet | json }},
+        "ocena": {{ polja.ocena.value.rating | json }},
+        "sadrzaji": {{ polja.sadrzaji.value | json }},
+        "hrana": {{ polja.hrana_pice.value | json }},
+        "muzika": {{ polja.muzika.value | json }}
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+    ]
+  </script>
+
+  <div
+    class="poredjenje__izlaz"
+    data-poredjenje-izlaz
+    data-red-kapacitet="{{ 'poredjenje.red_kapacitet' | t | escape }}"
+    data-red-cena="{{ 'poredjenje.red_cena' | t | escape }}"
+    data-red-kvart="{{ 'poredjenje.red_kvart' | t | escape }}"
+    data-red-tip="{{ 'poredjenje.red_tip' | t | escape }}"
+    data-red-ocena="{{ 'poredjenje.red_ocena' | t | escape }}"
+    data-red-pogodnosti="{{ 'poredjenje.red_pogodnosti' | t | escape }}"
+    data-red-hrana="{{ 'poredjenje.red_hrana' | t | escape }}"
+    data-red-muzika="{{ 'poredjenje.red_muzika' | t | escape }}"
+    data-ukloni="{{ 'poredjenje.ukloni' | t | escape }}"
+  ></div>
+
+  <template data-poredjenje-prazno>
+    <div class="poredjenje__prazno">
+      <h2>{{ 'poredjenje.prazno_naslov' | t }}</h2>
+      <p class="prigusen">{{ 'poredjenje.prazno_tekst' | t }}</p>
+      <a class="dugme dugme--primarno" href="{{ collections['svi-prostori'].url }}">
+        {{ 'poredjenje.nazad_na_rezultate' | t }}
+      </a>
+    </div>
+  </template>
+</section>
+
+{% stylesheet %}
+  .poredjenje {
+    padding-block: var(--razmak-6);
+  }
+
+  .poredjenje h1 {
+    margin-block-end: var(--razmak-5);
+  }
+
+  .poredjenje__izlaz {
+    overflow-x: auto;
+  }
+
+  .poredjenje__tabela {
+    border-collapse: collapse;
+    min-width: 100%;
+  }
+
+  .poredjenje__tabela th,
+  .poredjenje__tabela td {
+    padding: var(--razmak-3);
+    border-bottom: 1px solid var(--boja-ivica);
+    text-align: left;
+    vertical-align: top;
+    min-width: 11rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .poredjenje__oznaka {
+    position: sticky;
+    inset-inline-start: 0;
+    min-width: 12rem;
+    background-color: var(--boja-pozadina);
+    font-weight: 400;
+    color: var(--boja-prigusen);
+  }
+
+  .poredjenje__podnaslov th {
+    padding-block-start: var(--razmak-5);
+    font-family: var(--font-naslov);
+    font-size: var(--tekst-lg);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--boja-tekst);
+  }
+
+  .poredjenje__glava img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radijus-polja);
+    margin-block-end: var(--razmak-2);
+  }
+
+  .poredjenje__naziv {
+    display: block;
+    margin-block-end: var(--razmak-2);
+    font-family: var(--font-naslov);
+    font-weight: 700;
+  }
+
+  .poredjenje__ima {
+    color: var(--boja-akcenat);
+    font-weight: 700;
+  }
+
+  .poredjenje__nema {
+    color: var(--boja-ivica);
+  }
+
+  .poredjenje__prazno {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--razmak-4);
+    padding: var(--razmak-7) var(--razmak-5);
+    border: 1px dashed var(--boja-ivica);
+    border-radius: var(--radijus-kartica);
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    function pokreni() {
+      const izlaz = document.querySelector('[data-poredjenje-izlaz]');
+      if (!izlaz) return;
+
+      const izvor = document.querySelector('[data-poredjenje-podaci]');
+      const prazno = document.querySelector('[data-poredjenje-prazno]');
+      const oznake = izlaz.dataset;
+
+      let poHandleu;
+      try {
+        poHandleu = new Map(JSON.parse(izvor.textContent).map(function (p) {
+          return [p.handle, p];
+        }));
+      } catch (greska) {
+        poHandleu = new Map();
+      }
+
+      function cvor(tag, klasa, tekst) {
+        const element = document.createElement(tag);
+        if (klasa) element.className = klasa;
+        if (tekst !== undefined && tekst !== null) element.textContent = String(tekst);
+        return element;
+      }
+
+      function redVrednosti(naslov, izabrani, kljuc) {
+        const red = cvor('tr');
+        red.appendChild(cvor('th', 'poredjenje__oznaka', naslov));
+        izabrani.forEach(function (prostor) {
+          const vrednost = prostor[kljuc];
+          red.appendChild(cvor('td', null, vrednost === null || vrednost === '' ? '—' : vrednost));
+        });
+        return red;
+      }
+
+      function redoviSkupa(naslov, izabrani, kljuc) {
+        const unija = [];
+        izabrani.forEach(function (prostor) {
+          (prostor[kljuc] || []).forEach(function (vrednost) {
+            if (unija.indexOf(vrednost) === -1) unija.push(vrednost);
+          });
+        });
+        unija.sort(function (a, b) {
+          return a.localeCompare(b, 'sr');
+        });
+
+        const deo = document.createDocumentFragment();
+
+        const zaglavlje = cvor('tr', 'poredjenje__podnaslov');
+        const celija = cvor('th', null, naslov);
+        celija.colSpan = izabrani.length + 1;
+        zaglavlje.appendChild(celija);
+        deo.appendChild(zaglavlje);
+
+        unija.forEach(function (vrednost) {
+          const red = cvor('tr');
+          red.appendChild(cvor('th', 'poredjenje__oznaka', vrednost));
+          izabrani.forEach(function (prostor) {
+            const ima = (prostor[kljuc] || []).indexOf(vrednost) !== -1;
+            red.appendChild(cvor('td', ima ? 'poredjenje__ima' : 'poredjenje__nema', ima ? '✓' : '✗'));
+          });
+          deo.appendChild(red);
+        });
+
+        return deo;
+      }
+
+      function glava(izabrani) {
+        const red = cvor('tr');
+        red.appendChild(cvor('th', 'poredjenje__oznaka', ''));
+
+        izabrani.forEach(function (prostor) {
+          const celija = cvor('th', 'poredjenje__glava');
+
+          if (prostor.slika) {
+            const slika = document.createElement('img');
+            slika.src = prostor.slika;
+            slika.alt = prostor.naziv;
+            slika.loading = 'lazy';
+            celija.appendChild(slika);
+          }
+
+          const veza = cvor('a', 'poredjenje__naziv', prostor.naziv);
+          veza.href = prostor.url;
+          celija.appendChild(veza);
+
+          const ukloni = cvor('button', 'dugme dugme--tiho', oznake.ukloni);
+          ukloni.type = 'button';
+          ukloni.dataset.ukloni = prostor.handle;
+          celija.appendChild(ukloni);
+
+          red.appendChild(celija);
+        });
+
+        return red;
+      }
+
+      function nacrtaj(lista) {
+        const izabrani = lista
+          .map(function (handle) { return poHandleu.get(handle); })
+          .filter(Boolean);
+
+        izlaz.replaceChildren();
+
+        if (izabrani.length === 0) {
+          izlaz.appendChild(prazno.content.cloneNode(true));
+          return;
+        }
+
+        const tabela = cvor('table', 'poredjenje__tabela');
+        const telo = cvor('tbody');
+
+        telo.appendChild(glava(izabrani));
+        telo.appendChild(redVrednosti(oznake.redCena, izabrani, 'cena'));
+        telo.appendChild(redVrednosti(oznake.redKapacitet, izabrani, 'kapacitet'));
+        telo.appendChild(redVrednosti(oznake.redKvart, izabrani, 'kvart'));
+        telo.appendChild(redVrednosti(oznake.redTip, izabrani, 'tip'));
+        telo.appendChild(redVrednosti(oznake.redOcena, izabrani, 'ocena'));
+        telo.appendChild(redoviSkupa(oznake.redPogodnosti, izabrani, 'sadrzaji'));
+        telo.appendChild(redoviSkupa(oznake.redHrana, izabrani, 'hrana'));
+        telo.appendChild(redoviSkupa(oznake.redMuzika, izabrani, 'muzika'));
+
+        tabela.appendChild(telo);
+        izlaz.appendChild(tabela);
+      }
+
+      izlaz.addEventListener('click', function (dogadjaj) {
+        const dugme = dogadjaj.target.closest('[data-ukloni]');
+        if (!dugme) return;
+        document.dispatchEvent(
+          new CustomEvent('poredjenje:ukloni', { detail: { handle: dugme.dataset.ukloni } })
+        );
+      });
+
+      document.addEventListener('poredjenje:promena', function (dogadjaj) {
+        nacrtaj(dogadjaj.detail.lista);
+      });
+
+      /* Header salje poredjenje:promena na ucitavanju, ali ako je njegov
+         listener vec prosao, iscrtaj odmah iz localStorage. */
+      nacrtaj(window.Poredjenje ? window.Poredjenje.ucitaj() : []);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', pokreni);
+    } else {
+      pokreni();
+    }
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.poredjenje",
+  "settings": [],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

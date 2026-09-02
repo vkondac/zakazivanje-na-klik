@@ -1,160 +1,61 @@
-<h1 align="center" style="position: relative;">
-  <br>
-    <img src="./assets/shoppy-x-ray.svg" alt="logo" width="200">
-  <br>
-  Shopify Skeleton Theme
-</h1>
+# Proslava na klik
 
-A minimal, carefully structured Shopify theme designed to help you quickly get started. Designed with modularity, maintainability, and Shopify's best practices in mind.
+Shopify store za pronalaženje prostora za proslave u Novom Sadu.
+Fakultetski projekat, demo podaci.
 
-<p align="center">
-  <a href="./LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
-  <a href="./actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Shopify/skeleton-theme/actions/workflows/ci.yml/badge.svg"></a>
-</p>
+Korisnik bira tip proslave, datum, broj gostiju i budžet, dobija filtriranu
+listu prostora, poredi ih i šalje upit za termin.
 
-## Getting started
-
-### Prerequisites
-
-Before starting, ensure you have the latest Shopify CLI installed:
-
-- [Shopify CLI](https://shopify.dev/docs/api/shopify-cli) – helps you download, upload, preview themes, and streamline your workflows
-
-If you use VS Code:
-
-- [Shopify Liquid VS Code Extension](https://shopify.dev/docs/storefronts/themes/tools/shopify-liquid-vscode) – provides syntax highlighting, linting, inline documentation, and auto-completion specifically designed for Liquid templates
-
-### Clone
-
-Clone this repository using Git or Shopify CLI:
+## Pokretanje
 
 ```bash
-git clone git@github.com:Shopify/skeleton-theme.git
-# or
-shopify theme init
+npm install -g @shopify/cli@latest
+cp .env.example .env      # upiši domen dev store-a i Admin API token
+npm run setup             # metafield i metaobject definicije, kolekcija
+npm run seed              # 20 demo prostora sa recenzijama i paketima
+shopify theme dev --store <domen>
 ```
 
-### Preview
+Obe skripte su idempotentne — mogu se pokretati koliko god puta.
 
-Preview this theme using Shopify CLI:
+## Provere
 
 ```bash
-shopify theme dev
+npm test                  # node --test nad scripts/
+shopify theme check       # statička analiza Liquida
 ```
 
-## Theme architecture
+## Kako je složeno
 
-```bash
-.
-├── assets          # Stores static assets (CSS, JS, images, fonts, etc.)
-├── blocks          # Reusable, nestable, customizable UI components
-├── config          # Global theme settings and customization options
-├── layout          # Top-level wrappers for pages (layout templates)
-├── locales         # Translation files for theme internationalization
-├── sections        # Modular full-width page components
-├── snippets        # Reusable Liquid code or HTML fragments
-└── templates       # Templates combining sections to define page structures
-```
+Prostor je Shopify **proizvod** sa metafieldovima u namespace-u `prostor`.
+Fasetno filtriranje radi besplatna **Search & Discovery** aplikacija, a tema je
+iscrtava generički kroz `collection.filters` — nijedan naziv filtera ni vrednost
+nije hardkodovan, pa dodavanje filtera u adminu ne dira kod.
 
-To learn more, refer to the [theme architecture documentation](https://shopify.dev/docs/storefronts/themes/architecture).
+Recenzije i paketi su **metaobjekti**, ne JSON u jednom polju.
 
-### Templates
+Postoji tačno jedna kolekcija, `svi-prostori`, automatska po tagu `prostor`.
+Stanje pretrage živi u URL-u, pa je deljivo linkom i preživljava refresh.
 
-[Templates](https://shopify.dev/docs/storefronts/themes/architecture/templates#template-types) control what's rendered on each type of page in a theme.
+## Dokumentacija
 
-The Skeleton Theme scaffolds [JSON templates](https://shopify.dev/docs/storefronts/themes/architecture/templates/json-templates) to make it easy for merchants to customize their store.
+- Tehnički dizajn: `docs/superpowers/specs/2026-09-01-proslava-na-klik-design.md`
+- Plan implementacije: `docs/superpowers/plans/2026-09-01-proslava-na-klik.md`
 
-None of the template types are required, and not all of them are included in the Skeleton Theme. Refer to the [template types reference](https://shopify.dev/docs/storefronts/themes/architecture/templates#template-types) for a full list.
+## Poznata ograničenja
 
-### Sections
+Ovo su svesne odluke, ne propusti — vredi ih izgovoriti na odbrani.
 
-[Sections](https://shopify.dev/docs/storefronts/themes/architecture/sections) are Liquid files that allow you to create reusable modules of content that can be customized by merchants. They can also include blocks which allow merchants to add, remove, and reorder content within a section.
+- **Filter po datumu i sortiranje po oceni rade nad trenutnom stranicom rezultata.**
+  Liquid ne može da čita query string, a Shopify filteri ne rade nad kalendarom.
+  Sa 20 prostora to je ceo skup; na 500 ne bi bilo tačno.
+- **Kalendar dostupnosti je ručno održavan metafield**, ne sistem rezervacija u
+  realnom vremenu. Prava sinhronizacija bi tražila zasebnu aplikaciju i bazu.
+- **Tabela poređenja učitava do 50 prostora** — granica Liquid `for` petlje.
+- **Prostor je modelovan kao proizvod.** Semantički nategnuto, ali je to cena za
+  fasetno filtriranje koje se time dobija besplatno.
 
-Sections are made customizable by including a `{% schema %}` in the body. For more information, refer to the [section schema documentation](https://shopify.dev/docs/storefronts/themes/architecture/sections/section-schema).
+## Van obima
 
-### Blocks
-
-[Blocks](https://shopify.dev/docs/storefronts/themes/architecture/blocks) let developers create flexible layouts by breaking down sections into smaller, reusable pieces of Liquid. Each block has its own set of settings, and can be added, removed, and reordered within a section.
-
-Blocks are made customizable by including a `{% schema %}` in the body. For more information, refer to the [block schema documentation](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/schema).
-
-## Schemas
-
-When developing components defined by schema settings, we recommend these guidelines to simplify your code:
-
-- **Single property settings**: For settings that correspond to a single CSS property, use CSS variables:
-
-  ```liquid
-  <div class="collection" style="--gap: {{ block.settings.gap }}px">
-    ...
-  </div>
-
-  {% stylesheet %}
-    .collection {
-      gap: var(--gap);
-    }
-  {% endstylesheet %}
-
-  {% schema %}
-  {
-    "settings": [{
-      "type": "range",
-      "label": "gap",
-      "id": "gap",
-      "min": 0,
-      "max": 100,
-      "unit": "px",
-      "default": 0,
-    }]
-  }
-  {% endschema %}
-  ```
-
-- **Multiple property settings**: For settings that control multiple CSS properties, use CSS classes:
-
-  ```liquid
-  <div class="collection {{ block.settings.layout }}">
-    ...
-  </div>
-
-  {% stylesheet %}
-    .collection--full-width {
-      /* multiple styles */
-    }
-    .collection--narrow {
-      /* multiple styles */
-    }
-  {% endstylesheet %}
-
-  {% schema %}
-  {
-    "settings": [{
-      "type": "select",
-      "id": "layout",
-      "label": "layout",
-      "values": [
-        { "value": "collection--full-width", "label": "t:options.full" },
-        { "value": "collection--narrow", "label": "t:options.narrow" }
-      ]
-    }]
-  }
-  {% endschema %}
-  ```
-
-## CSS & JavaScript
-
-For CSS and JavaScript, we recommend using the [`{% stylesheet %}`](https://shopify.dev/docs/api/liquid/tags#stylesheet) and [`{% javascript %}`](https://shopify.dev/docs/api/liquid/tags/javascript) tags. They can be included multiple times, but the code will only appear once.
-
-### `critical.css`
-
-The Skeleton Theme explicitly separates essential CSS necessary for every page into a dedicated `critical.css` file.
-
-## Contributing
-
-We're excited for your contributions to the Skeleton Theme! This repository aims to remain as lean, lightweight, and fundamental as possible, and we kindly ask your contributions to align with this intention.
-
-Visit our [CONTRIBUTING.md](./CONTRIBUTING.md) for a detailed overview of our process, guidelines, and recommendations.
-
-## License
-
-Skeleton Theme is open-sourced under the [MIT](./LICENSE.md) License.
+Blog i SEO vodiči, „dodaj svoj prostor“, plaćanja i kapare, nalozi vlasnika
+prostora, ostavljanje recenzija od strane korisnika, GDPR i analitika.
