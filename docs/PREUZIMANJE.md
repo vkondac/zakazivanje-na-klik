@@ -100,9 +100,16 @@ da ne radi, a statička analiza to ne bi uhvatila.
       Isto za telo (`Karla`). **Proveri da `š đ č ć ž` nisu u zamenskom fontu.**
 - [ ] **Cena paketa.** Profil prostora → sekcija Paketi. Cena mora biti
       formatirana (`2.200 RSD`). Ako se pojavi sirov broj ili `{}`, zameni
-      `{{ paket.cena_po_osobi.value }}` sa `{{ paket.cena_po_osobi.value.amount | money }}`
+      `{{ paket.cena_po_osobi.value }}` sa `{{ paket.cena_po_osobi | metafield_text }}`
       u `sections/prostor-paketi.liquid`. Isto važi za `min_potrosnja` u
       `sections/prostor-zaglavlje.liquid`.
+
+      **Ne** koristi `.value.amount | money`. `.value` na `money` tipu vraća
+      money objekat, a `.value.amount` je decimalni broj (`2200.0`); filter
+      `money` očekuje minor units i podelio bi ga sa 100, pa bi se ispisalo
+      `22 RSD`. To je greška u suprotnom smeru i mnogo je teže primetiti od
+      sirovog broja, jer izgleda kao legitimna cena. `metafield_text`
+      formatira po tipu metafielda i ne dira vrednost.
 - [ ] **Marker na mapi je u Novom Sadu**, ne usred okeana. Ako jeste u okeanu,
       `lat` i `lng` su zamenjeni ili nisu usejani.
 

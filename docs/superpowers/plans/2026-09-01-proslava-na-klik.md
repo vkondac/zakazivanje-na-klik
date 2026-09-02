@@ -3834,7 +3834,8 @@ Otvori `/products/restoran-dunavska-terasa`:
 2. Naziv, kvart „Stari grad", tip „Restoran"
 3. Zvezdice sa prosekom i link „4 recenzija"
 4. Činjenice: kapacitet `40–120 gostiju`, cena `2.200 RSD`, minimalna potrošnja i telefon
-5. **Minimalna potrošnja se ispisuje kao formatirana cena** (npr. `60.000 RSD`). Ako se pojavi sirov broj ili `{}`, zameni `{{ polja.min_potrosnja.value }}` sa `{{ polja.min_potrosnja.value.amount | money }}` i ponovo proveri
+5. **Minimalna potrošnja se ispisuje kao formatirana cena** (npr. `60.000 RSD`). Ako se pojavi sirov broj ili `{}`, zameni `{{ polja.min_potrosnja }}` sa `{{ polja.min_potrosnja | metafield_text }}` i ponovo proveri.
+   **Ne** `.value.amount | money` — `money` filter deli sa 100, a `.value.amount` je već u dinarima, pa bi se ispisalo `22 RSD` umesto `2.200 RSD`
 6. Dugme „Pošalji upit" postoji (sidro još ne vodi nigde — forma dolazi u Tasku 18)
 7. Na 375px galerija prikazuje samo prvu fotografiju, info je ispod nje
 
@@ -4191,7 +4192,7 @@ Expected: `0 offenses`
 - [ ] **Step 4: Smoke lista**
 
 1. Tri kartice paketa za `restoran-dunavska-terasa`: Standard, Svečani, Poslovni ručak
-2. **Cena paketa je formatirana** (`2.200 RSD`). Ako se pojavi sirov broj ili prazno, zameni `{{ paket.cena_po_osobi.value }}` sa `{{ paket.cena_po_osobi.value.amount | money }}` — u oba slučaja to je ista izmena kao u Tasku 13, korak 5
+2. **Cena paketa je formatirana** (`2.200 RSD`). Ako se pojavi sirov broj ili prazno, zameni `{{ paket.cena_po_osobi.value }}` sa `{{ paket.cena_po_osobi | metafield_text }}` — ista izmena kao u Tasku 13, korak 5
 3. Najjeftiniji paket ima istu cenu kao ona u zaglavlju prostora — to garantuje test iz Taska 4
 4. Lista „Uključuje" ima zelenu kvačicu pored svake stavke
 5. Prostor bez paketa ne prikazuje praznu sekciju — proveri privremenim brisanjem `paketi` metafielda na jednom proizvodu, pa vrati kroz `npm run seed`
