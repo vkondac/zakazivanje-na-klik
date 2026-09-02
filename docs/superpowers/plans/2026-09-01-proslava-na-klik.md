@@ -1540,14 +1540,23 @@ dva filtera i vrednosti sa razmakom i dijakritikom."
 
 **Interfaces:**
 - Produces: CSS promenljive koje koriste svi kasniji taskovi —
-  `--boja-pozadina`, `--boja-tekst`, `--boja-prigusen`, `--boja-akcenat`, `--boja-akcenat-tekst`, `--boja-povrsina`, `--boja-ivica`, `--boja-slobodno`, `--boja-zauzeto`,
+  `--boja-pozadina`, `--boja-tekst`, `--boja-prigusen`, `--boja-akcenat`, `--boja-akcenat-tekst`, `--boja-povrsina`, `--boja-ivica`, `--boja-ocena`, `--boja-zauzeto`,
   `--radijus-kartica`, `--radijus-polja`,
   `--razmak-1` do `--razmak-8`, `--font-naslov`, `--font-telo`, `--tekst-xs` do `--tekst-3xl`, `--senka-1`, `--senka-2`;
   klase `.dugme`, `.dugme--primarno`, `.dugme--tiho`, `.polje`, `.oznaka`, `.vizuelno-skriveno`
 
 - [ ] **Step 0: Učitaj `frontend-design` skill**
 
-Spec, odeljak 10, traži da konkretne odluke o paleti, tipografiji i ritmu donese `frontend-design` skill, a ne slobodna procena. Vrednosti niže su polazna tačka; skill ih potvrđuje ili menja pre nego što se upišu.
+Spec, odeljak 10, traži da konkretne odluke o paleti, tipografiji i ritmu donese `frontend-design` skill, a ne slobodna procena.
+
+**Izvršeno drugačije nego što je ovde bilo napisano.** Prvobitni predlog — topla krem pozadina `#FBF9F6`, Playfair Display i terakota `#B4451F` — skill prepoznaje kao *prvi od tri navedena AI podrazumevana izgleda*, koji se pojavljuju bez obzira na temu. Pravac je izveden iz same teme:
+
+- **Poreklo:** vojvođanski salaš — krečeno belo zidova i vojvođansko plavo stolarije.
+- **Paleta:** `#F2F4F1` kreč (hladno kredasto, ne topla krem) · `#2B4C8C` modro (identitet, CTA, aktivni filteri) · `#16202E` čađ (tekst) · `#5C6B7A` prigušen · `#DCE2DC` taraba (ivice) · `#C98A2B` žito (**samo** zvezdice) · `#B22233` vez (**samo** zauzeti datumi).
+- **Zelena „slobodno" boja je izbačena.** Slobodno je neutralno, zauzeto crveno, izabrano modro. Potvrdne kvačice nose modro. Četiri boje, svaka sa jednim poslom.
+- **Tipografija:** naslovi `Archivo` 700 sa `-0.022em` zbijanjem — grotesk iz jezika natpisa nad kafanama i salašima, ne serif iz svadbenih časopisa. Telo `Karla`. Obe imaju Latin Extended, što je uslov za `š đ č ć ž`.
+- **Dodata `.natpis` klasa:** verzal, `0.09em` razmak. Nosi kategoriju ili kvart — podatak, ne ukras.
+- **Potpis stranice:** traka dostupnosti na kartici (Task 9).
 
 - [ ] **Step 1: Proširi `config/settings_schema.json`**
 
@@ -1557,7 +1566,7 @@ U grupu `t:general.typography` dodaj font naslova, posle postojećeg `type_prima
 {
   "type": "font_picker",
   "id": "type_heading_font",
-  "default": "playfair_display_n4",
+  "default": "archivo_n7",
   "label": "t:general.heading"
 }
 ```
@@ -1567,18 +1576,18 @@ Ako theme editor odbije handle `playfair_display_n4`, otvori font picker i izabe
 U grupu `t:general.colors` promeni podrazumevane vrednosti i dodaj nove boje:
 
 ```json
-{ "type": "color", "id": "background_color", "default": "#FBF9F6", "label": "t:labels.background" },
-{ "type": "color", "id": "foreground_color", "default": "#241F1B", "label": "t:labels.foreground" },
-{ "type": "color", "id": "muted_color", "default": "#6B615A", "label": "t:labels.muted" },
+{ "type": "color", "id": "background_color", "default": "#F2F4F1", "label": "t:labels.background" },
+{ "type": "color", "id": "foreground_color", "default": "#16202E", "label": "t:labels.foreground" },
+{ "type": "color", "id": "muted_color", "default": "#5C6B7A", "label": "t:labels.muted" },
 { "type": "color", "id": "surface_color", "default": "#FFFFFF", "label": "t:labels.surface" },
-{ "type": "color", "id": "border_color", "default": "#E5DED6", "label": "t:labels.border" },
-{ "type": "color", "id": "accent_color", "default": "#B4451F", "label": "t:labels.accent" },
+{ "type": "color", "id": "border_color", "default": "#DCE2DC", "label": "t:labels.border" },
+{ "type": "color", "id": "accent_color", "default": "#2B4C8C", "label": "t:labels.accent" },
 { "type": "color", "id": "accent_contrast_color", "default": "#FFFFFF", "label": "t:labels.accent_contrast" },
-{ "type": "color", "id": "free_color", "default": "#2F6B4F", "label": "t:labels.free" },
-{ "type": "color", "id": "busy_color", "default": "#A33A2A", "label": "t:labels.busy" },
+{ "type": "color", "id": "rating_color", "default": "#C98A2B", "label": "t:labels.rating" },
+{ "type": "color", "id": "busy_color", "default": "#B22233", "label": "t:labels.busy" },
 {
   "type": "range", "id": "card_corner_radius", "min": 0, "max": 24, "step": 2,
-  "unit": "px", "label": "t:labels.card_corner_radius", "default": 12
+  "unit": "px", "label": "t:labels.card_corner_radius", "default": 6
 }
 ```
 
@@ -1609,7 +1618,6 @@ Postojeći `input_corner_radius` ostaje.
     --boja-ivica: {{ settings.border_color }};
     --boja-akcenat: {{ settings.accent_color }};
     --boja-akcenat-tekst: {{ settings.accent_contrast_color }};
-    --boja-slobodno: {{ settings.free_color }};
     --boja-zauzeto: {{ settings.busy_color }};
 
     --boja-akcenat-tiha: {{ settings.accent_color | color_mix: settings.background_color, 12 }};
@@ -1804,7 +1812,7 @@ summary:focus-visible {
   white-space: nowrap;
 }
 
-.oznaka--slobodno { background-color: color-mix(in oklab, var(--boja-slobodno) 14%, white); color: var(--boja-slobodno); }
+.oznaka--slobodno { background-color: color-mix(in oklab, var(--boja-akcenat) 14%, white); color: var(--boja-akcenat); }
 .oznaka--zauzeto { background-color: color-mix(in oklab, var(--boja-zauzeto) 14%, white); color: var(--boja-zauzeto); }
 
 /* ---------- Pristupacnost ---------- */
@@ -2135,7 +2143,7 @@ Ovi ključevi se koriste u `{% schema %}` blokovima kasnijih taskova. Dodaj u `g
     "border": "Borders",
     "accent": "Accent",
     "accent_contrast": "Text on accent",
-    "free": "Free date",
+    "rating": "Rating stars",
     "busy": "Booked date",
     "card_corner_radius": "Card corner radius",
     "naslov": "Heading",
@@ -4143,7 +4151,7 @@ git commit -m "feat: detalji prostora sa pogodnostima i OSM mapom bez API kljuca
   }
 
   .paket__lista .ikonica {
-    color: var(--boja-slobodno);
+    color: var(--boja-akcenat);
     margin-block-start: 0.2em;
   }
 
@@ -4292,13 +4300,13 @@ Nazivi meseci i dana ne idu kroz locale fajlove nego kroz `Intl.DateTimeFormat` 
   }
 
   .kalendar__dan--slobodan {
-    background-color: color-mix(in oklab, var(--boja-slobodno) 12%, white);
-    color: var(--boja-slobodno);
+    background-color: color-mix(in oklab, var(--boja-akcenat) 12%, white);
+    color: var(--boja-akcenat);
     cursor: pointer;
   }
 
   .kalendar__dan--slobodan:hover {
-    border-color: var(--boja-slobodno);
+    border-color: var(--boja-akcenat);
   }
 
   .kalendar__dan--slobodan[aria-pressed='true'] {
@@ -4808,8 +4816,8 @@ Kraj glavnog toka. Koristi Shopify `contact` formu, koja šalje mejl vlasniku st
   .upit__uspeh {
     padding: var(--razmak-4);
     border-radius: var(--radijus-polja);
-    background-color: color-mix(in oklab, var(--boja-slobodno) 12%, white);
-    color: var(--boja-slobodno);
+    background-color: color-mix(in oklab, var(--boja-akcenat) 12%, white);
+    color: var(--boja-akcenat);
   }
 
   .upit__greske {
@@ -5550,7 +5558,7 @@ git commit -m "feat: kategorije proslava, izdvojeni prostori i kako-radi na poce
   }
 
   .poredjenje__ima {
-    color: var(--boja-slobodno);
+    color: var(--boja-akcenat);
     font-weight: 700;
   }
 

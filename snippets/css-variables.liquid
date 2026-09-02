@@ -1,18 +1,39 @@
 {% style %}
-  {% # Loads all font variantions with display: swap %}
+  {% # Ucitava sve varijante fontova sa display: swap %}
   {{ settings.type_primary_font | font_face: font_display: 'swap' }}
   {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
   {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+  {{ settings.type_heading_font | font_face: font_display: 'swap' }}
+  {{ settings.type_heading_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
 
   :root {
-    --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
-    --font-primary--style: {{ settings.type_primary_font.style }};
-    --font-primary--weight: {{ settings.type_primary_font.weight }};
+    --font-telo: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
+    --font-naslov: {{ settings.type_heading_font.family }}, {{ settings.type_heading_font.fallback_families }};
+
     --page-width: {{ settings.max_page_width }};
     --page-margin: {{ settings.min_page_margin }}px;
-    --color-background: {{ settings.background_color }};
-    --color-foreground: {{ settings.foreground_color }};
-    --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
+
+    {% # Krec, modro, cadj, zito, vez - vidi spec 10 %}
+    --boja-pozadina: {{ settings.background_color }};
+    --boja-tekst: {{ settings.foreground_color }};
+    --boja-prigusen: {{ settings.muted_color }};
+    --boja-povrsina: {{ settings.surface_color }};
+    --boja-ivica: {{ settings.border_color }};
+    --boja-akcenat: {{ settings.accent_color }};
+    --boja-akcenat-tekst: {{ settings.accent_contrast_color }};
+    --boja-ocena: {{ settings.rating_color }};
+    --boja-zauzeto: {{ settings.busy_color }};
+
+    --boja-akcenat-tiha: {{ settings.accent_color | color_mix: settings.background_color, 10 }};
+    --boja-zauzeto-tiha: {{ settings.busy_color | color_mix: settings.background_color, 16 }};
+    --boja-pozadina-tamna: {{ settings.background_color | color_darken: 3 }};
+
+    --radijus-polja: {{ settings.input_corner_radius }}px;
+    --radijus-kartica: {{ settings.card_corner_radius }}px;
+
+    {% # Skeleton reset se oslanja na ova imena %}
+    --color-background: var(--boja-pozadina);
+    --color-foreground: var(--boja-tekst);
+    --style-border-radius-inputs: var(--radijus-polja);
   }
 {% endstyle %}

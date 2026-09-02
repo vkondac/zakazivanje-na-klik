@@ -311,9 +311,26 @@ Sajt je na srpskom, latinica.
 
 Skeleton nema dizajn — `critical.css` je 2.4KB reseta.
 
-Pravac: fotografija nosi stranicu, interfejs se sklanja. Topla neutralna podloga, jedan zasićen akcenat za CTA i aktivne filtere, karakterni font samo za naslove, sistemski stack za UI. Mobile-first, jer brief to izričito traži.
+Pravac je izveden iz same teme kroz `frontend-design` skill, u fazi 2.
 
-Konkretne odluke o tipografiji, paleti i ritmu donose se u fazi 2 kroz `frontend-design` skill.
+**Poreklo: vojvođanski salaš.** Krečeno belo zidova i vojvođansko plavo stolarije — ona zasićena kobalt boja na prozorima i kapijama panonskih sela. Regionalni artefakt, ne paleta iz kataloga.
+
+| Token | Vrednost | Uloga |
+|---|---|---|
+| kreč | `#F2F4F1` | pozadina — hladno kredasto belo |
+| modro | `#2B4C8C` | identitet: CTA, aktivni filteri, potvrde |
+| čađ | `#16202E` | tekst |
+| taraba | `#DCE2DC` | ivice |
+| žito | `#C98A2B` | samo zvezdice ocena |
+| vez | `#B22233` | samo zauzeti datumi |
+
+Naslovi: **Archivo** 700, zbijeno na `-0.022em` — grotesk iz jezika natpisa nad kafanama i salašima. Telo: **Karla**. Obe imaju Latin Extended, bez čega `š đ č ć ž` ne rade.
+
+**Potpis stranice: traka dostupnosti.** Svaka kartica nosi niz od 14 blokića za naredne dve nedelje — zauzeti u vez crvenoj, slobodni tihi. Pretraga se skenira po tome ko je slobodan, umesto profil po profil. Koristi `zauzeti_datumi`, koji ionako postoji.
+
+Mobile-first, jer brief to izričito traži.
+
+**Šta je izbegnuto i zašto:** prvi predlog je bio topla krem pozadina, Playfair Display i terakota. To je jedan od tri izgleda koje `frontend-design` navodi kao AI podrazumevane — pojavljuju se bez obzira na temu projekta.
 
 ---
 

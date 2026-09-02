@@ -1,96 +1,96 @@
-/** Critical CSS for the theme. This file is included on every page. */
+/** Critical CSS. Ucitava se na svakoj stranici. */
 
-/* Reset styles inspired by https://www.joshwcomeau.com/css/custom-css-reset/ */
-* {
-  box-sizing: border-box;
-  margin: 0;
-}
+/* ---------- Reset (Skeleton, nepromenjen) ---------- */
+* { box-sizing: border-box; margin: 0; }
 
-body {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  min-height: 100svh;
-}
+body { display: flex; flex-direction: column; margin: 0; min-height: 100svh; }
 
-html:has(dialog[scroll-lock][open], details[scroll-lock][open]) {
-  overflow: hidden;
-}
+html:has(dialog[scroll-lock][open], details[scroll-lock][open]) { overflow: hidden; }
 
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
+img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
 
-input,
-textarea,
-select {
-  font: inherit;
-  border-radius: var(--style-border-radius-inputs);
-}
+input, textarea, select { font: inherit; border-radius: var(--radijus-polja); }
 
-select {
-  background-color: var(--color-background);
-  color: currentcolor;
-}
+select { background-color: var(--boja-povrsina); color: currentcolor; }
 
-dialog {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-}
+dialog { background-color: var(--boja-povrsina); color: var(--boja-tekst); }
 
-p {
-  text-wrap: pretty;
-}
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
-
-p:empty {
-  display: none;
-}
+p { text-wrap: pretty; }
+p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+p:empty { display: none; }
 
 :is(p, h1, h2, h3, h4, h5, h6):first-child,
-:empty:first-child + :where(p, h1, h2, h3, h4, h5, h6) {
-  margin-block-start: 0;
-}
+:empty:first-child + :where(p, h1, h2, h3, h4, h5, h6) { margin-block-start: 0; }
 
 :is(p, h1, h2, h3, h4, h5, h6):last-child,
-:where(p, h1, h2, h3, h4, h5, h6) + :has(+ :empty:last-child) {
-  margin-block-end: 0;
+:where(p, h1, h2, h3, h4, h5, h6) + :has(+ :empty:last-child) { margin-block-end: 0; }
+
+/* ---------- Skala ---------- */
+:root {
+  --razmak-1: 0.25rem;
+  --razmak-2: 0.5rem;
+  --razmak-3: 0.75rem;
+  --razmak-4: 1rem;
+  --razmak-5: 1.5rem;
+  --razmak-6: 2rem;
+  --razmak-7: 3rem;
+  --razmak-8: 4.5rem;
+
+  --tekst-xs: 0.75rem;
+  --tekst-sm: 0.875rem;
+  --tekst-base: 1rem;
+  --tekst-lg: 1.125rem;
+  --tekst-xl: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
+  --tekst-2xl: clamp(1.5rem, 1.15rem + 1.6vw, 2.375rem);
+  --tekst-3xl: clamp(2rem, 1.3rem + 3.2vw, 3.75rem);
+
+  /* Senke nose plavu podtonu cadji, ne neutralno sivo. */
+  --senka-1: 0 1px 2px rgb(22 32 46 / 6%), 0 2px 8px rgb(22 32 46 / 4%);
+  --senka-2: 0 2px 6px rgb(22 32 46 / 8%), 0 14px 32px rgb(22 32 46 / 10%);
 }
 
-/** Theme styles below */
+/* ---------- Tipografija ---------- */
+/* Naslovi su grotesk, zbijeni i tesko postavljeni - jezik natpisa nad
+   kafanama i salasima, ne svadbenih casopisa. */
 body {
-  font-family: var(--font-primary--family);
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  font-family: var(--font-telo);
+  font-size: var(--tekst-base);
+  line-height: 1.6;
+  background-color: var(--boja-pozadina);
+  color: var(--boja-tekst);
+  -webkit-font-smoothing: antialiased;
 }
 
-/** Section layout utilities */
+h1, h2, h3, h4 {
+  font-family: var(--font-naslov);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
 
-/**
- * Setup a grid that enables both full-width and constrained layouts
- * depending on the class of the child elements.
- *
- * By default, a minimum content margin is set on the left and right
- * sides of the section and the content is centered in the viewport to
- * not exceed the maximum page width.
- *
- * When a child element is given the `full-width` class, it will span
- * the entire viewport.
- */
+h1 { font-size: var(--tekst-3xl); }
+h2 { font-size: var(--tekst-2xl); }
+h3 { font-size: var(--tekst-xl); }
+h4 { font-size: var(--tekst-lg); letter-spacing: -0.01em; }
+
+a { color: inherit; }
+
+.prigusen { color: var(--boja-prigusen); }
+.sitno { font-size: var(--tekst-sm); }
+
+/* Natpis: verzal, razmaknut, iznad naslova. Nosi kategoriju ili kvart -
+   podatak, ne ukras. */
+.natpis {
+  font-family: var(--font-naslov);
+  font-size: var(--tekst-xs);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--boja-prigusen);
+}
+
+/* ---------- Layout (Skeleton, nepromenjen) ---------- */
 .shopify-section {
   --content-width: min(
     calc(var(--page-width) - var(--page-margin) * 2),
@@ -99,19 +99,115 @@ body {
   --content-margin: minmax(var(--page-margin), 1fr);
   --content-grid: var(--content-margin) var(--content-width) var(--content-margin);
 
-  /* This is required to make <img> elements work as background images */
   position: relative;
   grid-template-columns: var(--content-grid);
   display: grid;
   width: 100%;
 }
 
-/* Child elements, by default, are constrained to the central column of the grid. */
-.shopify-section > * {
-  grid-column: 2;
+.shopify-section > * { grid-column: 2; }
+.shopify-section > .full-width { grid-column: 1 / -1; }
+
+/* ---------- Dugmad ---------- */
+.dugme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--razmak-2);
+  padding: var(--razmak-3) var(--razmak-5);
+  border: 1px solid transparent;
+  border-radius: var(--radijus-polja);
+  font-family: var(--font-naslov);
+  font-size: var(--tekst-sm);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
 }
 
-/* Child elements that use the full-width utility class span the entire viewport. */
-.shopify-section > .full-width {
-  grid-column: 1 / -1;
+.dugme--primarno {
+  background-color: var(--boja-akcenat);
+  color: var(--boja-akcenat-tekst);
+}
+
+.dugme--primarno:hover { background-color: color-mix(in oklab, var(--boja-akcenat) 86%, black); }
+
+.dugme--tiho {
+  background-color: transparent;
+  border-color: var(--boja-ivica);
+  color: var(--boja-tekst);
+}
+
+.dugme--tiho:hover { border-color: var(--boja-akcenat); color: var(--boja-akcenat); }
+
+.dugme:focus-visible,
+.polje:focus-visible,
+a:focus-visible,
+summary:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--boja-akcenat);
+  outline-offset: 2px;
+}
+
+/* ---------- Polja ---------- */
+.polje {
+  width: 100%;
+  padding: var(--razmak-3);
+  background-color: var(--boja-povrsina);
+  border: 1px solid var(--boja-ivica);
+  border-radius: var(--radijus-polja);
+  color: var(--boja-tekst);
+}
+
+.polje::placeholder { color: var(--boja-prigusen); }
+
+.polje-grupa {
+  display: flex;
+  flex-direction: column;
+  gap: var(--razmak-2);
+}
+
+.polje-grupa > label {
+  font-size: var(--tekst-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--boja-prigusen);
+}
+
+/* ---------- Oznake ---------- */
+.oznaka {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--razmak-1);
+  padding: var(--razmak-1) var(--razmak-2);
+  border: 1px solid var(--boja-ivica);
+  border-radius: 2px;
+  font-size: var(--tekst-xs);
+  white-space: nowrap;
+}
+
+.oznaka--zauzeto {
+  background-color: var(--boja-zauzeto-tiha);
+  border-color: transparent;
+  color: var(--boja-zauzeto);
+}
+
+/* ---------- Pristupacnost ---------- */
+.vizuelno-skriveno {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

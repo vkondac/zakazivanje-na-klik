@@ -19,6 +19,12 @@
         "id": "type_primary_font",
         "default": "work_sans_n4",
         "label": "t:general.primary"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "default": "archivo_n7",
+        "label": "t:general.heading"
       }
     ]
   },
@@ -59,14 +65,56 @@
       {
         "type": "color",
         "id": "background_color",
-        "default": "#FFFFFF",
+        "default": "#F2F4F1",
         "label": "t:labels.background"
       },
       {
         "type": "color",
         "id": "foreground_color",
-        "default": "#333333",
+        "default": "#16202E",
         "label": "t:labels.foreground"
+      },
+      {
+        "type": "color",
+        "id": "muted_color",
+        "default": "#5C6B7A",
+        "label": "t:labels.muted"
+      },
+      {
+        "type": "color",
+        "id": "surface_color",
+        "default": "#FFFFFF",
+        "label": "t:labels.surface"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "default": "#DCE2DC",
+        "label": "t:labels.border"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "default": "#2B4C8C",
+        "label": "t:labels.accent"
+      },
+      {
+        "type": "color",
+        "id": "accent_contrast_color",
+        "default": "#FFFFFF",
+        "label": "t:labels.accent_contrast"
+      },
+      {
+        "type": "color",
+        "id": "rating_color",
+        "default": "#C98A2B",
+        "label": "t:labels.rating"
+      },
+      {
+        "type": "color",
+        "id": "busy_color",
+        "default": "#B22233",
+        "label": "t:labels.busy"
       },
       {
         "type": "range",
@@ -77,6 +125,16 @@
         "unit": "px",
         "label": "t:labels.input_corner_radius",
         "default": 4
+      },
+      {
+        "type": "range",
+        "id": "card_corner_radius",
+        "min": 0,
+        "max": 20,
+        "step": 2,
+        "unit": "px",
+        "label": "t:labels.card_corner_radius",
+        "default": 6
       }
     ]
   }
