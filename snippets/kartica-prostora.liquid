@@ -1,0 +1,174 @@
+{% doc %}
+  Renders one venue card, used by the results grid and the featured section.
+
+  Exposes the data attributes the client-side date filter and rating sort
+  rely on: `data-ocena` and `data-zauzeti`.
+
+  @param {object} prostor - The venue product
+  @param {boolean} [poredjenje] - Render the compare checkbox
+
+  @example
+  {% render 'kartica-prostora', prostor: product, poredjenje: true %}
+{% enddoc %}
+
+{% liquid
+  assign polja = prostor.metafields.prostor
+  assign ocena = polja.ocena.value.rating
+  assign cena = prostor.price | money
+%}
+
+<article
+  class="kartica"
+  data-prostor
+  data-handle="{{ prostor.handle }}"
+  data-ocena="{{ ocena | default: 0 }}"
+  data-zauzeti="{% render 'zauzeti-datumi', prostor: prostor %}"
+>
+  <a class="kartica__link" href="{{ prostor.url }}" data-kartica-link>
+    <div class="kartica__slika">
+      {% if prostor.featured_image %}
+        {{
+          prostor.featured_image
+          | image_url: width: 800
+          | image_tag:
+            loading: 'lazy',
+            widths: '400, 600, 800',
+            sizes: '(min-width: 60rem) 24rem, 92vw',
+            alt: prostor.title
+        }}
+      {% endif %}
+
+      <span class="oznaka oznaka--zauzeto kartica__zauzeto" data-kartica-zauzeto hidden>
+        {{ 'kartica.zauzeto' | t }}
+      </span>
+    </div>
+
+    <div class="kartica__telo">
+      <p class="natpis">{{ prostor.type }} &middot; {{ polja.kvart.value }}</p>
+
+      <h3 class="kartica__naziv">{{ prostor.title }}</h3>
+
+      <p class="kartica__meta prigusen sitno">
+        {% render 'ikonica', naziv: 'gosti' %}
+        {{ 'kartica.kapacitet' | t: min: polja.kapacitet_min.value, max: polja.kapacitet_max.value }}
+      </p>
+
+      {% if ocena %}
+        <p class="kartica__ocena">
+          {% render 'zvezdice', ocena: ocena, tekst: ocena %}
+          <span class="prigusen sitno">
+            {{ 'kartica.broj_recenzija' | t: broj: polja.broj_recenzija.value }}
+          </span>
+        </p>
+      {% endif %}
+
+      {% render 'traka-dostupnosti', prostor: prostor %}
+
+      <p class="kartica__cena">
+        <strong>{{ 'kartica.od_cene' | t: cena: cena }}</strong>
+        <span class="prigusen sitno">{{ 'opste.po_osobi' | t }}</span>
+      </p>
+    </div>
+  </a>
+
+  {% if poredjenje %}
+    <label class="kartica__uporedi sitno">
+      <input type="checkbox" data-poredi value="{{ prostor.handle }}">
+      <span>{{ 'kartica.uporedi' | t }}</span>
+    </label>
+  {% endif %}
+</article>
+
+{% stylesheet %}
+  .kartica {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--boja-povrsina);
+    border: 1px solid var(--boja-ivica);
+    border-radius: var(--radijus-kartica);
+    overflow: hidden;
+    transition: box-shadow 150ms ease, transform 150ms ease;
+  }
+
+  .kartica:hover {
+    box-shadow: var(--senka-2);
+    transform: translateY(-2px);
+  }
+
+  .kartica[data-prigusen] {
+    opacity: 0.45;
+    filter: saturate(0.35);
+  }
+
+  .kartica__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .kartica__slika {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background-color: var(--boja-pozadina-tamna);
+  }
+
+  .kartica__slika img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .kartica__zauzeto {
+    position: absolute;
+    inset-block-start: var(--razmak-3);
+    inset-inline-start: var(--razmak-3);
+    background-color: var(--boja-povrsina);
+  }
+
+  .kartica__telo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--razmak-2);
+    padding: var(--razmak-4);
+    flex-grow: 1;
+  }
+
+  .kartica__naziv {
+    font-size: var(--tekst-lg);
+  }
+
+  .kartica__meta,
+  .kartica__ocena {
+    display: flex;
+    align-items: center;
+    gap: var(--razmak-2);
+    margin: 0;
+  }
+
+  .kartica__cena {
+    margin-block-start: auto;
+    padding-block-start: var(--razmak-3);
+    border-top: 1px solid var(--boja-ivica);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .kartica__cena strong {
+    font-family: var(--font-naslov);
+  }
+
+  .kartica__uporedi {
+    display: flex;
+    align-items: center;
+    gap: var(--razmak-2);
+    padding: var(--razmak-3) var(--razmak-4);
+    border-top: 1px solid var(--boja-ivica);
+    cursor: pointer;
+  }
+
+  .kartica__uporedi input {
+    accent-color: var(--boja-akcenat);
+  }
+{% endstylesheet %}

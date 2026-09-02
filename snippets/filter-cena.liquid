@@ -1,0 +1,81 @@
+{% doc %}
+  Renders the native price filter as two numeric inputs.
+
+  Shopify returns price filter values in minor units. They are divided by
+  100 rather than passed through `money_without_currency`, because that
+  filter applies the shop's locale separators and a value like "1.800,00"
+  is not accepted by a number input.
+
+  @param {object} filter - The `price_range` filter from `collection.filters`
+
+  @example
+  {% render 'filter-cena', filter: filter %}
+{% enddoc %}
+
+{% liquid
+  assign otvoren = false
+
+  if filter.min_value.value
+    assign otvoren = true
+    assign od = filter.min_value.value | divided_by: 100
+  endif
+
+  if filter.max_value.value
+    assign otvoren = true
+    assign gornja = filter.max_value.value | divided_by: 100
+  endif
+
+  assign maksimum = filter.range_max | divided_by: 100
+%}
+
+<details
+  class="filter-grupa"
+  {% if otvoren %}
+    open
+  {% endif %}
+>
+  <summary class="filter-grupa__naslov">
+    <span>{{ filter.label }}</span>
+  </summary>
+
+  <div class="filter-cena">
+    <div class="polje-grupa">
+      <label for="cena-od">{{ 'filteri.cena_od' | t }}</label>
+      <input
+        class="polje"
+        id="cena-od"
+        type="number"
+        inputmode="numeric"
+        name="{{ filter.min_value.param_name }}"
+        value="{{ od }}"
+        min="0"
+        max="{{ maksimum }}"
+        placeholder="0"
+      >
+    </div>
+
+    <div class="polje-grupa">
+      <label for="cena-do">{{ 'filteri.cena_do' | t }}</label>
+      <input
+        class="polje"
+        id="cena-do"
+        type="number"
+        inputmode="numeric"
+        name="{{ filter.max_value.param_name }}"
+        value="{{ gornja }}"
+        min="0"
+        max="{{ maksimum }}"
+        placeholder="{{ maksimum }}"
+      >
+    </div>
+  </div>
+</details>
+
+{% stylesheet %}
+  .filter-cena {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--razmak-3);
+    margin-block: var(--razmak-3);
+  }
+{% endstylesheet %}

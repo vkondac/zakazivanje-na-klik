@@ -1,0 +1,343 @@
+{% paginate collection.products by section.settings.po_strani %}
+  <div class="rezultati">
+    <header class="rezultati__zaglavlje">
+      <div>
+        <p class="natpis">{{ collection.title }}</p>
+        <h1>{{ 'rezultati.naslov' | t }}</h1>
+      </div>
+
+      <p class="prigusen" data-rezultati-broj>
+        {{ 'rezultati.broj' | t: broj: paginate.items }}
+      </p>
+    </header>
+
+    {% render 'aktivni-filteri', kolekcija: collection %}
+
+    <div class="rezultati__telo">
+      <aside class="rezultati__filteri">
+        <form
+          class="rezultati__forma"
+          id="filteri-forma"
+          method="get"
+          action="{{ collection.url }}"
+          data-filteri-forma
+        >
+          <input type="hidden" name="datum" value="" data-filter-datum>
+
+          <h2 class="rezultati__filteri-naslov">
+            {% render 'ikonica', naziv: 'filter' %}
+            {{ 'rezultati.filteri' | t }}
+          </h2>
+
+          {% for filter in collection.filters %}
+            {% case filter.type %}
+              {% when 'price_range' %}
+                {% render 'filter-cena', filter: filter %}
+              {% else %}
+                {% render 'filter-grupa', filter: filter %}
+            {% endcase %}
+          {% endfor %}
+
+          <div class="rezultati__akcije">
+            <button type="submit" class="dugme dugme--primarno">
+              {{ 'rezultati.primeni' | t }}
+            </button>
+            <a class="dugme dugme--tiho" href="{{ collection.url }}">
+              {{ 'rezultati.ponisti_sve' | t }}
+            </a>
+          </div>
+        </form>
+      </aside>
+
+      <div class="rezultati__glavno">
+        <div class="rezultati__alatke">
+          <p
+            class="rezultati__poruka"
+            role="status"
+            data-datum-poruka
+            data-sablon="{{ 'rezultati.zauzeto_obavestenje' | t: prikazano: 'PRIKAZANO', ukupno: 'UKUPNO', zauzeto: 'ZAUZETO', datum: 'DATUM' | escape }}"
+            hidden
+          ></p>
+
+          <div class="rezultati__sortiranje">
+            <label class="vizuelno-skriveno" for="sort-shopify">{{ 'rezultati.sortiraj' | t }}</label>
+            <select
+              class="polje"
+              id="sort-shopify"
+              name="sort_by"
+              form="filteri-forma"
+              data-sort-shopify
+            >
+              {% for opcija in collection.sort_options %}
+                <option
+                  value="{{ opcija.value }}"
+                  {% if opcija.value == collection.sort_by %}
+                    selected
+                  {% endif %}
+                >
+                  {{ opcija.name }}
+                </option>
+              {% endfor %}
+            </select>
+
+            <button
+              type="button"
+              class="dugme dugme--tiho"
+              data-sort-ocena
+              aria-pressed="false"
+            >
+              {{ 'rezultati.sortiraj_ocena' | t }}
+            </button>
+          </div>
+        </div>
+
+        {% if paginate.items == 0 %}
+          <div class="rezultati__prazno">
+            <h2>{{ 'rezultati.prazno_naslov' | t }}</h2>
+            <p class="prigusen">{{ 'rezultati.prazno_tekst' | t }}</p>
+            <a class="dugme dugme--primarno" href="{{ collection.url }}">
+              {{ 'rezultati.ponisti_sve' | t }}
+            </a>
+          </div>
+        {% else %}
+          <div class="rezultati__grid" data-rezultati-grid>
+            {% for prostor in collection.products %}
+              {% render 'kartica-prostora', prostor: prostor, poredjenje: true %}
+            {% endfor %}
+          </div>
+
+          {% if paginate.pages > 1 %}
+            <nav class="rezultati__paginacija">{{ paginate | default_pagination }}</nav>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endpaginate %}
+
+{% stylesheet %}
+  .rezultati {
+    padding-block: var(--razmak-6);
+  }
+
+  .rezultati__zaglavlje {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--razmak-4);
+  }
+
+  .rezultati__telo {
+    display: grid;
+    grid-template-columns: 18rem 1fr;
+    gap: var(--razmak-6);
+    align-items: start;
+  }
+
+  .rezultati__filteri {
+    position: sticky;
+    top: 5.5rem;
+    max-height: calc(100svh - 7.5rem);
+    overflow-y: auto;
+    padding: var(--razmak-4);
+    background-color: var(--boja-povrsina);
+    border: 1px solid var(--boja-ivica);
+    border-radius: var(--radijus-kartica);
+  }
+
+  .rezultati__filteri-naslov {
+    display: flex;
+    align-items: center;
+    gap: var(--razmak-2);
+    margin-block-end: var(--razmak-2);
+    font-size: var(--tekst-xs);
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--boja-prigusen);
+  }
+
+  .rezultati__akcije {
+    display: flex;
+    flex-direction: column;
+    gap: var(--razmak-2);
+    margin-block-start: var(--razmak-4);
+  }
+
+  .rezultati__akcije .dugme {
+    width: 100%;
+  }
+
+  .rezultati__alatke {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--razmak-3);
+    margin-block-end: var(--razmak-4);
+  }
+
+  .rezultati__poruka {
+    flex-basis: 100%;
+    padding: var(--razmak-3);
+    border-left: 3px solid var(--boja-akcenat);
+    background-color: var(--boja-akcenat-tiha);
+    font-size: var(--tekst-sm);
+  }
+
+  .rezultati__sortiranje {
+    display: flex;
+    align-items: center;
+    gap: var(--razmak-2);
+  }
+
+  .rezultati__sortiranje .polje {
+    width: auto;
+    font-size: var(--tekst-sm);
+  }
+
+  .rezultati__sortiranje [aria-pressed='true'] {
+    background-color: var(--boja-akcenat);
+    border-color: var(--boja-akcenat);
+    color: var(--boja-akcenat-tekst);
+  }
+
+  .rezultati__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: var(--razmak-5);
+  }
+
+  .rezultati__prazno {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--razmak-4);
+    padding: var(--razmak-7) var(--razmak-5);
+    background-color: var(--boja-povrsina);
+    border: 1px dashed var(--boja-ivica);
+    border-radius: var(--radijus-kartica);
+  }
+
+  .rezultati__paginacija {
+    margin-block-start: var(--razmak-6);
+    text-align: center;
+  }
+
+  @media (max-width: 60rem) {
+    .rezultati__telo {
+      grid-template-columns: 1fr;
+    }
+
+    .rezultati__filteri {
+      position: static;
+      max-height: none;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    function pokreni() {
+      const grid = document.querySelector('[data-rezultati-grid]');
+      if (!grid) return;
+
+      const kartice = Array.prototype.slice.call(grid.querySelectorAll('[data-prostor]'));
+      const datum = new URLSearchParams(window.location.search).get('datum');
+
+      /* Forma mora da ponese datum dalje, inace ga sledeci submit filtera pojede. */
+      const skriveno = document.querySelector('[data-filter-datum]');
+      if (skriveno) skriveno.value = datum || '';
+
+      function srpskiDatum(iso) {
+        const delovi = iso.split('-');
+        return Number(delovi[2]) + '.' + Number(delovi[1]) + '.' + delovi[0] + '.';
+      }
+
+      function nosiDatumDalje() {
+        kartice.forEach(function (kartica) {
+          const veza = kartica.querySelector('[data-kartica-link]');
+          if (!veza) return;
+          const adresa = new URL(veza.getAttribute('href'), window.location.origin);
+          adresa.searchParams.set('datum', datum);
+          veza.setAttribute('href', adresa.pathname + adresa.search);
+        });
+      }
+
+      function prigusiZauzete() {
+        let zauzeto = 0;
+
+        kartice.forEach(function (kartica) {
+          const lista = (kartica.dataset.zauzeti || '').split(',').filter(Boolean);
+          const jesteZauzet = lista.indexOf(datum) !== -1;
+
+          kartica.toggleAttribute('data-prigusen', jesteZauzet);
+          const oznaka = kartica.querySelector('[data-kartica-zauzeto]');
+          if (oznaka) oznaka.hidden = !jesteZauzet;
+          if (jesteZauzet) zauzeto += 1;
+        });
+
+        const poruka = document.querySelector('[data-datum-poruka]');
+        if (!poruka) return;
+
+        poruka.textContent = poruka.dataset.sablon
+          .replace('PRIKAZANO', String(kartice.length - zauzeto))
+          .replace('UKUPNO', String(kartice.length))
+          .replace('ZAUZETO', String(zauzeto))
+          .replace('DATUM', srpskiDatum(datum));
+        poruka.hidden = false;
+      }
+
+      if (datum) {
+        nosiDatumDalje();
+        prigusiZauzete();
+      }
+
+      /* Shopify ne nudi sortiranje po oceni. Ovo preredja samo tekucu stranu
+         rezultata i to se izricito navodi u dokumentaciji projekta. */
+      const dugme = document.querySelector('[data-sort-ocena]');
+      if (!dugme) return;
+
+      const izvorniPoredak = kartice.slice();
+
+      dugme.addEventListener('click', function () {
+        const bilo = dugme.getAttribute('aria-pressed') === 'true';
+        dugme.setAttribute('aria-pressed', String(!bilo));
+
+        const poredak = bilo
+          ? izvorniPoredak
+          : kartice.slice().sort(function (a, b) {
+              return Number(b.dataset.ocena) - Number(a.dataset.ocena);
+            });
+
+        poredak.forEach(function (kartica) {
+          grid.appendChild(kartica);
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', pokreni);
+    } else {
+      pokreni();
+    }
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.rezultati_prostora",
+  "settings": [
+    {
+      "type": "range",
+      "id": "po_strani",
+      "label": "t:labels.po_strani",
+      "min": 12,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    }
+  ]
+}
+{% endschema %}

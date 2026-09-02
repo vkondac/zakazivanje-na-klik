@@ -1,0 +1,92 @@
+{% doc %}
+  Renders every active filter as a chip that removes itself when clicked.
+
+  Price is handled separately: a `price_range` filter reports its state
+  through `min_value` / `max_value`, not through `active_values`.
+
+  @param {object} kolekcija - The current collection
+
+  @example
+  {% render 'aktivni-filteri', kolekcija: collection %}
+{% enddoc %}
+
+{% liquid
+  assign ima_aktivnih = false
+
+  for filter in kolekcija.filters
+    if filter.active_values.size > 0
+      assign ima_aktivnih = true
+    endif
+
+    if filter.type == 'price_range'
+      if filter.min_value.value
+        assign ima_aktivnih = true
+      endif
+      if filter.max_value.value
+        assign ima_aktivnih = true
+      endif
+    endif
+  endfor
+%}
+
+{% if ima_aktivnih %}
+  <div class="aktivni-filteri">
+    <h2 class="vizuelno-skriveno">{{ 'rezultati.aktivni_filteri' | t }}</h2>
+
+    {% for filter in kolekcija.filters %}
+      {% for vrednost in filter.active_values %}
+        <a class="cip" href="{{ vrednost.url_to_remove }}">
+          <span>{{ vrednost.label }}</span>
+          {% render 'ikonica', naziv: 'iks' %}
+        </a>
+      {% endfor %}
+
+      {% if filter.type == 'price_range' %}
+        {% if filter.min_value.value or filter.max_value.value %}
+          <a class="cip" href="{{ filter.url_to_remove }}">
+            <span>{{ filter.label }}</span>
+            {% render 'ikonica', naziv: 'iks' %}
+          </a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    <a class="cip cip--ponisti" href="{{ kolekcija.url }}">
+      {{ 'rezultati.ponisti_sve' | t }}
+    </a>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .aktivni-filteri {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--razmak-2);
+    margin-block: var(--razmak-4);
+  }
+
+  .cip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--razmak-2);
+    padding: var(--razmak-2) var(--razmak-3);
+    border: 1px solid var(--boja-akcenat);
+    border-radius: 999px;
+    background-color: var(--boja-akcenat-tiha);
+    color: var(--boja-tekst);
+    font-size: var(--tekst-sm);
+    text-decoration: none;
+  }
+
+  .cip .ikonica {
+    width: 0.8em;
+    height: 0.8em;
+    color: var(--boja-akcenat);
+  }
+
+  .cip--ponisti {
+    background-color: transparent;
+    border-color: var(--boja-ivica);
+    color: var(--boja-prigusen);
+  }
+{% endstylesheet %}

@@ -1,0 +1,16 @@
+{% doc %}
+  Outputs a venue's booked dates as a comma-separated YYYY-MM-DD list.
+
+  Used inside an HTML attribute, so it must print the list and nothing else.
+  The `json` filter is deliberately avoided: the metafield holds date objects
+  whose JSON form is not guaranteed to be YYYY-MM-DD.
+
+  @param {object} prostor - A venue product
+
+  @example
+  <article data-zauzeti="{% render 'zauzeti-datumi', prostor: product %}"></article>
+{% enddoc %}
+{%- for datum in prostor.metafields.prostor.zauzeti_datumi.value -%}
+  {{- datum | date: '%Y-%m-%d' -}}
+  {%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}

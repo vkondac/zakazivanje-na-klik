@@ -1,0 +1,48 @@
+{% doc %}
+  Renders a 1-5 star rating with an accessible label.
+
+  @param {number} ocena - Rating value between 1 and 5
+  @param {string} [tekst] - Optional visible label rendered next to the stars
+
+  @example
+  {% render 'zvezdice', ocena: 4.6, tekst: '4.6' %}
+{% enddoc %}
+
+{% liquid
+  assign pune = ocena | round
+%}
+
+<span class="zvezdice" role="img" aria-label="{{ ocena }}/5">
+  {% for broj in (1..5) %}
+    {% if broj <= pune %}
+      {% render 'ikonica', naziv: 'zvezda' %}
+    {% else %}
+      {% render 'ikonica', naziv: 'zvezda-prazna' %}
+    {% endif %}
+  {% endfor %}
+
+  {% if tekst %}
+    <span class="zvezdice__tekst">{{ tekst }}</span>
+  {% endif %}
+</span>
+
+{% stylesheet %}
+  .zvezdice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.08em;
+    color: var(--boja-ocena);
+  }
+
+  .zvezdice .ikonica {
+    width: 0.95em;
+    height: 0.95em;
+  }
+
+  .zvezdice__tekst {
+    margin-inline-start: var(--razmak-2);
+    color: var(--boja-tekst);
+    font-size: var(--tekst-sm);
+    font-weight: 700;
+  }
+{% endstylesheet %}

@@ -1,77 +1,205 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
+<header
+  class="zaglavlje full-width"
+  data-poruka-maks="{{ 'poredjenje.maks_dostignut' | t | escape }}"
+>
+  <div class="zaglavlje__unutra">
+    <a class="zaglavlje__logo" href="{{ routes.root_url }}">{{ shop.name }}</a>
 
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
+    <nav class="zaglavlje__meni" aria-label="{{ 'zaglavlje.meni' | t }}">
+      {% for link in section.settings.menu.links %}
+        <a
+          href="{{ link.url }}"
+          {% if link.active %}
+            aria-current="page"
+          {% endif %}
+        >
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    </nav>
 
-  <div class="header__icons">
-    {% if shop.customer_accounts_enabled %}
-      <shopify-account menu="{{ section.settings.customer_account_menu }}">
-        {{ 'icon-account.svg' | inline_asset_content }}
-      </shopify-account>
-    {% endif %}
-
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
-
-      {{ 'icon-cart.svg' | inline_asset_content }}
+    <a
+      class="zaglavlje__poredjenje dugme dugme--tiho"
+      href="{{ section.settings.poredjenje_stranica.url | default: '/pages/poredjenje' }}"
+      data-poredjenje-dugme
+      data-sablon="{{ 'zaglavlje.poredjenje_sa_brojem' | t: broj: 'BROJ' | escape }}"
+      hidden
+    >
+      {% render 'ikonica', naziv: 'poredjenje' %}
+      <span data-poredjenje-tekst>{{ 'zaglavlje.poredjenje' | t }}</span>
     </a>
   </div>
+
+  <p class="zaglavlje__poruka" role="status" data-poredjenje-poruka hidden></p>
 </header>
 
 {% stylesheet %}
-  header {
-    height: 5rem;
+  .zaglavlje {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--boja-povrsina);
+    border-bottom: 1px solid var(--boja-ivica);
+  }
+
+  .zaglavlje__unutra {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: var(--razmak-5);
+    width: var(--content-width);
+    margin-inline: auto;
+    min-height: 4.25rem;
   }
-  header a {
-    position: relative;
+
+  .zaglavlje__logo {
+    margin-inline-end: auto;
+    font-family: var(--font-naslov);
+    font-size: var(--tekst-lg);
+    font-weight: 700;
+    letter-spacing: -0.02em;
     text-decoration: none;
-    color: var(--color-foreground);
+  }
+
+  .zaglavlje__meni {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: var(--razmak-5);
   }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
+
+  .zaglavlje__meni a {
+    padding-block: var(--razmak-2);
+    border-bottom: 2px solid transparent;
+    font-size: var(--tekst-sm);
+    text-decoration: none;
   }
-  header svg {
-    width: 2rem;
+
+  .zaglavlje__meni a:hover {
+    color: var(--boja-akcenat);
   }
-  header .header__menu,
-  header .header__icons {
-    display: flex;
-    gap: 1rem;
+
+  .zaglavlje__meni a[aria-current='page'] {
+    border-bottom-color: var(--boja-akcenat);
+  }
+
+  .zaglavlje__poruka {
+    width: var(--content-width);
+    margin-inline: auto;
+    padding-block: var(--razmak-2);
+    color: var(--boja-zauzeto);
+    font-size: var(--tekst-sm);
+  }
+
+  @media (max-width: 46rem) {
+    .zaglavlje__unutra {
+      flex-wrap: wrap;
+      gap: var(--razmak-3);
+      padding-block: var(--razmak-3);
+    }
+
+    .zaglavlje__meni {
+      order: 3;
+      width: 100%;
+      gap: var(--razmak-4);
+    }
   }
 {% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    const KLJUC = 'poredjenje';
+    const MAKS = 4;
+
+    function ucitaj() {
+      try {
+        const sirovo = JSON.parse(localStorage.getItem(KLJUC));
+        return Array.isArray(sirovo) ? sirovo.slice(0, MAKS) : [];
+      } catch (greska) {
+        return [];
+      }
+    }
+
+    function sacuvaj(lista) {
+      try {
+        localStorage.setItem(KLJUC, JSON.stringify(lista));
+      } catch (greska) {
+        /* Privatni rezim ili pun storage: poredjenje radi do refresh-a. */
+      }
+    }
+
+    function poruka(tekst) {
+      const element = document.querySelector('[data-poredjenje-poruka]');
+      if (!element) return;
+      element.textContent = tekst;
+      element.hidden = false;
+      window.clearTimeout(Number(element.dataset.tajmer));
+      element.dataset.tajmer = String(window.setTimeout(function () {
+        element.hidden = true;
+      }, 4000));
+    }
+
+    function osvezi() {
+      const lista = ucitaj();
+
+      const dugme = document.querySelector('[data-poredjenje-dugme]');
+      if (dugme) {
+        dugme.hidden = lista.length === 0;
+        const tekst = dugme.querySelector('[data-poredjenje-tekst]');
+        if (tekst) tekst.textContent = dugme.dataset.sablon.replace('BROJ', String(lista.length));
+      }
+
+      document.querySelectorAll('[data-poredi]').forEach(function (polje) {
+        polje.checked = lista.indexOf(polje.value) !== -1;
+      });
+
+      document.dispatchEvent(new CustomEvent('poredjenje:promena', { detail: { lista: lista } }));
+    }
+
+    document.addEventListener('change', function (dogadjaj) {
+      const polje = dogadjaj.target.closest('[data-poredi]');
+      if (!polje) return;
+
+      let lista = ucitaj();
+
+      if (polje.checked) {
+        if (lista.length >= MAKS) {
+          polje.checked = false;
+          const zaglavlje = document.querySelector('.zaglavlje');
+          poruka(zaglavlje ? zaglavlje.dataset.porukaMaks : '');
+          return;
+        }
+        if (lista.indexOf(polje.value) === -1) lista.push(polje.value);
+      } else {
+        lista = lista.filter(function (handle) {
+          return handle !== polje.value;
+        });
+      }
+
+      sacuvaj(lista);
+      osvezi();
+    });
+
+    document.addEventListener('poredjenje:ukloni', function (dogadjaj) {
+      sacuvaj(ucitaj().filter(function (handle) {
+        return handle !== dogadjaj.detail.handle;
+      }));
+      osvezi();
+    });
+
+    window.Poredjenje = { ucitaj: ucitaj, sacuvaj: sacuvaj, osvezi: osvezi };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', osvezi);
+    } else {
+      osvezi();
+    }
+  })();
+{% endjavascript %}
 
 {% schema %}
 {
   "name": "t:general.header",
   "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu"
-    },
-    {
-      "type": "link_list",
-      "id": "customer_account_menu",
-      "label": "t:labels.customer_account_menu",
-      "default": "customer-account-main-menu"
-    }
+    { "type": "link_list", "id": "menu", "label": "t:labels.menu" },
+    { "type": "page", "id": "poredjenje_stranica", "label": "t:general.poredjenje" }
   ]
 }
 {% endschema %}

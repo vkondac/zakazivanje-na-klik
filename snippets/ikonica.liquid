@@ -1,0 +1,42 @@
+{% doc %}
+  Renders an inline SVG icon.
+
+  @param {string} naziv - One of: zvezda, zvezda-prazna, poredjenje, lokacija,
+    gosti, kalendar, filter, kvacica, iks, strelica-levo, strelica-desno
+
+  @example
+  {% render 'ikonica', naziv: 'lokacija' %}
+{% enddoc %}
+
+{% case naziv %}
+  {% when 'zvezda' %}
+    <svg class="ikonica" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 5.9 6.6.95-4.8 4.65 1.15 6.5L12 17.4l-5.85 3.1 1.15-6.5L2.5 9.35l6.6-.95z"/></svg>
+  {% when 'zvezda-prazna' %}
+    <svg class="ikonica" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2.5l2.9 5.9 6.6.95-4.8 4.65 1.15 6.5L12 17.4l-5.85 3.1 1.15-6.5L2.5 9.35l6.6-.95z"/></svg>
+  {% when 'poredjenje' %}
+    <svg class="ikonica" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 4h6v16H4zM14 4h6v16h-6z"/></svg>
+  {% when 'lokacija' %}
+    <svg class="ikonica" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21.5s6.5-5.4 6.5-10.5a6.5 6.5 0 1 0-13 0c0 5.1 6.5 10.5 6.5 10.5z"/><circle cx="12" cy="10.5" r="2.5"/></svg>
+  {% when 'gosti' %}
+    <svg class="ikonica" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15.5 20v-1.5a4 4 0 0 0-4-4h-5a4 4 0 0 0-4 4V20"/><circle cx="9" cy="7" r="3.5"/><path d="M21.5 20v-1.5a4 4 0 0 0-3-3.87M16 3.63a4 4 0 0 1 0 7.75"/></svg>
+  {% when 'kalendar' %}
+    <svg class="ikonica" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 3v3M17 3v3M3.5 9.5h17"/><rect x="3.5" y="5.5" width="17" height="15" rx="1.5"/></svg>
+  {% when 'filter' %}
+    <svg class="ikonica" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+  {% when 'kvacica' %}
+    <svg class="ikonica" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
+  {% when 'iks' %}
+    <svg class="ikonica" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  {% when 'strelica-levo' %}
+    <svg class="ikonica" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+  {% when 'strelica-desno' %}
+    <svg class="ikonica" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+{% endcase %}
+
+{% stylesheet %}
+  .ikonica {
+    width: 1.15em;
+    height: 1.15em;
+    flex-shrink: 0;
+  }
+{% endstylesheet %}

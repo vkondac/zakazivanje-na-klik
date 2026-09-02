@@ -1,0 +1,134 @@
+{% doc %}
+  Renders one list-type storefront filter as a checkbox group.
+
+  The inputs are named after the filter's own param names, so the enclosing
+  form submits real Shopify filter URLs with no JavaScript involved.
+
+  @param {object} filter - A filter object from `collection.filters`
+
+  @example
+  {% render 'filter-grupa', filter: filter %}
+{% enddoc %}
+
+<details
+  class="filter-grupa"
+  {% if filter.active_values.size > 0 %}
+    open
+  {% endif %}
+>
+  <summary class="filter-grupa__naslov">
+    <span>{{ filter.label }}</span>
+
+    {% if filter.active_values.size > 0 %}
+      <span class="filter-grupa__broj">{{ filter.active_values.size }}</span>
+    {% endif %}
+  </summary>
+
+  <ul class="filter-grupa__lista" role="list">
+    {% for vrednost in filter.values %}
+      <li>
+        <label class="filter-grupa__stavka">
+          <input
+            type="checkbox"
+            name="{{ vrednost.param_name }}"
+            value="{{ vrednost.value }}"
+            {% if vrednost.active %}
+              checked
+            {% endif %}
+            {% if vrednost.count == 0 %}
+              {% unless vrednost.active %}
+                disabled
+              {% endunless %}
+            {% endif %}
+          >
+          <span class="filter-grupa__oznaka">{{ vrednost.label }}</span>
+          <span class="filter-grupa__count prigusen sitno">{{ vrednost.count }}</span>
+        </label>
+      </li>
+    {% endfor %}
+  </ul>
+</details>
+
+{% stylesheet %}
+  .filter-grupa {
+    border-bottom: 1px solid var(--boja-ivica);
+    padding-block: var(--razmak-3);
+  }
+
+  .filter-grupa__naslov {
+    display: flex;
+    align-items: center;
+    gap: var(--razmak-2);
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-naslov);
+    font-size: var(--tekst-sm);
+    font-weight: 700;
+  }
+
+  .filter-grupa__naslov::-webkit-details-marker {
+    display: none;
+  }
+
+  .filter-grupa__naslov::after {
+    content: '';
+    margin-inline-start: auto;
+    width: 0.45em;
+    height: 0.45em;
+    border-right: 2px solid currentcolor;
+    border-bottom: 2px solid currentcolor;
+    transform: rotate(45deg);
+    transition: transform 120ms ease;
+  }
+
+  .filter-grupa[open] .filter-grupa__naslov::after {
+    transform: rotate(-135deg);
+  }
+
+  .filter-grupa__broj {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.4em;
+    height: 1.4em;
+    border-radius: 999px;
+    background-color: var(--boja-akcenat);
+    color: var(--boja-akcenat-tekst);
+    font-size: var(--tekst-xs);
+  }
+
+  .filter-grupa__lista {
+    display: flex;
+    flex-direction: column;
+    gap: var(--razmak-2);
+    list-style: none;
+    margin: var(--razmak-3) 0 var(--razmak-2);
+    padding: 0;
+    max-height: 17rem;
+    overflow-y: auto;
+  }
+
+  .filter-grupa__stavka {
+    display: flex;
+    align-items: center;
+    gap: var(--razmak-2);
+    cursor: pointer;
+    font-size: var(--tekst-sm);
+  }
+
+  .filter-grupa__stavka input {
+    accent-color: var(--boja-akcenat);
+  }
+
+  .filter-grupa__stavka:has(input:disabled) {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .filter-grupa__oznaka {
+    flex-grow: 1;
+  }
+
+  .filter-grupa__count {
+    font-variant-numeric: tabular-nums;
+  }
+{% endstylesheet %}

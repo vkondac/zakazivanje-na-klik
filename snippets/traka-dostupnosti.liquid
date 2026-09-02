@@ -1,0 +1,105 @@
+{% doc %}
+  Renders the 14-day availability strip: one block per day, booked days filled.
+
+  This is what makes the results grid scannable — you find a free venue by
+  looking down the column instead of opening each profile.
+
+  The strip is drawn in JavaScript, not Liquid, on purpose. Stepping through
+  days in Liquid means adding 86400 seconds at a time, which duplicates or
+  skips a day across the DST change on the last Sunday in October. Browser
+  date arithmetic has no such problem.
+
+  @param {object} prostor - A venue product
+
+  @example
+  {% render 'traka-dostupnosti', prostor: product %}
+{% enddoc %}
+
+<div
+  class="traka"
+  data-traka
+  data-zauzeti="{% render 'zauzeti-datumi', prostor: prostor %}"
+  data-naslov="{{ 'kartica.traka_naslov' | t | escape }}"
+  data-slobodno="{{ 'kartica.traka_slobodno' | t | escape }}"
+  data-zauzeto="{{ 'kartica.traka_zauzeto' | t | escape }}"
+></div>
+
+{% stylesheet %}
+  .traka {
+    display: flex;
+    gap: 2px;
+    height: 1.4rem;
+  }
+
+  .traka__dan {
+    flex: 1;
+    border: 1px solid var(--boja-ivica);
+    border-radius: 1px;
+    background-color: var(--boja-pozadina);
+  }
+
+  .traka__dan--zauzet {
+    background-color: var(--boja-zauzeto);
+    border-color: var(--boja-zauzeto);
+  }
+
+  .traka__dan--trazen {
+    outline: 2px solid var(--boja-akcenat);
+    outline-offset: 1px;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    const DANA = 14;
+
+    function iso(datum) {
+      const mesec = String(datum.getMonth() + 1).padStart(2, '0');
+      const dan = String(datum.getDate()).padStart(2, '0');
+      return datum.getFullYear() + '-' + mesec + '-' + dan;
+    }
+
+    function nacrtaj(traka, trazen) {
+      const zauzeti = (traka.dataset.zauzeti || '').split(',').filter(Boolean);
+      const danas = new Date();
+      danas.setHours(0, 0, 0, 0);
+
+      const deo = document.createDocumentFragment();
+      let brojZauzetih = 0;
+
+      for (let i = 0; i < DANA; i += 1) {
+        const datum = new Date(danas.getFullYear(), danas.getMonth(), danas.getDate() + i);
+        const kljuc = iso(datum);
+        const zauzet = zauzeti.indexOf(kljuc) !== -1;
+        if (zauzet) brojZauzetih += 1;
+
+        const blok = document.createElement('span');
+        blok.className = 'traka__dan'
+          + (zauzet ? ' traka__dan--zauzet' : '')
+          + (kljuc === trazen ? ' traka__dan--trazen' : '');
+        blok.title = datum.getDate() + '.' + (datum.getMonth() + 1) + '. — '
+          + (zauzet ? traka.dataset.zauzeto : traka.dataset.slobodno);
+        deo.appendChild(blok);
+      }
+
+      traka.replaceChildren(deo);
+      traka.setAttribute('role', 'img');
+      traka.setAttribute('aria-label', traka.dataset.naslov + ': ' + brojZauzetih + '/' + DANA);
+    }
+
+    function pokreni() {
+      const trake = document.querySelectorAll('[data-traka]');
+      if (trake.length === 0) return;
+      const trazen = new URLSearchParams(window.location.search).get('datum');
+      trake.forEach(function (traka) {
+        nacrtaj(traka, trazen);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', pokreni);
+    } else {
+      pokreni();
+    }
+  })();
+{% endjavascript %}
