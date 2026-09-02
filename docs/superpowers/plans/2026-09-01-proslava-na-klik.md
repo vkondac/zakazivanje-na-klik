@@ -4026,7 +4026,7 @@ Expected: `0 offenses`
 5. Isključi „Show map" u theme editoru → sekcija mape nestaje
 6. Na 375px grupe se slažu jedna ispod druge, mapa ne prelazi širinu
 
-Provera 3 hvata najčešću grešku: ako je marker u okeanu, `lat`/`lng` su zamenjeni mestima ili nisu useјani.
+Provera 3 hvata najčešću grešku: ako je marker u okeanu, `lat`/`lng` su zamenjeni mestima ili nisu usejani.
 
 - [ ] **Step 5: Commit**
 

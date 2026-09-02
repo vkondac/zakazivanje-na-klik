@@ -104,7 +104,7 @@ da ne radi, a statička analiza to ne bi uhvatila.
       u `sections/prostor-paketi.liquid`. Isto važi za `min_potrosnja` u
       `sections/prostor-zaglavlje.liquid`.
 - [ ] **Marker na mapi je u Novom Sadu**, ne usred okeana. Ako jeste u okeanu,
-      `lat` i `lng` su zamenjeni ili nisu useјani.
+      `lat` i `lng` su zamenjeni ili nisu usejani.
 
 ## B. Filteri — srce projekta
 
