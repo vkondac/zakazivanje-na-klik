@@ -19,3 +19,6 @@ release
 # Secrets
 .env
 .env.local
+
+# Simlink na AGENTS.md, ne treba u repou
+CLAUDE.md

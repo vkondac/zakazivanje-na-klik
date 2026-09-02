@@ -1,1 +1,0 @@
-/Users/macbookpro/projects/zakazivanje-na-klik/AGENTS.md
